@@ -1,4 +1,4 @@
-# Data-Analysis-Project
+# Data-Analytics-Project
 ### Group Members
 Caselli Alex 807129 <br />
 Olivadese Fabrizio <br />
