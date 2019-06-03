@@ -53,7 +53,7 @@ app.layout = html.Div([
         }
     ),
         ]),
-        dcc.Tab(label='Tab two', children=[
+        dcc.Tab(label='Communities Trend', children=[
                     dcc.Graph(
                     id='example-graph',
                     figure={
