@@ -8,28 +8,79 @@ import plotly.graph_objs as go
 
 
 
-df = pd.read_csv('users_trend_30days.csv')
+df = pd.read_csv('userAndEdge_trends_30days.csv')
 
 
 
 
-def generate_table_user_trend(dataframe, max_rows=30):
-    return html.Table(
-        # Header
-        [html.Tr([html.Th(col) for col in dataframe.columns])] +
-
-        # Body
-        [html.Tr([
-            html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
-        ]) for i in range(min(len(dataframe), max_rows))]
-    )
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-app.layout = html.Div(children=[
+app.layout = html.Div([
+    html.H1(children='MPROG Analysis'),
+    dcc.Tabs(id="tabs", children=[
+        dcc.Tab(label='Trend nodi e archi', children=[
+            html.P('La media degli utenti nei 30 giorni è di 2901'),
+            dcc.Graph(
+        id='life-exp-vs-gdp',
+         figure={
+            'data': [
+                go.Scatter(
+                    x=df[df['type'] == i]['day'],
+                    y=df[df['type'] == i]['quantity'],
+                    text=df[df['type'] == i]['type'],
+                    mode='markers',
+                    opacity=0.7,
+                    marker={
+                        'size': 15,
+                        'line': {'width': 0.5, 'color': 'white'}
+                    },
+                    name=i
+                ) for i in df.type.unique()
+            ],
+            'layout': go.Layout(
+                xaxis={'title': 'Giorni'},
+                yaxis={'title': 'Quantità', 'type':'log'},
+                #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                #legend={'x': 0, 'y': 1},
+                #hovermode='closest'
+            )
+        }
+    ),
+        ]),
+        dcc.Tab(label='Tab two', children=[
+                dcc.Graph(
+                    id='example-graph-1',
+                    figure={
+                        'data': [
+                            {'x': [1, 2, 3], 'y': [1, 4, 1],
+                                'type': 'bar', 'name': 'SF'},
+                            {'x': [1, 2, 3], 'y': [1, 2, 3],
+                             'type': 'bar', 'name': u'Montréal'},
+                        ]
+                    }
+                )
+        ]),
+        dcc.Tab(label='Tab three', children=[
+                dcc.Graph(
+                    id='example-graph-2',
+                    figure={
+                        'data': [
+                            {'x': [1, 2, 3], 'y': [2, 4, 3],
+                                'type': 'bar', 'name': 'SF'},
+                            {'x': [1, 2, 3], 'y': [5, 4, 3],
+                             'type': 'bar', 'name': u'Montréal'},
+                        ]
+                    }
+                )
+        ]),
+    ])
+])
+
+'''app.layout = html.Div(children=[
 
     html.H1(children='MPROG Analysis'),
     html.H4(children='User trend in 30 days'),
@@ -39,45 +90,47 @@ app.layout = html.Div(children=[
     dcc.Markdown(),
     dcc.Graph(
         id='life-exp-vs-gdp',
-        figure={
+         figure={
             'data': [
                 go.Scatter(
-                    x=df['day'],
-                    y=df['users'],
-                    #text=df[df['continent'] == i]['country'],
-                    #text=df['continent'] == i]['country'],
+                    x=df[df['type'] == i]['day'],
+                    y=df[df['type'] == i]['quantity'],
+                    text=df[df['type'] == i]['type'],
                     mode='markers',
                     opacity=0.7,
                     marker={
                         'size': 15,
                         'line': {'width': 0.5, 'color': 'white'}
                     },
-                    #name=i
-                ) 
+                    name=i
+                ) for i in df.type.unique()
             ],
             'layout': go.Layout(
                 xaxis={'title': 'Giorni'},
-                yaxis={'title': 'Numero di utenti'},
-                margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                legend={'x': 0, 'y': 1},
-                hovermode='closest'
+                yaxis={'title': 'Quantità', 'type':'log'},
+                #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                #legend={'x': 0, 'y': 1},
+                #hovermode='closest'
             )
         }
     ),
 
+
+
     dcc.Graph(
-    id='example-graph',
-    figure={
-        'data': [
-            {'x': df['day'], 'y': df['users'], 'type': 'bar', 'name': 'SF'},
-        ],
-        'layout': {
-            'title': 'User Trend Visualization'
+        id='example-graph',
+        figure={
+            'data': [
+                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
+                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
+            ],
+            'layout': {
+                'title': 'Dash Data Visualization'
+            }
         }
-    }
     ),
-    generate_table_user_trend(df),
-])
+
+])'''
 
 # app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 #
