@@ -7,8 +7,10 @@ import os
 import plotly.graph_objs as go
 
 
-
 df = pd.read_csv('userAndEdge_trends_30days.csv')
+communitiesNumberTrend = pd.read_csv('communitiesNumberTrend.csv')
+communitiesDissolvedTrend = pd.read_csv('communitiesDissolvedTrend.csv')
+communitiesCreationTrend = pd.read_csv('communitiesCreationTrend.csv')
 
 
 
@@ -52,17 +54,24 @@ app.layout = html.Div([
     ),
         ]),
         dcc.Tab(label='Tab two', children=[
-                dcc.Graph(
-                    id='example-graph-1',
+                    dcc.Graph(
+                    id='example-graph',
                     figure={
                         'data': [
-                            {'x': [1, 2, 3], 'y': [1, 4, 1],
-                                'type': 'bar', 'name': 'SF'},
-                            {'x': [1, 2, 3], 'y': [1, 2, 3],
-                             'type': 'bar', 'name': u'Montréal'},
-                        ]
+                            {'x': communitiesNumberTrend.day, 'y': communitiesNumberTrend.quantity, 'type': 'bar', 'name': 'communities Number'},
+                            {'x': communitiesDissolvedTrend.day, 'y': communitiesDissolvedTrend.quantity, 'type': 'bar', 'name': 'communities Dissolved'},
+                            {'x': communitiesCreationTrend.day, 'y': communitiesCreationTrend.quantity, 'type': 'bar', 'name': 'communities Creation'},
+
+                        ],
+                        'layout': go.Layout(
+                            xaxis={'title': 'Giorni'},
+                            yaxis={'title': 'Quantità'},
+                            #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                            #legend={'x': 0, 'y': 1},
+                            #hovermode='closest'
+                        )
                     }
-                )
+                ),
         ]),
         dcc.Tab(label='Tab three', children=[
                 dcc.Graph(
