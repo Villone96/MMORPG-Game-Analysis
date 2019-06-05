@@ -10,19 +10,17 @@ import dash_dangerously_set_inner_html
 #pip install dash-dangerously-set-inner-html
 
 
+print(os.listdir())
 df = pd.read_csv('userAndEdge_trends_30days.csv')
 communitiesNumberTrend = pd.read_csv('communitiesNumberTrend.csv')
 communitiesDissolvedTrend = pd.read_csv('communitiesDissolvedTrend.csv')
 communitiesCreationTrend = pd.read_csv('communitiesCreationTrend.csv')
 
 
-
-
-
-
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
 
 app.layout = html.Div([
 
@@ -38,7 +36,7 @@ app.layout = html.Div([
 
         dcc.Tab(label='Introduzione', children=[
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-        <img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="1700"> 
+        <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="1000"> </center>
     '''),
         ]),
 
@@ -95,6 +93,29 @@ app.layout = html.Div([
             )
         }
     ),
+
+
+    #GRafico a torta
+
+    dcc.Graph(id="my-graph"),
+
+
+    dcc.Slider(
+        id='day-selected',
+        min=0,
+        max=30,
+        step=1,
+        value=15,
+        marks={
+            1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10',
+            11: '11', 12: '12', 13: '13', 14: '14', 15: '15', 16: '16', 17: '17', 18: '18', 19: '19', 20: '20', 21: '21',
+            22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28', 29: '29', 30: '30'
+    },
+    ),
+    html.Div(id='slider-output-container'),
+
+
+
         ]),
         dcc.Tab(label='Communities Trend', children=[
                     dcc.Graph(
@@ -131,6 +152,15 @@ app.layout = html.Div([
         ]),
     ])
 ])
+@app.callback(
+    dash.dependencies.Output("my-graph", "figure"),
+    [dash.dependencies.Input("day-selected", "value")])
+def update_output(value):
+    return {
+        "data": [go.Pie(labels=df["type"].unique().tolist(), values=df[df["day"] == value]["quantity"].tolist(),
+                        marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B', '#57D4F1']}, textinfo='label')],
+        "layout": go.Layout(title=f"Trend report daily", margin={"l": 300, "r": 300, },
+                            legend={"x": 1, "y": 0.7})}
 
 '''app.layout = html.Div(children=[
 
