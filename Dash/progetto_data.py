@@ -10,12 +10,11 @@ import dash_dangerously_set_inner_html
 #pip install dash-dangerously-set-inner-html
 
 
-print(os.listdir())
 df = pd.read_csv('userAndEdge_trends_30days.csv')
+edgesTrend = pd.read_csv('edgesTrend.csv')
 communitiesNumberTrend = pd.read_csv('communitiesNumberTrend.csv')
 communitiesDissolvedTrend = pd.read_csv('communitiesDissolvedTrend.csv')
 communitiesCreationTrend = pd.read_csv('communitiesCreationTrend.csv')
-
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -99,7 +98,6 @@ app.layout = html.Div([
 
     dcc.Graph(id="my-graph"),
 
-
     dcc.Slider(
         id='day-selected',
         min=0,
@@ -157,9 +155,9 @@ app.layout = html.Div([
     [dash.dependencies.Input("day-selected", "value")])
 def update_output(value):
     return {
-        "data": [go.Pie(labels=df["type"].unique().tolist(), values=df[df["day"] == value]["quantity"].tolist(),
+        "data": [go.Pie(labels=edgesTrend["type"].unique().tolist(), values=edgesTrend[df["day"] == value]["quantity"].tolist(),
                         marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B', '#57D4F1']}, textinfo='label')],
-        "layout": go.Layout(title=f"Trend report daily", margin={"l": 300, "r": 300, },
+        "layout": go.Layout(title=f"Trend report daily", margin={"l": 200, "r": 200, },
                             legend={"x": 1, "y": 0.7})}
 
 '''app.layout = html.Div(children=[
