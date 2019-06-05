@@ -156,7 +156,7 @@ app.layout = html.Div([
 def update_output(value):
     return {
         "data": [go.Pie(labels=edgesTrend["type"].unique().tolist(), values=edgesTrend[df["day"] == value]["quantity"].tolist(),
-                        marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B', '#57D4F1']}, textinfo='label')],
+                        marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B']}, textinfo='label')],
         "layout": go.Layout(title=f"Trend report daily", margin={"l": 200, "r": 200, },
                             legend={"x": 1, "y": 0.7})}
 
