@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<!-- Created by igraph -->
+  <key id="v_name" for="node" attr.name="name" attr.type="string"/>
+  <key id="v_Community" for="node" attr.name="Community" attr.type="double"/>
+  <key id="v_label" for="node" attr.name="label" attr.type="string"/>
+  <key id="e_MWeight" for="edge" attr.name="MWeight" attr.type="double"/>
+  <key id="e_TWeight" for="edge" attr.name="TWeight" attr.type="double"/>
+  <key id="e_color" for="edge" attr.name="color" attr.type="string"/>
+  <graph id="G" edgedefault="directed">
+    <node id="n0">
+      <data key="v_name">2200</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">2200</data>
+    </node>
+    <node id="n1">
+      <data key="v_name">7963</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">7963</data>
+    </node>
+    <node id="n2">
+      <data key="v_name">4519</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">4519</data>
+    </node>
+    <node id="n3">
+      <data key="v_name">7712</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">7712</data>
+    </node>
+    <node id="n4">
+      <data key="v_name">2600</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">2600</data>
+    </node>
+    <node id="n5">
+      <data key="v_name">2347</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">2347</data>
+    </node>
+    <node id="n6">
+      <data key="v_name">1623</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">1623</data>
+    </node>
+    <node id="n7">
+      <data key="v_name">11383</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11383</data>
+    </node>
+    <node id="n8">
+      <data key="v_name">8444</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">8444</data>
+    </node>
+    <node id="n9">
+      <data key="v_name">6230</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">6230</data>
+    </node>
+    <node id="n10">
+      <data key="v_name">4298</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">4298</data>
+    </node>
+    <node id="n11">
+      <data key="v_name">2180</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">2180</data>
+    </node>
+    <node id="n12">
+      <data key="v_name">284</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">284</data>
+    </node>
+    <node id="n13">
+      <data key="v_name">8321</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">8321</data>
+    </node>
+    <node id="n14">
+      <data key="v_name">8315</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">8315</data>
+    </node>
+    <node id="n15">
+      <data key="v_name">11643</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11643</data>
+    </node>
+    <node id="n16">
+      <data key="v_name">9492</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">9492</data>
+    </node>
+    <node id="n17">
+      <data key="v_name">8149</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">8149</data>
+    </node>
+    <node id="n18">
+      <data key="v_name">3523</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">3523</data>
+    </node>
+    <node id="n19">
+      <data key="v_name">10242</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">10242</data>
+    </node>
+    <node id="n20">
+      <data key="v_name">2043</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">2043</data>
+    </node>
+    <node id="n21">
+      <data key="v_name">9523</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">9523</data>
+    </node>
+    <node id="n22">
+      <data key="v_name">11591</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11591</data>
+    </node>
+    <node id="n23">
+      <data key="v_name">11533</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11533</data>
+    </node>
+    <node id="n24">
+      <data key="v_name">6010</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">6010</data>
+    </node>
+    <node id="n25">
+      <data key="v_name">6113</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">6113</data>
+    </node>
+    <node id="n26">
+      <data key="v_name">7948</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">7948</data>
+    </node>
+    <node id="n27">
+      <data key="v_name">8520</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">8520</data>
+    </node>
+    <node id="n28">
+      <data key="v_name">11234</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11234</data>
+    </node>
+    <node id="n29">
+      <data key="v_name">9135</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">9135</data>
+    </node>
+    <node id="n30">
+      <data key="v_name">7698</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">7698</data>
+    </node>
+    <node id="n31">
+      <data key="v_name">11114</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11114</data>
+    </node>
+    <node id="n32">
+      <data key="v_name">6328</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">6328</data>
+    </node>
+    <node id="n33">
+      <data key="v_name">7737</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">7737</data>
+    </node>
+    <node id="n34">
+      <data key="v_name">9067</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">9067</data>
+    </node>
+    <node id="n35">
+      <data key="v_name">9821</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">9821</data>
+    </node>
+    <node id="n36">
+      <data key="v_name">5402</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">5402</data>
+    </node>
+    <node id="n37">
+      <data key="v_name">3281</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">3281</data>
+    </node>
+    <node id="n38">
+      <data key="v_name">4968</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">4968</data>
+    </node>
+    <node id="n39">
+      <data key="v_name">5478</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">5478</data>
+    </node>
+    <node id="n40">
+      <data key="v_name">11854</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11854</data>
+    </node>
+    <node id="n41">
+      <data key="v_name">11858</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11858</data>
+    </node>
+    <node id="n42">
+      <data key="v_name">7682</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">7682</data>
+    </node>
+    <node id="n43">
+      <data key="v_name">11817</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11817</data>
+    </node>
+    <node id="n44">
+      <data key="v_name">5913</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">5913</data>
+    </node>
+    <node id="n45">
+      <data key="v_name">11044</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11044</data>
+    </node>
+    <node id="n46">
+      <data key="v_name">11074</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">11074</data>
+    </node>
+    <node id="n47">
+      <data key="v_name">8692</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">8692</data>
+    </node>
+    <node id="n48">
+      <data key="v_name">4878</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">4878</data>
+    </node>
+    <node id="n49">
+      <data key="v_name">4624</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">4624</data>
+    </node>
+    <node id="n50">
+      <data key="v_name">862</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">862</data>
+    </node>
+    <node id="n51">
+      <data key="v_name">1584</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">1584</data>
+    </node>
+    <node id="n52">
+      <data key="v_name">5607</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">5607</data>
+    </node>
+    <node id="n53">
+      <data key="v_name">10849</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">10849</data>
+    </node>
+    <node id="n54">
+      <data key="v_name">4245</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">4245</data>
+    </node>
+    <node id="n55">
+      <data key="v_name">12055</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">12055</data>
+    </node>
+    <node id="n56">
+      <data key="v_name">12250</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">12250</data>
+    </node>
+    <node id="n57">
+      <data key="v_name">6849</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">6849</data>
+    </node>
+    <node id="n58">
+      <data key="v_name">3968</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">3968</data>
+    </node>
+    <node id="n59">
+      <data key="v_name">3780</data>
+      <data key="v_Community">5</data>
+      <data key="v_label">3780</data>
+    </node>
+    <edge source="n0" target="n1">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n0" target="n2">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">2</data>
+      <data key="e_color">darkgreen</data>
+    </edge>
+    <edge source="n0" target="n3">
+      <data key="e_MWeight">4</data>
+      <data key="e_TWeight">11</data>
+      <data key="e_color">darkgreen</data>
+    </edge>
+    <edge source="n0" target="n4">
+      <data key="e_MWeight">6</data>
+      <data key="e_TWeight">6</data>
+      <data key="e_color">darkgreen</data>
+    </edge>
+    <edge source="n0" target="n5">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n0" target="n6">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">6</data>
+      <data key="e_color">darkgreen</data>
+    </edge>
+    <edge source="n0" target="n7">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">4</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n0" target="n8">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">8</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n0" target="n9">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">8</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n0" target="n10">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">2</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n1" target="n0">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n2" target="n0">
+      <data key="e_MWeight">4</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n3" target="n5">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n3" target="n4">
+      <data key="e_MWeight">3</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n3" target="n0">
+      <data key="e_MWeight">8</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n3" target="n42">
+      <data key="e_MWeight">6</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n11">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n12">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n13">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n14">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n15">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n16">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n17">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n18">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n19">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n20">
+      <data key="e_MWeight">3</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n21">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n8">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n7">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n22">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n23">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n24">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n25">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n26">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n27">
+      <data key="e_MWeight">3</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n1">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n28">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n5">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n3">
+      <data key="e_MWeight">4</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n9">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n29">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n30">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n31">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n0">
+      <data key="e_MWeight">8</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n32">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n33">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n34">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n35">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n36">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n37">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n38">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n39">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n40">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n41">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n42">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n43">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n44">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n45">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n46">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n47">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n48">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n6">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n49">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n50">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n51">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n2">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n52">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n53">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n10">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n54">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n55">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n56">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n57">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n58">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n4" target="n59">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n5" target="n42">
+      <data key="e_MWeight">3</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n5" target="n0">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n6" target="n0">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n9" target="n4">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n9" target="n10">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n9" target="n3">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">1</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n10" target="n42">
+      <data key="e_MWeight">8</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n10" target="n9">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n10" target="n21">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n10" target="n25">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">1</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n20" target="n4">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n21" target="n10">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n25" target="n10">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">1</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n27" target="n4">
+      <data key="e_MWeight">2</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n28" target="n4">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n35" target="n4">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n42" target="n10">
+      <data key="e_MWeight">5</data>
+      <data key="e_TWeight">4</data>
+      <data key="e_color">darkgreen</data>
+    </edge>
+    <edge source="n42" target="n5">
+      <data key="e_MWeight">3</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n42" target="n3">
+      <data key="e_MWeight">6</data>
+      <data key="e_TWeight">6</data>
+      <data key="e_color">darkgreen</data>
+    </edge>
+    <edge source="n50" target="n4">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+    <edge source="n51" target="n3">
+      <data key="e_MWeight">0</data>
+      <data key="e_TWeight">4</data>
+      <data key="e_color">orange</data>
+    </edge>
+    <edge source="n56" target="n28">
+      <data key="e_MWeight">1</data>
+      <data key="e_TWeight">0</data>
+      <data key="e_color">blue</data>
+    </edge>
+  </graph>
+</graphml>
