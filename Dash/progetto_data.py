@@ -16,6 +16,17 @@ communitiesNumberTrend = pd.read_csv('communitiesNumberTrend.csv')
 communitiesDissolvedTrend = pd.read_csv('communitiesDissolvedTrend.csv')
 communitiesCreationTrend = pd.read_csv('communitiesCreationTrend.csv')
 
+averageDegreeAttack=pd.read_csv('AverageDegree/AttackGraphData.csv')
+averageDegreeMessage=pd.read_csv('AverageDegree/MessageGraphData.csv')
+averageDegreeTrade=pd.read_csv('AverageDegree/TradeGraphData.csv')
+
+inDegreeDistribution=pd.read_csv('InDegreeDistribution/GraphData.csv')
+
+
+
+
+
+
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -93,7 +104,6 @@ app.layout = html.Div([
         }
     ),
 
-
     #GRafico a torta
 
     dcc.Graph(id="my-graph"),
@@ -135,25 +145,82 @@ app.layout = html.Div([
                     }
                 ),
         ]),
-        dcc.Tab(label='Tab three', children=[
+        dcc.Tab(label='Average Degree', children=[
                 dcc.Graph(
                     id='example-graph-2',
                     figure={
                         'data': [
-                            {'x': [1, 2, 3], 'y': [2, 4, 3],
-                                'type': 'bar', 'name': 'SF'},
-                            {'x': [1, 2, 3], 'y': [5, 4, 3],
-                             'type': 'bar', 'name': u'Montréal'},
+                            {'x': averageDegreeAttack.Day, 'y': averageDegreeAttack.AverageDegree,
+                                'type': 'bar', 'name': 'Attack'},
+                             {'x': averageDegreeMessage.Day, 'y': averageDegreeMessage.AverageDegree,
+                                'type': 'bar', 'name': 'Message'},
+                                 {'x': averageDegreeTrade.Day, 'y': averageDegreeTrade.AverageDegree,
+                                'type': 'bar', 'name': 'TRade'},
                         ]
                     }
                 )
         ]),
+        dcc.Tab(label='In Degree Distribution', children=[
+                dcc.Graph(id="DegreeDistributionGraph"),
+                dcc.Slider(
+                    id='day-selected2',
+                    min=1,
+                    max=30,
+                    step=1,
+                    value=15,
+                    marks={
+                        1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10',
+                        11: '11', 12: '12', 13: '13', 14: '14', 15: '15', 16: '16', 17: '17', 18: '18', 19: '19', 20: '20', 21: '21',
+                        22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28', 29: '29', 30: '30'
+                },
+                ),
+                html.Div(id='SelectionDegreeDistributionGraph'),
+
+
+
+        ]),
     ])
 ])
+
+@app.callback(
+    dash.dependencies.Output("DegreeDistributionGraph", "figure"),
+    [dash.dependencies.Input("day-selected2", "value")])
+    
+def update_output(day):
+    
+    return {
+        'data': [
+                go.Histogram(
+                        print(d),
+
+                        print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
+                        x=inDegreeDistribution[inDegreeDistribution['Day']==day]["Range"],
+                        y=inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value'],
+                        text=inDegreeDistribution[inDegreeDistribution['Type'] == d]['Type'],
+                        #mode='markers',
+                        opacity=0.7,
+                        #marker={
+                            #'size': 15,
+                            #'line': {'width': 0.5, 'color': 'white'}
+                        #},
+                        name=d
+                    )for d in inDegreeDistribution.Type.unique()],
+
+            'layout': go.Layout(
+                xaxis={'title': 'Giorni'},
+                yaxis={'title': 'Quantità'},
+                #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                #legend={'x': 0, 'y': 1},
+                #hovermode='closest'
+            )}
+
+                            
 @app.callback(
     dash.dependencies.Output("my-graph", "figure"),
     [dash.dependencies.Input("day-selected", "value")])
-def update_output(value):
+
+    
+def update_output2(value):
     return {
         "data": [go.Pie(labels=edgesTrend["type"].unique().tolist(), values=edgesTrend[edgesTrend["day"] == value]["quantity"].tolist(),
                         marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B']}, textinfo='label')],
