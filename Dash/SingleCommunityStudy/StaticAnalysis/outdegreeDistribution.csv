@@ -1,4 +1,4 @@
-day,type,range,value
+day;type;range;value
 1,Message,0,0.694444444
 1,Message,1-3,0.222222222
 1,Message,4-6,0.083333333
