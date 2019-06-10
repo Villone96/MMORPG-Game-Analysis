@@ -22,7 +22,25 @@ averageDegreeTrade=pd.read_csv('AverageDegree/TradeGraphData.csv')
 
 inDegreeDistribution=pd.read_csv('InDegreeDistribution/GraphData.csv')
 
+AverageShortestPathAttack=pd.read_csv('AverageShortestPath/AttackGraphData.csv')
+AverageShortestPathMessage=pd.read_csv('AverageShortestPath/MessageGraphData.csv')
+AverageShortestPathTrade=pd.read_csv('AverageShortestPath/TradeGraphData.csv')
 
+clusteringCoefficientC=pd.read_csv('ClusteringCoefficient/CC_clusteringCoefficientData.csv')
+clusteringCoefficientM=pd.read_csv('ClusteringCoefficient/CC_clusteringMCoefficientData.csv')
+clusteringCoefficientT=pd.read_csv('ClusteringCoefficient/CC_clusteringTCoefficientData.csv')
+
+DensityA=pd.read_csv('Density/DE_densityData.csv')
+DensityM=pd.read_csv('Density/DE_densityMData.csv')
+DensityT=pd.read_csv('Density/DE_densityTData.csv')
+
+DiameterValueA=pd.read_csv('DiameterValue/AttackGraphData.csv')
+DiameterValueM=pd.read_csv('DiameterValue/MessageGraphData.csv')
+DiameterValueT=pd.read_csv('DiameterValue/TradeGraphData.csv')
+
+ReciprocityA=pd.read_csv('Reciprocity/RE_reciprocityData.csv')
+ReciprocityM=pd.read_csv('Reciprocity/RE_reciprocityMData.csv')
+ReciprocityT=pd.read_csv('Reciprocity/RE_reciprocityTData.csv')
 
 
 
@@ -35,7 +53,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div([
 
       dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-       <center><img src="https://i.imgur.com/1WNmA0N.png" alt="slide 1" width="500"> </center>
+       <center><img src='https://i.imgur.com/1WNmA0N.png' alt="slide 1" width="500"> </center>
         <center>See our <a href="https://github.com/Villone96/Data-Analytics-Project">GitHub Repo</a></center>
 
     '''),
@@ -179,6 +197,89 @@ app.layout = html.Div([
 
 
         ]),
+        dcc.Tab(label='Average Shortest Path', children=[
+                dcc.Graph(
+                    id='AverageShortestPath',
+                    figure={
+                        'data': [
+                            {'x': AverageShortestPathAttack.Day, 'y': AverageShortestPathAttack.AverageShortestPath,
+                                'type': 'bar', 'name': 'Attack'},
+                             {'x': AverageShortestPathMessage.Day, 'y': AverageShortestPathMessage.AverageShortestPath,
+                                'type': 'bar', 'name': 'Message'},
+                                 {'x': AverageShortestPathTrade.Day, 'y': AverageShortestPathTrade.AverageShortestPath,
+                                'type': 'bar', 'name': 'Trade'},
+                                
+                        ],
+                        'layout': {
+                    'title': 'Dash Data Visualization'
+                        }
+                    }
+                )
+        ]),
+        dcc.Tab(label='Clustering Coefficient', children=[
+                dcc.Graph(
+                    id='clusteringCoefficient',
+                    figure={
+                        'data': [
+                            {'x': clusteringCoefficientC.day, 'y': clusteringCoefficientC.clusteringCoefficient,
+                                'type': 'bar', 'name': 'Attack'},
+                             {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
+                                'type': 'bar', 'name': 'Message'},
+                                 {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
+                                'type': 'bar', 'name': 'Trade'},
+                        ]
+                    }
+                )
+        ]),
+
+           dcc.Tab(label='Density', children=[
+                dcc.Graph(
+                    id='Density',
+                    figure={
+                        'data': [
+                            {'x': DensityA.day, 'y': DensityA.density,
+                                'type': 'bar', 'name': 'Attack'},
+                             {'x': DensityM.day, 'y': DensityM.density,
+                                'type': 'bar', 'name': 'Message'},
+                                 {'x': DensityT.day, 'y': DensityT.density,
+                                'type': 'bar', 'name': 'Trade'},
+                        ]
+                    }
+                )
+        ]),
+
+               dcc.Tab(label='Diameter Value', children=[
+                dcc.Graph(
+                    id='DenDiameterValues',
+                    figure={
+                        'data': [
+                            {'x': DiameterValueA.Day, 'y': DiameterValueA.Diameter,
+                                'type': 'bar', 'name': 'Attack'},
+                             {'x': DiameterValueM.Day, 'y': DiameterValueM.Diameter,
+                                'type': 'bar', 'name': 'Message'},
+                                 {'x': DiameterValueT.Day, 'y': DiameterValueT.Diameter,
+                                'type': 'bar', 'name': 'Trade'},
+                        ]
+                    }
+                )
+        ]),
+
+                dcc.Tab(label='Reciprocity', children=[
+                dcc.Graph(
+                    id='Reciprocy',
+                    figure={
+                        'data': [
+                            {'x': ReciprocityA.day, 'y': ReciprocityA.diameter,
+                                'type': 'bar', 'name': 'Attack'},
+                             {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
+                                'type': 'bar', 'name': 'Message'},
+                                 {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
+                                'type': 'bar', 'name': 'Trade'},
+                        ]
+                    }
+                )
+        ]),
+
     ])
 ])
 
@@ -190,28 +291,21 @@ def update_output(day):
     
     return {
         'data': [
-                go.Histogram(
-                        print(d),
-
+            go.Histogram(
                         print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
-                        x=inDegreeDistribution[inDegreeDistribution['Day']==day]["Range"],
+                        x=inDegreeDistribution[inDegreeDistribution['Type'] == d]["Range"],
+
                         y=inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value'],
                         text=inDegreeDistribution[inDegreeDistribution['Type'] == d]['Type'],
-                        #mode='markers',
-                        opacity=0.7,
-                        #marker={
-                            #'size': 15,
-                            #'line': {'width': 0.5, 'color': 'white'}
-                        #},
+                        
                         name=d
-                    )for d in inDegreeDistribution.Type.unique()],
+                )for d in inDegreeDistribution.Type.unique()],
+            
+                
 
             'layout': go.Layout(
-                xaxis={'title': 'Giorni'},
-                yaxis={'title': 'Quantità'},
-                #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                #legend={'x': 0, 'y': 1},
-                #hovermode='closest'
+                xaxis={'title': 'Range'},
+                yaxis={'title': 'Valori'},
             )}
 
                             
