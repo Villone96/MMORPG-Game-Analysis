@@ -54,6 +54,8 @@ ReciprocityT_S=pd.read_csv('Reciprocity/RE_reciprocityS_TData.csv')
 ReciprocityM_NS=pd.read_csv('Reciprocity/RE_reciprocityN_MData.csv')
 ReciprocityT_NS=pd.read_csv('Reciprocity/RE_reciprocityN_TData.csv')
 
+Diplomatics = pd.read_csv('SingleCommunityStudy/DiplomatsVsNoDiplomats/data.csv')
+
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -370,6 +372,24 @@ app.layout = html.Div([
                 
         ]),
     ])
+               
+        ]),
+        dcc.Tab(label='Diplomatici', children=[
+            dcc.Graph(
+                    id='DiplomaticiNotDiplomatici',
+                    figure={
+                        'data': [
+                            {'x': 'Diplomatici', 'y': Diplomatics.DiplomatsLeaderMessage,
+                                'type': 'bar', 'name': 'Messaggi Diplomatici'},
+                             {'x': 'Non Diplomatici', 'y': Diplomatics.NormalUserLeaderMessage,
+                                'type': 'bar', 'name': 'Messaggi utenti comuni'},],
+                        'layout': {
+                    'title': 'Confronto tra media messaggi di diplomatici e utenti comuni'
+                        }
+                    }
+                ),
+
+
                
         ]),
 
