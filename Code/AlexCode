@@ -326,3 +326,192 @@ war_change_communities(wars);
 
 ## Find which communities has attacked the most attacked community for each day
 max_attacked_community(wars)
+
+
+# Do the same for Trades
+
+#find trades between communities in each day
+#return a matrix of size [30, 319, 319] where each element [day, comm_A, comm_B] is equal to
+#the number of trades edges at day: day from the community comm_A to the community comm_B
+def find_trades(tradeGraph, day):
+    #number max of communities 319
+    #matrix of trades between different communities
+    trades = np.zeros([319, 319]);
+   
+
+    #for each edge in the graph
+    for e in tradeGraph.es():
+        
+        #src node index
+        source = e.tuple[0];
+        #src node id
+        src = tradeGraph.vs[source]['id']
+        
+        #dest node index
+        destination = e.tuple[1];
+        #dest node id
+        dest = tradeGraph.vs[destination]['id']
+        
+        #get source and destination communities 
+        src_comm = tradeGraph.vs.select(id = str(src))['Community'];
+        dest_comm = tradeGraph.vs.select(id = str(dest))['Community'];
+        
+        #if att and def have a community
+        if(len(src_comm) > 0 and len(dest_comm) > 0):
+          
+            #save the community
+            src_comm = src_comm[0];
+            dest_comm = dest_comm[0];
+
+            # if src community is different from the def community increase the number of trades
+            if( src_comm != dest_comm):
+                trades[src_comm, dest_comm] += 1;
+                
+            #else increase the number of rouge trades
+            if( src_comm == dest_comm):
+                rouges[src_comm, dest_comm] += 1;
+     
+    #just some checks
+    print('Day: ' + str(day))
+    print('Total number of trades: ' + str(sum(sum(trades[:,:]))))
+    print('max: ')
+    print(np.amax(trades[:,:]))
+    print("")
+    
+    #return the day matrix of trades and rouges trades
+    return trades
+
+#find the biggest war between 2 communities at day: day      
+def find_max_trade(tradeGraph, day):
+  
+    #number max of communities 319
+    trades = np.zeros([319, 319]);
+    
+  #for each edge in the graph
+    for e in tradeGraph.es():
+        
+        
+        #src node index
+        src = e.tuple[0];
+        #src node id
+        src = tradeGraph.vs[src]['id']
+        
+        #def node index
+        dest = e.tuple[1];
+        #def node id
+        dest = tradeGraph.vs[dest]['id']
+        
+        #get src and def communities 
+        src_comm = tradeGraph.vs.select(id = str(src))['Community'];
+        dest_comm = tradeGraph.vs.select(id = str(dest))['Community'];
+        
+        #if src and def have a community
+        if(len(src_comm) > 0 and len(dest_comm) > 0):
+          
+            #save the community
+            src_comm = src_comm[0];
+            dest_comm = dest_comm[0];
+            
+            # if src community is different from the def community increase the number of trades
+            if( src_comm != dest_comm):
+                trades[src_comm, dest_comm] += 1;
+           
+    for r in range(0, 319):
+      for c in range(0,319):
+        
+        #where we got the max number of trades 
+        if trades[r,c] == np.amax(trades[:,:]):
+            print('max number of trade at day: ' + str(day) + ' is from: ' + str(r) + ' to: ' + str(c))
+            
+            #return the src community and the def community
+            return r, c;
+
+
+
+#find for each day who is the most tradeed community and which community has tradeed it
+def max_traded_community(trades):
+  
+  #matrix of [community, number of trades recieved] for each day
+  lotte = np.zeros([30, 2])
+  
+  print('The most tradeed community for each day')
+  print(' ')
+  #for each day
+  for day in range(0,30):
+    
+    #sum all the column getting for each c community how many trades they have received
+    change = sum(trades[day,:,:])
+    
+    #get the max number of trades
+    maxi = np.amax(change)
+  
+    print('Day: ' + str(day))
+    #search which is the community with the max trades number
+    for c in range(0,319):
+       
+        if (change[c] == maxi):
+            
+            print('max tradeed community at day: ' + str(day) + ' is the community: ' + str(c))
+            #add the community and the number of trades for each day to the matrix
+            lotte[day, 0] = c
+            lotte[day, 1] = maxi
+  print(' ')
+  print('________________________________________________________')
+  #comm attaccata, numero di attacchi per ogni giorno
+  print('For each day, the most tradeed community and the number of trade edge to that community')
+
+  print(lotte)
+  print(' ')
+  print('________________________________________________________')
+  
+  #for each day
+  print('For each day: show the day number, the tradeed community, the community that trade and the number of trade edges ')
+  print(' ')
+  for day in range(0,30):
+    #get the victim community
+    dest = int(lotte[day,0])
+    l = []
+    #get the number of trades to the victim from che community row by the wars matrix
+    for row in range(0,319):
+      ntrade = wars[day, row, dest]
+      #if there were trades to victim from row
+      if ntrade > 0:
+        #append [day of trades, victim, att, #of trades]
+        l.append([day, dest, row, int(ntrade)])
+    print('Day: ' + str(day))
+    print(l)
+    print(' ')
+    
+
+## Create the dictionary for the Trades
+communityAffiliationT = dict()
+
+communityStoryT = dict()
+    
+for i in range(0, len(allNetwork)):
+    # print(allNetwork[i][4].summary())
+    communityAffiliationT[i] = addCommunitiesLabel(allNetwork[i][2], i)
+    # addCommunitiesLabel(allNetwork[i][3], i)
+    print(allNetwork[i][4].summary())
+print("")
+
+print("Finito")
+
+## Compute the Trade matrix
+trades = np.zeros([30, 319, 319]);
+
+for i in range(0,30):
+    trade = find_trades(allNetwork[i][2], i);
+    print(trade.shape)
+    trades[i, :, :] = trade;
+print('total number of edges: ')
+print(sum(sum(trades[0,:,:])))
+print(allNetwork[0][2].summary())
+
+## Find the biggest trade at day d
+d = 0;
+r,c = find_max_trade(allNetwork[i][2], d)
+
+
+## Find which communities has traded the most attacked community for each day
+max_traded_community(trades)
