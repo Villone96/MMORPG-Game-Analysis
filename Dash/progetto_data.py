@@ -76,87 +76,106 @@ app.layout = html.Div([
     dcc.Tabs(id="tabs", children=[
 
         dcc.Tab(label='Introduzione', children=[
+
+            dcc.Tabs(id="introtabs", children=[
+            dcc.Tab(label='Titolo', children=[
+
+
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-        <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="1000"> </center>
-    '''),
-        ]),
+         <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="1000"> </center>
+            '''),
+           
+         
+            ]),
 
-        dcc.Tab(label='Il dataset', children=[
-            #Codice
-        ]),
+            dcc.Tab(label='IL dataset', children=[
+                    
+            ]),
+            dcc.Tab(label='Pre-Processing', children=[
+                    
+            ]),
 
-        dcc.Tab(label='Obiettivi di Analisi', children=[
+            dcc.Tab(label='Obiettivi di Analisi', children=[
+
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-        <h4>Le nostre analisi preventivate di analisi</h4>
-        <ul>
-        <li>Analisi numerosità  e numero medio di player.</li>
-        <li>Analisi numerosità  e numero medio per ogni tipologia di arco. </li>
-        <li>Cercare i nodi con outdegree (di qualsiasi tipo) uguale a 0 e indegree > 0 per gli attacchi (valutare anche altri possibili indegree); questo per identificare i villaggi abbandonati.</li>
-        <li>Cercare i nodi con indegree (di qualsiasi tipo) uguale a 0 e outdegree > 0 per i trades (valutare che siano un unico outdegree); in questo modo si identificano quei villaggi che vengono utilizzati dallo stesso player (con nomi diversi) per rifornire il villaggio principale (valutare quindi che tutti gli archi siano in direzione di un solo player).</li>
-        <li>Analisi delle community più grosse (top 3) nell'arco dei 30 giorni e determinare le cause.</li>
-        <li>Ricerca della community che cresce (e decresce) di più (e di meno) nei 30 giorni. (Forse meglio valutare numerosità  nell'arco dei 30 giorni date tutte le community > 1)</li>
-        <li>Valutare la edge betweenness date le community per ogni tipologia (attacco, commercio, messaggi); per i messaggi andiamo a identificare i capi diplomatici per ogni community.</li>
-        <li>Valutare date le community più grosse la presenza di guerre (grande commercio e grande scambio di messaggi).</li>
-        <li>Valutare l'evoluzione delle community in assenza di elementi centrali.</li>
-        <li>Ricerca di nodi pozzo/sorgente per ogni tipo di relazioni e fare ipotesi sul perchè e per come.</li>
-        <li>Fare confronto tra le diverse metodologie di community detection e valutare quale da risultati piÃÂ¹ simili a quelle fornite.</li>
-        <li>Modifiche delle community in seguito agli attacchi.</li>
-        <li></li>
-        </ul>
-    '''),
-        ]),
+            <h4>Le nostre analisi preventivate di analisi</h4>
+            <ul>
+            <li>Analisi numerosità  e numero medio di player.</li>
+            <li>Analisi numerosità  e numero medio per ogni tipologia di arco. </li>
+            <li>Cercare i nodi con outdegree (di qualsiasi tipo) uguale a 0 e indegree > 0 per gli attacchi (valutare anche altri possibili indegree); questo per identificare i villaggi abbandonati.</li>
+            <li>Cercare i nodi con indegree (di qualsiasi tipo) uguale a 0 e outdegree > 0 per i trades (valutare che siano un unico outdegree); in questo modo si identificano quei villaggi che vengono utilizzati dallo stesso player (con nomi diversi) per rifornire il villaggio principale (valutare quindi che tutti gli archi siano in direzione di un solo player).</li>
+            <li>Analisi delle community più grosse (top 3) nell'arco dei 30 giorni e determinare le cause.</li>
+            <li>Ricerca della community che cresce (e decresce) di più (e di meno) nei 30 giorni. (Forse meglio valutare numerosità  nell'arco dei 30 giorni date tutte le community > 1)</li>
+            <li>Valutare la edge betweenness date le community per ogni tipologia (attacco, commercio, messaggi); per i messaggi andiamo a identificare i capi diplomatici per ogni community.</li>
+            <li>Valutare date le community più grosse la presenza di guerre (grande commercio e grande scambio di messaggi).</li>
+            <li>Valutare l'evoluzione delle community in assenza di elementi centrali.</li>
+            <li>Ricerca di nodi pozzo/sorgente per ogni tipo di relazioni e fare ipotesi sul perchè e per come.</li>
+            <li>Fare confronto tra le diverse metodologie di community detection e valutare quale da risultati piÃÂ¹ simili a quelle fornite.</li>
+            <li>Modifiche delle community in seguito agli attacchi.</li>
+            <li></li>
+            </ul>
+        '''),
+                    
+            ]),
 
-        dcc.Tab(label='Trend nodi e archi', children=[
-            html.P('La media degli utenti nei 30 giorni è di 2901'),
-            dcc.Graph(
-        id='life-exp-vs-gdp',
-         figure={
-            'data': [
-                go.Scatter(
-                    x=df[df['type'] == i]['day'],
-                    y=df[df['type'] == i]['quantity'],
-                    text=df[df['type'] == i]['type'],
-                    mode='markers',
-                    opacity=0.7,
-                    marker={
-                        'size': 15,
-                        'line': {'width': 0.5, 'color': 'white'}
-                    },
-                    name=i
-                ) for i in df.type.unique()
-            ],
-            'layout': go.Layout(
-                xaxis={'title': 'Giorni'},
-                yaxis={'title': 'Quantità', 'type':'log'},
-                #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                #legend={'x': 0, 'y': 1},
-                #hovermode='closest'
-            )
-        }
-    ),
+            ]),
+            ]),
 
-    #GRafico a torta
+         dcc.Tab(label='La rete', children=[
 
-    dcc.Graph(id="my-graph"),
+            dcc.Tabs(id="retetab", children=[
+                dcc.Tab(label='Trend Nodi e Archi', children=[
 
-    dcc.Slider(
-        id='day-selected',
-        min=1,
-        max=30,
-        step=1,
-        value=15,
-        marks={
-            1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10',
-            11: '11', 12: '12', 13: '13', 14: '14', 15: '15', 16: '16', 17: '17', 18: '18', 19: '19', 20: '20', 21: '21',
-            22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28', 29: '29', 30: '30'
-    },
-    ),
-    html.Div(id='slider-output-container'),
+                html.P('La media degli utenti nei 30 giorni è di 2901'),
+                dcc.Graph(
+                id='life-exp-vs-gdp',
+                figure={
+                    'data': [
+                        go.Scatter(
+                            x=df[df['type'] == i]['day'],
+                            y=df[df['type'] == i]['quantity'],
+                            text=df[df['type'] == i]['type'],
+                            mode='markers',
+                            opacity=0.7,
+                            marker={
+                                'size': 15,
+                                'line': {'width': 0.5, 'color': 'white'}
+                            },
+                            name=i
+                        ) for i in df.type.unique()
+                    ],
+                    'layout': go.Layout(
+                        xaxis={'title': 'Giorni'},
+                        yaxis={'title': 'Quantità', 'type':'log'},
+                        #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                        #legend={'x': 0, 'y': 1},+
+                        #hovermode='closest'
+                    )
+                }
+            ),
 
+            #GRafico a torta
 
+            dcc.Graph(id="my-graph"),
 
-        ]),
-        dcc.Tab(label='Communities Trend', children=[
+            dcc.Slider(
+                id='day-selected',
+                min=1,
+                max=30,
+                step=1,
+                value=15,
+                marks={
+                    1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10',
+                    11: '11', 12: '12', 13: '13', 14: '14', 15: '15', 16: '16', 17: '17', 18: '18', 19: '19', 20: '20', 21: '21',
+                    22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28', 29: '29', 30: '30'
+            },
+            ),
+            html.Div(id='slider-output-container'),
+
+         
+            ]),
+
+             dcc.Tab(label='Communities Trend', children=[
                     dcc.Graph(
                     id='example-graph',
                     figure={
@@ -176,7 +195,7 @@ app.layout = html.Div([
                     }
                 ),
         ]),
-        dcc.Tab(label='Average Degree', children=[
+            dcc.Tab(label='Average Degree', children=[
                 dcc.Graph(
                     id='example-graph-2',
                     figure={
@@ -191,7 +210,7 @@ app.layout = html.Div([
                     }
                 )
         ]),
-        dcc.Tab(label='In Degree Distribution', children=[
+              dcc.Tab(label='In/Out Degree Distribution', children=[
                 dcc.Graph(id="DegreeDistributionGraph"),
                 dcc.Slider(
                     id='day-selected2',
@@ -207,10 +226,8 @@ app.layout = html.Div([
                 ),
                 html.Div(id='SelectionDegreeDistributionGraph'),
 
-
-
-        ]),
-        dcc.Tab(label='Average Shortest Path', children=[
+                ]),
+             dcc.Tab(label='Average Shortest Path', children=[
                 dcc.Graph(
                     id='AverageShortestPath',
                     figure={
@@ -229,72 +246,8 @@ app.layout = html.Div([
                     }
                 )
         ]),
-        dcc.Tab(label='Clustering Coefficient', children=[
-                dcc.Graph(
-                    id='clusteringCoefficient',
-                    figure={
-                        'data': [
-                            {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
-                                'type': 'bar', 'name': 'Attack'},
-                             {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
-                                'type': 'bar', 'name': 'Trade'},
-                        ]
-                    }
-                )
-        ]),
 
-           dcc.Tab(label='Density', children=[
-                dcc.Graph(
-                    id='DensityTotal',
-                    figure={
-                        'data': [
-                            {'x': Density.day, 'y': Density.density,
-                                'type': 'bar', 'name': 'Totale'},
-                             {'x': DensityM.day, 'y': DensityM.density,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': DensityT.day, 'y': DensityT.density,
-                                'type': 'bar', 'name': 'Trade'},
-                        ],
-                        'layout': {
-                    'title': 'Densità totale'
-                        }
-                    }
-                ),
-                dcc.Graph(
-                    id='DensitySame',
-                    figure={
-                        'data': [
-                            {'x': DensityM_S.day, 'y': DensityM_S.density,
-                                'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
-                            {'x': DensityM_NS.day, 'y': DensityM_NS.density,
-                                'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
-                        ],
-                        'layout': {
-                    'title': 'Confronto densità Messaggi dentro e fuori la comunità'
-                        }
-                    }
-                ),
-                dcc.Graph(
-                    id='DensityNotSame',
-                    figure={
-                        'data': [
-                           
-                             {'x': DensityT_S.day, 'y': DensityT_S.density,
-                                'type': 'bar', 'name': 'Trade Comunità Uguale'},
-                             {'x': DensityT_NS.day, 'y': DensityT_NS.density,
-                                'type': 'bar', 'name': 'Trade Comunità Diversa'},
-                        ],
-                        'layout': {
-                    'title': 'Confronto densità Trade dentro e fuori la comunità'
-                        }
-                    }
-                )
-                
-        ]),
-
-               dcc.Tab(label='Diameter Value', children=[
+        dcc.Tab(label='Diameter Value', children=[
                 dcc.Graph(
                     id='DenDiameterValues',
                     figure={
@@ -308,73 +261,303 @@ app.layout = html.Div([
                         ]
                     }
                 )
-        ]),
+            ]),
+            ]),
+            ]),
+            
+            dcc.Tab(label='Trickster Detection', children=[
+                dcc.Tabs(id="Trickster tabs", children=[
+                    dcc.Tab(label='Introduzione', children=[
+         
+                    ]),
 
-                dcc.Tab(label='Reciprocity', children=[
-                dcc.Graph(
-                    id='ReciprocyTotal',
-                    figure={
-                        'data': [
-                            {'x': Reciprocity.day, 'y': Reciprocity.diameter,
-                                'type': 'bar', 'name': 'Total'},
-                             {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
-                                'type': 'bar', 'name': 'Trade'},
-                        ],
-                        'layout': {
-                    'title': 'Reciprocità totale'
-                        }
-                    }
-                ),
-                  dcc.Graph(
-                    id='ReciprocyNotSame',
-                    figure={
-                        'data': [
-                            {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
-                                'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
-                             {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
-                                'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
-                        'layout': {
-                    'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
-                        }
-                    }
-                ),
-                dcc.Graph(
-                    id='ReciprocySame',
-                    figure={
-                        'data': [
-                            {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
-                                'type': 'bar', 'name': 'Trade Comnunità Uguale'},
-                             {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
-                                'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
-                        'layout': {
-                    'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
-                        }
-                    }
-                ),
-        ]),
+                    dcc.Tab(label='Logica di funzionamento', children=[
+         
+                    ]),
 
-        dcc.Tab(label='Community Study', children=[
+                    dcc.Tab(label='Risultati', children=[
+         
+                    ]),
+         
+                ]),
+            ]),
 
-        dcc.Tabs(id="communitytabs", children=[
-        dcc.Tab(label='BePlot', children=[
+            dcc.Tab(label='Commercio e Messaggi', children=[
+                dcc.Tabs(id="commerciotradetabs", children=[
+                    dcc.Tab(label='Reciprocity', children=[
+                        dcc.Graph(
+                            id='ReciprocyTotal',
+                            figure={
+                                'data': [
+                                    {'x': Reciprocity.day, 'y': Reciprocity.diameter,
+                                        'type': 'bar', 'name': 'Total'},
+                                    {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Reciprocità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocyNotSame',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
+                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocySame',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnunità Uguale'},
+                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        ]),
+
+                    dcc.Tab(label='Densità', children=[
+                        dcc.Graph(
+                            id='DensityTotal',
+                            figure={
+                                'data': [
+                                    {'x': Density.day, 'y': Density.density,
+                                        'type': 'bar', 'name': 'Totale'},
+                                    {'x': DensityM.day, 'y': DensityM.density,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': DensityT.day, 'y': DensityT.density,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Densità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensitySame',
+                            figure={
+                                'data': [
+                                    {'x': DensityM_S.day, 'y': DensityM_S.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
+                                    {'x': DensityM_NS.day, 'y': DensityM_NS.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Messaggi dentro e fuori la comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensityNotSame',
+                            figure={
+                                'data': [
+                                
+                                    {'x': DensityT_S.day, 'y': DensityT_S.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Uguale'},
+                                    {'x': DensityT_NS.day, 'y': DensityT_NS.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Trade dentro e fuori la comunità'
+                                }
+                            }
+                        )
+                
+                    ]),
+
+                    dcc.Tab(label='Clustering Coefficient', children=[
+                            dcc.Graph(
+                                id='clusteringCoefficient',
+                                figure={
+                                    'data': [
+                                        {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Attack'},
+                                        {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Message'},
+                                            {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Trade'},
+                                    ]
+                                }
+                            )
+                    ]),
+
+
+                    dcc.Tab(label='Numero di Archi', children=[
+         
+                    ]),
+                    dcc.Tab(label='Diametro e Average Shortest', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Average Degree & In/Out Degree', children=[
+         
+                    ]),
+         
+                ]),
+            ]),
+
+            
+             dcc.Tab(label='Studio Singola Community Detection', children=[
+               dcc.Tabs(id="communitystudytabs", children=[
+                    dcc.Tab(label='Introduzione', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Perchè?', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='User and Edge Trend', children=[
+         
+                    ]),
+
+                dcc.Tab(label='Structural Analysis', children=[
+                    dcc.Tabs(id="AnalisiStruttuaraletabs", children=[
+                    dcc.Tab(label='Reciprocity', children=[
+                        dcc.Graph(
+                            id='ReciprocyTotalStr',
+                            figure={
+                                'data': [
+                                    {'x': Reciprocity.day, 'y': Reciprocity.diameter,
+                                        'type': 'bar', 'name': 'Total'},
+                                    {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Reciprocità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocyNotSameStr',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
+                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocySameStr',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnunità Uguale'},
+                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        ]),
+
+                    dcc.Tab(label='Densità', children=[
+                        dcc.Graph(
+                            id='DensityTotalStr',
+                            figure={
+                                'data': [
+                                    {'x': Density.day, 'y': Density.density,
+                                        'type': 'bar', 'name': 'Totale'},
+                                    {'x': DensityM.day, 'y': DensityM.density,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': DensityT.day, 'y': DensityT.density,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Densità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensitySameStr',
+                            figure={
+                                'data': [
+                                    {'x': DensityM_S.day, 'y': DensityM_S.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
+                                    {'x': DensityM_NS.day, 'y': DensityM_NS.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Messaggi dentro e fuori la comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensityNotSameStr',
+                            figure={
+                                'data': [
+                                
+                                    {'x': DensityT_S.day, 'y': DensityT_S.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Uguale'},
+                                    {'x': DensityT_NS.day, 'y': DensityT_NS.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Trade dentro e fuori la comunità'
+                                }
+                            }
+                        )
+                
+                    ]),
+
+                    dcc.Tab(label='Clustering Coefficient', children=[
+                            dcc.Graph(
+                                id='clusteringCoefficientStr',
+                                figure={
+                                    'data': [
+                                        {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Attack'},
+                                        {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Message'},
+                                            {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Trade'},
+                                    ]
+                                }
+                            )
+                    ]),
+
+
+                    dcc.Tab(label='Numero di Archi', children=[
+         
+                    ]),
+                    dcc.Tab(label='Diametro e Average Shortest', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Average Degree & In/Out Degree', children=[
+         
+                    ]),
+         
+                ]),
            
            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
            <center><iframe src="https://albumizr.com/a/tBAv" scrolling="no" frameborder="0" allowfullscreen width="800" height="600"></iframe></iframe></center>
     '''),
          
         ]),
-        dcc.Tab(label='BePlotM', children=[
-                
-        ]),
-        dcc.Tab(label='BePlotT', children=[
-                
-        ]),
-    ])
-               
-        ]),
+
         dcc.Tab(label='Diplomatici', children=[
+            
             dcc.Graph(
                     id='DiplomaticiNotDiplomatici',
                     figure={
@@ -388,10 +571,49 @@ app.layout = html.Div([
                         }
                     }
                 ),
-
-
                
+        ]), 
+         dcc.Tab(label='Leader', children=[
+            dcc.Tabs(id="Leadertabs", children=[
+                    dcc.Tab(label='Come e perchè?', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Grado', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Betweenness', children=[
+         
+                    ]),
+                    dcc.Tab(label='Closeness', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Eigen', children=[
+         
+                    ]),
+                    dcc.Tab(label='Relazioni con i diplomatici', children=[
+         
+                    ]),
+            ]),
+            
+               
+        ]), 
+          
+
+
+                ]),
+
+
+
+            ]),
+
+        dcc.Tab(label='Conclusioni', children=[
+         
         ]),
+            
+        
 
     ])
 ])
@@ -496,3 +718,11 @@ def update_output2(value):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
+# dcc.Tab(label='Trickster Detection', children=[
+#               dcc.Tabs(id="Trickster tabs", children=[
+#                    dcc.Tab(label='Introduzione', children=[
+#         
+#                    ]),
+#                ]),
+#            ]),
