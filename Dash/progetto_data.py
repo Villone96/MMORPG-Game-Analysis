@@ -210,7 +210,7 @@ app.layout = html.Div([
                     }
                 )
         ]),
-              dcc.Tab(label='In Degree Distribution', children=[
+              dcc.Tab(label='In/Out Degree Distribution', children=[
                 dcc.Graph(id="DegreeDistributionGraph"),
                 dcc.Slider(
                     id='day-selected2',
@@ -285,117 +285,117 @@ app.layout = html.Div([
             dcc.Tab(label='Commercio e Messaggi', children=[
                 dcc.Tabs(id="commerciotradetabs", children=[
                     dcc.Tab(label='Reciprocity', children=[
-                dcc.Graph(
-                    id='ReciprocyTotal',
-                    figure={
-                        'data': [
-                            {'x': Reciprocity.day, 'y': Reciprocity.diameter,
-                                'type': 'bar', 'name': 'Total'},
-                             {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
-                                'type': 'bar', 'name': 'Trade'},
-                        ],
-                        'layout': {
-                    'title': 'Reciprocità totale'
-                        }
-                    }
-                ),
-                  dcc.Graph(
-                    id='ReciprocyNotSame',
-                    figure={
-                        'data': [
-                            {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
-                                'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
-                             {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
-                                'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
-                        'layout': {
-                    'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
-                        }
-                    }
-                ),
-                dcc.Graph(
-                    id='ReciprocySame',
-                    figure={
-                        'data': [
-                            {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
-                                'type': 'bar', 'name': 'Trade Comnunità Uguale'},
-                             {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
-                                'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
-                        'layout': {
-                    'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
-                        }
-                    }
-                ),
-        ]),
+                        dcc.Graph(
+                            id='ReciprocyTotal',
+                            figure={
+                                'data': [
+                                    {'x': Reciprocity.day, 'y': Reciprocity.diameter,
+                                        'type': 'bar', 'name': 'Total'},
+                                    {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Reciprocità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocyNotSame',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
+                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocySame',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnunità Uguale'},
+                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        ]),
 
                     dcc.Tab(label='Densità', children=[
-                dcc.Graph(
-                    id='DensityTotal',
-                    figure={
-                        'data': [
-                            {'x': Density.day, 'y': Density.density,
-                                'type': 'bar', 'name': 'Totale'},
-                             {'x': DensityM.day, 'y': DensityM.density,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': DensityT.day, 'y': DensityT.density,
-                                'type': 'bar', 'name': 'Trade'},
-                        ],
-                        'layout': {
-                    'title': 'Densità totale'
-                        }
-                    }
-                ),
-                dcc.Graph(
-                    id='DensitySame',
-                    figure={
-                        'data': [
-                            {'x': DensityM_S.day, 'y': DensityM_S.density,
-                                'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
-                            {'x': DensityM_NS.day, 'y': DensityM_NS.density,
-                                'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
-                        ],
-                        'layout': {
-                    'title': 'Confronto densità Messaggi dentro e fuori la comunità'
-                        }
-                    }
-                ),
-                dcc.Graph(
-                    id='DensityNotSame',
-                    figure={
-                        'data': [
-                           
-                             {'x': DensityT_S.day, 'y': DensityT_S.density,
-                                'type': 'bar', 'name': 'Trade Comunità Uguale'},
-                             {'x': DensityT_NS.day, 'y': DensityT_NS.density,
-                                'type': 'bar', 'name': 'Trade Comunità Diversa'},
-                        ],
-                        'layout': {
-                    'title': 'Confronto densità Trade dentro e fuori la comunità'
-                        }
-                    }
-                )
+                        dcc.Graph(
+                            id='DensityTotal',
+                            figure={
+                                'data': [
+                                    {'x': Density.day, 'y': Density.density,
+                                        'type': 'bar', 'name': 'Totale'},
+                                    {'x': DensityM.day, 'y': DensityM.density,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': DensityT.day, 'y': DensityT.density,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Densità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensitySame',
+                            figure={
+                                'data': [
+                                    {'x': DensityM_S.day, 'y': DensityM_S.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
+                                    {'x': DensityM_NS.day, 'y': DensityM_NS.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Messaggi dentro e fuori la comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensityNotSame',
+                            figure={
+                                'data': [
+                                
+                                    {'x': DensityT_S.day, 'y': DensityT_S.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Uguale'},
+                                    {'x': DensityT_NS.day, 'y': DensityT_NS.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Trade dentro e fuori la comunità'
+                                }
+                            }
+                        )
                 
-        ]),
+                    ]),
 
-        dcc.Tab(label='Clustering Coefficient', children=[
-                dcc.Graph(
-                    id='clusteringCoefficient',
-                    figure={
-                        'data': [
-                            {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
-                                'type': 'bar', 'name': 'Attack'},
-                             {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
-                                'type': 'bar', 'name': 'Trade'},
-                        ]
-                    }
-                )
-        ]),
+                    dcc.Tab(label='Clustering Coefficient', children=[
+                            dcc.Graph(
+                                id='clusteringCoefficient',
+                                figure={
+                                    'data': [
+                                        {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Attack'},
+                                        {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Message'},
+                                            {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Trade'},
+                                    ]
+                                }
+                            )
+                    ]),
 
 
-                    dcc.Tab(label='Numero di Nodi', children=[
+                    dcc.Tab(label='Numero di Archi', children=[
          
                     ]),
                     dcc.Tab(label='Diametro e Average Shortest', children=[
@@ -425,6 +425,130 @@ app.layout = html.Div([
                     ]),
 
                 dcc.Tab(label='Structural Analysis', children=[
+                    dcc.Tabs(id="AnalisiStruttuaraletabs", children=[
+                    dcc.Tab(label='Reciprocity', children=[
+                        dcc.Graph(
+                            id='ReciprocyTotalStr',
+                            figure={
+                                'data': [
+                                    {'x': Reciprocity.day, 'y': Reciprocity.diameter,
+                                        'type': 'bar', 'name': 'Total'},
+                                    {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Reciprocità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocyNotSameStr',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
+                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
+                                        'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='ReciprocySameStr',
+                            figure={
+                                'data': [
+                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnunità Uguale'},
+                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
+                                        'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
+                                'layout': {
+                            'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
+                                }
+                            }
+                        ),
+                        ]),
+
+                    dcc.Tab(label='Densità', children=[
+                        dcc.Graph(
+                            id='DensityTotalStr',
+                            figure={
+                                'data': [
+                                    {'x': Density.day, 'y': Density.density,
+                                        'type': 'bar', 'name': 'Totale'},
+                                    {'x': DensityM.day, 'y': DensityM.density,
+                                        'type': 'bar', 'name': 'Message'},
+                                        {'x': DensityT.day, 'y': DensityT.density,
+                                        'type': 'bar', 'name': 'Trade'},
+                                ],
+                                'layout': {
+                            'title': 'Densità totale'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensitySameStr',
+                            figure={
+                                'data': [
+                                    {'x': DensityM_S.day, 'y': DensityM_S.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
+                                    {'x': DensityM_NS.day, 'y': DensityM_NS.density,
+                                        'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Messaggi dentro e fuori la comunità'
+                                }
+                            }
+                        ),
+                        dcc.Graph(
+                            id='DensityNotSameStr',
+                            figure={
+                                'data': [
+                                
+                                    {'x': DensityT_S.day, 'y': DensityT_S.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Uguale'},
+                                    {'x': DensityT_NS.day, 'y': DensityT_NS.density,
+                                        'type': 'bar', 'name': 'Trade Comunità Diversa'},
+                                ],
+                                'layout': {
+                            'title': 'Confronto densità Trade dentro e fuori la comunità'
+                                }
+                            }
+                        )
+                
+                    ]),
+
+                    dcc.Tab(label='Clustering Coefficient', children=[
+                            dcc.Graph(
+                                id='clusteringCoefficientStr',
+                                figure={
+                                    'data': [
+                                        {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Attack'},
+                                        {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Message'},
+                                            {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
+                                            'type': 'bar', 'name': 'Trade'},
+                                    ]
+                                }
+                            )
+                    ]),
+
+
+                    dcc.Tab(label='Numero di Archi', children=[
+         
+                    ]),
+                    dcc.Tab(label='Diametro e Average Shortest', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Average Degree & In/Out Degree', children=[
+         
+                    ]),
+         
+                ]),
            
            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
            <center><iframe src="https://albumizr.com/a/tBAv" scrolling="no" frameborder="0" allowfullscreen width="800" height="600"></iframe></iframe></center>
@@ -433,6 +557,7 @@ app.layout = html.Div([
         ]),
 
         dcc.Tab(label='Diplomatici', children=[
+            
             dcc.Graph(
                     id='DiplomaticiNotDiplomatici',
                     figure={
@@ -447,7 +572,35 @@ app.layout = html.Div([
                     }
                 ),
                
-        ]),      
+        ]), 
+         dcc.Tab(label='Leader', children=[
+            dcc.Tabs(id="Leadertabs", children=[
+                    dcc.Tab(label='Come e perchè?', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Grado', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Betweenness', children=[
+         
+                    ]),
+                    dcc.Tab(label='Closeness', children=[
+         
+                    ]),
+
+                    dcc.Tab(label='Eigen', children=[
+         
+                    ]),
+                    dcc.Tab(label='Relazioni con i diplomatici', children=[
+         
+                    ]),
+            ]),
+            
+               
+        ]), 
+          
 
 
                 ]),
