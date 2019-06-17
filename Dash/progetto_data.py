@@ -26,14 +26,6 @@ AverageShortestPathAttack=pd.read_csv('AverageShortestPath/AttackGraphData.csv')
 AverageShortestPathMessage=pd.read_csv('AverageShortestPath/MessageGraphData.csv')
 AverageShortestPathTrade=pd.read_csv('AverageShortestPath/TradeGraphData.csv')
 
-clusteringCoefficient=pd.read_csv('ClusteringCoefficient/CC_clusteringCoefficientData.csv')
-clusteringCoefficientM=pd.read_csv('ClusteringCoefficient/CC_clusteringMCoefficientData.csv')
-clusteringCoefficientT=pd.read_csv('ClusteringCoefficient/CC_clusteringTCoefficientData.csv')
-
-Density=pd.read_csv('Density/DE_densityData.csv')
-DensityM=pd.read_csv('Density/DE_densityMData.csv')
-DensityT=pd.read_csv('Density/DE_densityTData.csv')
-
 DensityM_NS=pd.read_csv('Density/DE_densityN_MData.csv')
 DensityT_NS=pd.read_csv('Density/DE_densityN_TData.csv')
 
@@ -43,10 +35,6 @@ DensityT_S=pd.read_csv('Density/DE_densityS_TData.csv')
 DiameterValueA=pd.read_csv('DiameterValue/AttackGraphData.csv')
 DiameterValueM=pd.read_csv('DiameterValue/MessageGraphData.csv')
 DiameterValueT=pd.read_csv('DiameterValue/TradeGraphData.csv')
-
-Reciprocity=pd.read_csv('Reciprocity/RE_reciprocityData.csv')
-ReciprocityM=pd.read_csv('Reciprocity/RE_reciprocityMData.csv')
-ReciprocityT=pd.read_csv('Reciprocity/RE_reciprocityTData.csv')
 
 ReciprocityM_S=pd.read_csv('Reciprocity/RE_reciprocityS_MData.csv')
 ReciprocityT_S=pd.read_csv('Reciprocity/RE_reciprocityS_TData.csv')
@@ -307,22 +295,6 @@ app.layout = html.Div([
 
                     dcc.Tab(label='Reciprocity', children=[
                         dcc.Graph(
-                            id='ReciprocyTotal',
-                            figure={
-                                'data': [
-                                    {'x': Reciprocity.day, 'y': Reciprocity.Reciprocity,
-                                        'type': 'bar', 'name': 'Total'},
-                                    {'x': ReciprocityM.day, 'y': ReciprocityM.Reciprocity,
-                                        'type': 'bar', 'name': 'Message'},
-                                        {'x': ReciprocityT.day, 'y': ReciprocityT.Reciprocity,
-                                        'type': 'bar', 'name': 'Trade'},
-                                ],
-                                'layout': {
-                            'title': 'Reciprocità totale'
-                                }
-                            }
-                        ),
-                        dcc.Graph(
                             id='ReciprocyNotSame',
                             figure={
                                 'data': [
@@ -351,22 +323,6 @@ app.layout = html.Div([
                         ]),
 
                     dcc.Tab(label='Densità', children=[
-                        dcc.Graph(
-                            id='DensityTotal',
-                            figure={
-                                'data': [
-                                    {'x': Density.day, 'y': Density.density,
-                                        'type': 'bar', 'name': 'Totale'},
-                                    {'x': DensityM.day, 'y': DensityM.density,
-                                        'type': 'bar', 'name': 'Message'},
-                                        {'x': DensityT.day, 'y': DensityT.density,
-                                        'type': 'bar', 'name': 'Trade'},
-                                ],
-                                'layout': {
-                            'title': 'Densità totale'
-                                }
-                            }
-                        ),
                         dcc.Graph(
                             id='DensitySame',
                             figure={
@@ -400,19 +356,6 @@ app.layout = html.Div([
                     ]),
 
                     dcc.Tab(label='Clustering Coefficient', children=[
-                            dcc.Graph(
-                                id='clusteringCoefficient',
-                                figure={
-                                    'data': [
-                                        {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
-                                            'type': 'bar', 'name': 'Attack'},
-                                        {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
-                                            'type': 'bar', 'name': 'Message'},
-                                            {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
-                                            'type': 'bar', 'name': 'Trade'},
-                                    ]
-                                }
-                            )
                     ]),
 
 
@@ -449,22 +392,6 @@ app.layout = html.Div([
                     dcc.Tabs(id="AnalisiStruttuaraletabs", children=[
                     dcc.Tab(label='Reciprocity', children=[
                         dcc.Graph(
-                            id='ReciprocyTotalStr',
-                            figure={
-                                'data': [
-                                    {'x': Reciprocity.day, 'y': Reciprocity.Reciprocity,
-                                        'type': 'bar', 'name': 'Total'},
-                                    {'x': ReciprocityM.day, 'y': ReciprocityM.Reciprocity,
-                                        'type': 'bar', 'name': 'Message'},
-                                        {'x': ReciprocityT.day, 'y': ReciprocityT.Reciprocity,
-                                        'type': 'bar', 'name': 'Trade'},
-                                ],
-                                'layout': {
-                            'title': 'Reciprocità totale'
-                                }
-                            }
-                        ),
-                        dcc.Graph(
                             id='ReciprocyNotSameStr',
                             figure={
                                 'data': [
@@ -493,22 +420,6 @@ app.layout = html.Div([
                         ]),
 
                     dcc.Tab(label='Densità', children=[
-                        dcc.Graph(
-                            id='DensityTotalStr',
-                            figure={
-                                'data': [
-                                    {'x': Density.day, 'y': Density.density,
-                                        'type': 'bar', 'name': 'Totale'},
-                                    {'x': DensityM.day, 'y': DensityM.density,
-                                        'type': 'bar', 'name': 'Message'},
-                                        {'x': DensityT.day, 'y': DensityT.density,
-                                        'type': 'bar', 'name': 'Trade'},
-                                ],
-                                'layout': {
-                            'title': 'Densità totale'
-                                }
-                            }
-                        ),
                         dcc.Graph(
                             id='DensitySameStr',
                             figure={
@@ -542,19 +453,7 @@ app.layout = html.Div([
                     ]),
 
                     dcc.Tab(label='Clustering Coefficient', children=[
-                            dcc.Graph(
-                                id='clusteringCoefficientStr',
-                                figure={
-                                    'data': [
-                                        {'x': clusteringCoefficient.day, 'y': clusteringCoefficient.clusteringCoefficient,
-                                            'type': 'bar', 'name': 'Attack'},
-                                        {'x': clusteringCoefficientM.day, 'y': clusteringCoefficientM.clusteringCoefficient,
-                                            'type': 'bar', 'name': 'Message'},
-                                            {'x': clusteringCoefficientT.day, 'y': clusteringCoefficientT.clusteringCoefficient,
-                                            'type': 'bar', 'name': 'Trade'},
-                                    ]
-                                }
-                            )
+
                     ]),
 
 
