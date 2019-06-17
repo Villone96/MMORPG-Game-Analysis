@@ -80,15 +80,22 @@ app.layout = html.Div([
             dcc.Tabs(id="introtabs", children=[
             dcc.Tab(label='Titolo', children=[
 
-
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="1000"> </center>
-            '''),
+                <center><img src="https://i.imgur.com/TxVoEiX.png" alt="slide 1" width="1300"> </center>
+                '''),
            
          
             ]),
 
-            dcc.Tab(label='IL dataset', children=[
+            dcc.Tab(label='Giochi MMOG', children=[
+                    
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="2000"> </center>
+            '''),
+
+            ]),
+
+            dcc.Tab(label='Il dataset', children=[
                     
             ]),
             dcc.Tab(label='Pre-Processing', children=[
