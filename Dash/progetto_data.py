@@ -388,9 +388,8 @@ app.layout = html.Div([
          
                     ]),
 
-                dcc.Tab(label='Structural Analysis', children=[
-                    dcc.Tabs(id="AnalisiStruttuaraletabs", children=[
-                    dcc.Tab(label='Reciprocity', children=[
+                dcc.Tab(label='Analisi Strutturale 1', children=[
+                    
                         dcc.Graph(
                             id='ReciprocyNotSameStr',
                             figure={
@@ -417,9 +416,9 @@ app.layout = html.Div([
                                 }
                             }
                         ),
-                        ]),
+                        
 
-                    dcc.Tab(label='Densità', children=[
+                   
                         dcc.Graph(
                             id='DensitySameStr',
                             figure={
@@ -448,15 +447,17 @@ app.layout = html.Div([
                             'title': 'Confronto densità Trade dentro e fuori la comunità'
                                 }
                             }
-                        )
+                        ),
                 
-                    ]),
+               
+           
+           dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+           <center><iframe src="https://albumizr.com/a/tBAv" scrolling="no" frameborder="0" allowfullscreen width="800" height="600"></iframe></iframe></center>
+    '''),
+         
+        ]),
 
-                    dcc.Tab(label='Clustering Coefficient', children=[
-
-                    ]),
-
-
+        dcc.Tab(label='Analisi Strutturale 2', children=[
                     dcc.Tab(label='Numero di Archi', children=[
          
                     ]),
@@ -467,18 +468,26 @@ app.layout = html.Div([
                     dcc.Tab(label='Average Degree & In/Out Degree', children=[
          
                     ]),
-         
-                ]),
-           
-           dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-           <center><iframe src="https://albumizr.com/a/tBAv" scrolling="no" frameborder="0" allowfullscreen width="800" height="600"></iframe></iframe></center>
-    '''),
-         
         ]),
+        
 
-        dcc.Tab(label='Diplomatici', children=[
+        
+         dcc.Tab(label='Leader', children=[
             
-            dcc.Graph(
+                    dcc.Tab(label='Come e perchè?', children=[
+         
+                    ]),
+
+                   
+                    dcc.Tab(label='Relazioni con i diplomatici', children=[
+         
+                    ]),
+           
+               
+        ]), 
+        dcc.Tab(label='Relazioni con i diplomatici', children=[
+            
+                dcc.Graph(
                     id='DiplomaticiNotDiplomatici',
                     figure={
                         'data': [
@@ -491,35 +500,9 @@ app.layout = html.Div([
                         }
                     }
                 ),
+           
                
-        ]), 
-         dcc.Tab(label='Leader', children=[
-            dcc.Tabs(id="Leadertabs", children=[
-                    dcc.Tab(label='Come e perchè?', children=[
-         
-                    ]),
-
-                    dcc.Tab(label='Grado', children=[
-         
-                    ]),
-
-                    dcc.Tab(label='Betweenness', children=[
-         
-                    ]),
-                    dcc.Tab(label='Closeness', children=[
-         
-                    ]),
-
-                    dcc.Tab(label='Eigen', children=[
-         
-                    ]),
-                    dcc.Tab(label='Relazioni con i diplomatici', children=[
-         
-                    ]),
-            ]),
-            
-               
-        ]), 
+        ]),
           
 
 
