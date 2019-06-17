@@ -284,16 +284,17 @@ app.layout = html.Div([
 
             dcc.Tab(label='Commercio e Messaggi', children=[
                 dcc.Tabs(id="commerciotradetabs", children=[
+
                     dcc.Tab(label='Reciprocity', children=[
                         dcc.Graph(
                             id='ReciprocyTotal',
                             figure={
                                 'data': [
-                                    {'x': Reciprocity.day, 'y': Reciprocity.diameter,
+                                    {'x': Reciprocity.day, 'y': Reciprocity.Reciprocity,
                                         'type': 'bar', 'name': 'Total'},
-                                    {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
+                                    {'x': ReciprocityM.day, 'y': ReciprocityM.Reciprocity,
                                         'type': 'bar', 'name': 'Message'},
-                                        {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
+                                        {'x': ReciprocityT.day, 'y': ReciprocityT.Reciprocity,
                                         'type': 'bar', 'name': 'Trade'},
                                 ],
                                 'layout': {
@@ -305,9 +306,9 @@ app.layout = html.Div([
                             id='ReciprocyNotSame',
                             figure={
                                 'data': [
-                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
+                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.Reciprocity,
                                         'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
-                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
+                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.Reciprocity,
                                         'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
                                 'layout': {
                             'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
@@ -318,9 +319,9 @@ app.layout = html.Div([
                             id='ReciprocySame',
                             figure={
                                 'data': [
-                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
+                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.Reciprocity,
                                         'type': 'bar', 'name': 'Trade Comnunità Uguale'},
-                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
+                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.Reciprocity,
                                         'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
                                 'layout': {
                             'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
@@ -431,11 +432,11 @@ app.layout = html.Div([
                             id='ReciprocyTotalStr',
                             figure={
                                 'data': [
-                                    {'x': Reciprocity.day, 'y': Reciprocity.diameter,
+                                    {'x': Reciprocity.day, 'y': Reciprocity.Reciprocity,
                                         'type': 'bar', 'name': 'Total'},
-                                    {'x': ReciprocityM.day, 'y': ReciprocityM.diameter,
+                                    {'x': ReciprocityM.day, 'y': ReciprocityM.Reciprocity,
                                         'type': 'bar', 'name': 'Message'},
-                                        {'x': ReciprocityT.day, 'y': ReciprocityT.diameter,
+                                        {'x': ReciprocityT.day, 'y': ReciprocityT.Reciprocity,
                                         'type': 'bar', 'name': 'Trade'},
                                 ],
                                 'layout': {
@@ -447,9 +448,9 @@ app.layout = html.Div([
                             id='ReciprocyNotSameStr',
                             figure={
                                 'data': [
-                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.diameter,
+                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.Reciprocity,
                                         'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
-                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.diameter,
+                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.Reciprocity,
                                         'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
                                 'layout': {
                             'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
@@ -460,9 +461,9 @@ app.layout = html.Div([
                             id='ReciprocySameStr',
                             figure={
                                 'data': [
-                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.diameter,
+                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.Reciprocity,
                                         'type': 'bar', 'name': 'Trade Comnunità Uguale'},
-                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.diameter,
+                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.Reciprocity,
                                         'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
                                 'layout': {
                             'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
