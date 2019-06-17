@@ -90,7 +90,7 @@ app.layout = html.Div([
             dcc.Tab(label='Giochi MMOG', children=[
                     
             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="2000"> </center>
+         <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="1200"> </center>
             '''),
 
             ]),
@@ -132,8 +132,10 @@ app.layout = html.Div([
 
             dcc.Tabs(id="retetab", children=[
                 dcc.Tab(label='Trend Nodi e Archi', children=[
-
-                html.P('La media degli utenti nei 30 giorni è di 2901'),
+                
+                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.imgur.com/lvZhS7E.png" alt="slide 1" width="1400"> </center>
+            '''),
                 dcc.Graph(
                 id='life-exp-vs-gdp',
                 figure={
@@ -179,10 +181,20 @@ app.layout = html.Div([
             ),
             html.Div(id='slider-output-container'),
 
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <br><br><br><br><br><br>
+            '''),
+
          
             ]),
 
              dcc.Tab(label='Communities Trend', children=[
+
+                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.imgur.com/Rx0VWCg.png" alt="slide 1" width="1400"> </center>
+            '''),
+
+                 
                     dcc.Graph(
                     id='example-graph',
                     figure={
@@ -203,6 +215,10 @@ app.layout = html.Div([
                 ),
         ]),
             dcc.Tab(label='Average Degree', children=[
+                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.imgur.com/jZu6Pdc.png" alt="slide 1" width="1300"> </center>
+            '''),
+                
                 dcc.Graph(
                     id='example-graph-2',
                     figure={
@@ -247,9 +263,6 @@ app.layout = html.Div([
                                 'type': 'bar', 'name': 'Trade'},
                                 
                         ],
-                        'layout': {
-                    'title': 'Dash Data Visualization'
-                        }
                     }
                 )
         ]),
