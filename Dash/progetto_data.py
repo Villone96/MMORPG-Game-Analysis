@@ -44,6 +44,11 @@ ReciprocityT_NS=pd.read_csv('Reciprocity/RE_reciprocityN_TData.csv')
 
 Diplomatics = pd.read_csv('SingleCommunityStudy/DiplomatsVsNoDiplomats/data.csv')
 
+Trickster = pd.read_csv('TricksterDetection/tricksterActivityDay.csv', sep=';')
+
+
+available_indicators = Trickster['Suspect'].unique()
+
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -132,7 +137,7 @@ app.layout = html.Div([
                             x=df[df['type'] == i]['day'],
                             y=df[df['type'] == i]['quantity'],
                             text=df[df['type'] == i]['type'],
-                            mode='markers',
+                            mode='markers+lines',
                             opacity=0.7,
                             marker={
                                 'size': 15,
@@ -216,12 +221,15 @@ app.layout = html.Div([
                              {'x': averageDegreeMessage.Day, 'y': averageDegreeMessage.AverageDegree,
                                 'type': 'bar', 'name': 'Message'},
                                  {'x': averageDegreeTrade.Day, 'y': averageDegreeTrade.AverageDegree,
-                                'type': 'bar', 'name': 'TRade'},
+                                'type': 'bar', 'name': 'Trade'},
                         ]
                     }
                 )
         ]),
               dcc.Tab(label='In/Out Degree Distribution', children=[
+
+                  
+
                 dcc.Graph(id="DegreeDistributionGraph"),
                 dcc.Slider(
                     id='day-selected2',
@@ -274,6 +282,7 @@ app.layout = html.Div([
             ]),
             
             dcc.Tab(label='Trickster Detection', children=[
+                
                 dcc.Tabs(id="Trickster tabs", children=[
                     dcc.Tab(label='Introduzione', children=[
          
@@ -284,6 +293,25 @@ app.layout = html.Div([
                     ]),
 
                     dcc.Tab(label='Risultati', children=[
+                        
+                        
+
+                        
+
+                    html.Div([
+                        dcc.Dropdown(
+                            id='xaxis-column',
+                            options=[{'label': i, 'value': i} for i in available_indicators],
+                            value=7855
+                        ),
+                        
+                    ]
+                    #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
+                    ),
+                    dcc.Graph(id='cheat-graphic'),
+                      
+
+                    
          
                     ]),
          
@@ -526,17 +554,20 @@ app.layout = html.Div([
     [dash.dependencies.Input("day-selected2", "value")])
     
 def update_output(day):
+
+    print(inDegreeDistribution[inDegreeDistribution['Type']=='Attack'][inDegreeDistribution['Day'] == 1]['Value'])
     
     return {
         'data': [
             go.Histogram(
-                        print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
+                        #print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
                         x=inDegreeDistribution[inDegreeDistribution['Type'] == d]["Range"],
 
                         y=inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value'],
                         text=inDegreeDistribution[inDegreeDistribution['Type'] == d]['Type'],
                         
-                        name=d
+                        name=d,
+                        
                 )for d in inDegreeDistribution.Type.unique()],
             
                 
@@ -558,6 +589,37 @@ def update_output2(value):
                         marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B']}, textinfo='label')],
         "layout": go.Layout(title=f"Trend report daily", margin={"l": 200, "r": 200, },
                             legend={"x": 1, "y": 0.7})}
+
+#Callback trickster
+@app.callback( 
+     dash.dependencies.Output('cheat-graphic', 'figure'),
+     [dash.dependencies.Input('xaxis-column', 'value')])
+
+def update_graph(xaxis_column_name):
+    dff = Trickster[Trickster['Suspect'] == xaxis_column_name]
+    print(dff.head())
+
+    return {
+        'data': [go.Histogram(
+            print(dff[dff['Type'] == d]['Present']),
+            x=dff[dff['Type'] == d]['Day'],
+            y=dff[dff['Type'] == d]['Present'],
+            text=d,
+          
+        ) for d in dff.Type.unique()],
+
+        'layout': go.Layout(
+            xaxis={
+                'title': xaxis_column_name,
+                'type': 'linear',
+            },
+            yaxis={
+                'title': 'Activity',
+                'type': 'linear',},
+            margin={'l': 40, 'b': 40, 't': 10, 'r': 0},
+            hovermode='closest'
+        )
+    }
 
 '''app.layout = html.Div(children=[
 
