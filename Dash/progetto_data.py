@@ -600,11 +600,17 @@ def update_graph(xaxis_column_name):
     print(dff.head())
 
     return {
-        'data': [go.Histogram(
+        'data': [go.Scatter(
             print(dff[dff['Type'] == d]['Present']),
             x=dff[dff['Type'] == d]['Day'],
             y=dff[dff['Type'] == d]['Present'],
             text=d,
+            mode='markers+lines',
+            marker={
+                'size': 15,
+                'opacity': 0.5,
+                'line': {'width': 0.5, 'color': 'white'}
+            }
           
         ) for d in dff.Type.unique()],
 
@@ -617,7 +623,8 @@ def update_graph(xaxis_column_name):
                 'title': 'Activity',
                 'type': 'linear',},
             margin={'l': 40, 'b': 40, 't': 10, 'r': 0},
-            hovermode='closest'
+            hovermode='closest',
+            
         )
     }
 
