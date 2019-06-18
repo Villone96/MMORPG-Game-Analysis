@@ -284,6 +284,10 @@ app.layout = html.Div([
 
                 ]),
              dcc.Tab(label='Average Shortest Path', children=[
+                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/2YLLRzL/image.png" alt="slide 1" width="1300"> </center>
+            '''),
+                 
                 dcc.Graph(
                     id='AverageShortestPath',
                     figure={
@@ -330,12 +334,17 @@ app.layout = html.Div([
                     ]),
 
                     dcc.Tab(label='Risultati', children=[
-                        
-                        
 
-                        
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/LhS6nrJ/image.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
+                    dcc.Graph(id='cheat-graphic'), #grafico
 
-                    html.Div([
+
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
+                    
+                    html.Div([                      #menu per selezionare il cheater
                         dcc.Dropdown(
                             id='xaxis-column',
                             options=[{'label': i, 'value': i} for i in available_indicators],
@@ -345,7 +354,8 @@ app.layout = html.Div([
                     ]
                     #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
                     ),
-                    dcc.Graph(id='cheat-graphic'),
+
+                   
                       
 
                     
@@ -642,15 +652,17 @@ def update_graph(xaxis_column_name):
             x=dff[dff['Type'] == d]['Day'],
             y=dff[dff['Type'] == d]['Present'],
             text=d,
-          
+            name=d,        
         ) for d in dff.Type.unique()],
 
         'layout': go.Layout(
             xaxis={
                 'title': xaxis_column_name,
                 'type': 'linear',
+                'tickmode':'linear'
             },
             yaxis={
+                'range':[0,1.5],
                 'title': 'Activity',
                 'type': 'linear',},
             margin={'l': 40, 'b': 40, 't': 10, 'r': 0},
