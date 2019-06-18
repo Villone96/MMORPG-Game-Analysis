@@ -494,7 +494,13 @@ app.layout = html.Div([
             dcc.Tab(label='Commercio e Messaggi', children=[
                 dcc.Tabs(id="commerciotradetabs", children=[
 
-                    dcc.Tab(label='Reciprocity', children=[
+                    dcc.Tab(label='Reciprocità', children=[
+
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/dLtsgg9/image.png
+                    " alt="slide 1" width="1300"> </center>
+                    '''),
+
                         dcc.Graph(
                             id='ReciprocyNotSame',
                             figure={
@@ -508,6 +514,11 @@ app.layout = html.Div([
                                 }
                             }
                         ),
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/T85KKNL/image.png
+                    " alt="slide 1" width="1300"> </center>
+                    '''),
+                        
                         dcc.Graph(
                             id='ReciprocySame',
                             figure={
@@ -524,6 +535,11 @@ app.layout = html.Div([
                         ]),
 
                     dcc.Tab(label='Densità', children=[
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/H2zSw5q/image.png
+                    " alt="slide 1" width="1300"> </center>
+                    '''),
+
                         dcc.Graph(
                             id='DensitySame',
                             figure={
@@ -888,6 +904,7 @@ def update_pie(xaxis_column_name):
 #     columns=[{"name": i, "id": i} for i in df.columns],
 #     data=df.to_dict('records'),
 # )
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
