@@ -59,7 +59,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div([
 
       dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-       <center><img src='https://i.imgur.com/1WNmA0N.png' alt="slide 1" width="500"> </center>
+       <center><img src='https://i.ibb.co/2tVxf15/image.png' alt="slide 1" width="500"> </center>
         <center>See our <a href="https://github.com/Villone96/Data-Analytics-Project">GitHub Repo</a></center>
 
     '''),
@@ -74,7 +74,7 @@ app.layout = html.Div([
             dcc.Tab(label='Titolo', children=[
 
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-                <center><img src="https://i.imgur.com/TxVoEiX.png" alt="slide 1" width="1300"> </center>
+                <center><img src="https://i.ibb.co/SxVDtzH/image.png" alt="slide 1" width="1300"> </center>
                 '''),
            
          
