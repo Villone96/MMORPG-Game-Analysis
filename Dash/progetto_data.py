@@ -45,9 +45,11 @@ ReciprocityT_NS=pd.read_csv('Reciprocity/RE_reciprocityN_TData.csv')
 Diplomatics = pd.read_csv('SingleCommunityStudy/DiplomatsVsNoDiplomats/data.csv')
 
 Trickster = pd.read_csv('TricksterDetection/tricksterActivityDay.csv', sep=';')
+TricksterData = pd.read_csv('TricksterDetection/tricksterData.csv', sep=';')
 
 
 available_indicators = Trickster['Suspect'].unique()
+available_trickster = TricksterData['Suspect'].unique()
 
 
 
@@ -248,6 +250,45 @@ app.layout = html.Div([
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1300"> </center>
             '''),
+
+                dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = averageDegreeAttack.Day,
+                                    y = averageDegreeAttack.AverageDegree,
+                                    mode = 'markers+lines',
+                                    name = 'Grado medio Attacchi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = averageDegreeMessage.Day,
+                                    y = averageDegreeMessage.AverageDegree,
+                                    mode = 'lines+markers',
+                                    name = 'Grado medio Messaggi'
+                                ),
+                                go.Scatter(
+                                    x = averageDegreeTrade.Day,
+                                    y = averageDegreeTrade.AverageDegree,
+                                    mode = 'lines+markers',
+                                    name = 'Grado medio Trade'
+                                ),
+
+                            ],
+                            layout=go.Layout(
+                                title='Grado medio per tipo di arco',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageDedree'
+                    ),
                 
                 dcc.Graph(
                     id='example-graph-2',
@@ -287,6 +328,45 @@ app.layout = html.Div([
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/2YLLRzL/image.png" alt="slide 1" width="1300"> </center>
             '''),
+
+                dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = AverageShortestPathAttack.Day,
+                                    y = AverageShortestPathAttack.AverageShortestPath,
+                                    mode = 'markers+lines',
+                                    name = 'SP medio Attacchi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = AverageShortestPathMessage.Day,
+                                    y = AverageShortestPathMessage.AverageShortestPath,
+                                    mode = 'lines+markers',
+                                    name = 'SP medio Messaggi'
+                                ),
+                                go.Scatter(
+                                    x = AverageShortestPathTrade.Day,
+                                    y = AverageShortestPathTrade.AverageShortestPath,
+                                    mode = 'lines+markers',
+                                    name = 'SP medio Trade'
+                                ),
+
+                            ],
+                            layout=go.Layout(
+                                title='Shortest Path medio per tipo di arco',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageSHP'
+                    ),
                  
                 dcc.Graph(
                     id='AverageShortestPath',
@@ -305,6 +385,44 @@ app.layout = html.Div([
         ]),
 
         dcc.Tab(label='Diameter Value', children=[
+                 dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = DiameterValueA.Day,
+                                    y = DiameterValueA.Diameter,
+                                    mode = 'markers+lines',
+                                    name = 'Diametro medio Attacchi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = DiameterValueM.Day,
+                                    y = DiameterValueM.Diameter,
+                                    mode = 'lines+markers',
+                                    name = 'Diametro medio Messaggi'
+                                ),
+                                go.Scatter(
+                                    x = DiameterValueT.Day,
+                                    y = DiameterValueT.Diameter,
+                                    mode = 'lines+markers',
+                                    name = 'Diametro medio Trade'
+                                ),
+
+                            ],
+                            layout=go.Layout(
+                                title='Diametro medio per tipo di arco',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageDiameter'
+                    ),
                 dcc.Graph(
                     id='DenDiameterValues',
                     figure={
@@ -339,11 +457,9 @@ app.layout = html.Div([
                     <center><img src="https://i.ibb.co/LhS6nrJ/image.png
                     " alt="slide 1" width="1100"> </center>
                     '''),
-                    dcc.Graph(id='cheat-graphic'), #grafico
-
+                    
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
-                    
                     html.Div([                      #menu per selezionare il cheater
                         dcc.Dropdown(
                             id='xaxis-column',
@@ -353,8 +469,23 @@ app.layout = html.Div([
                         
                     ]
                     #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
-                    ),          
-  
+                    ),
+                    dcc.Graph(id='cheat-graphic'), #grafico
+
+                    #Secondo plot -----------------------------------------------------------------------------
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
+                    html.Div([                      #menu per selezionare il cheater
+                        dcc.Dropdown(
+                            id='suspect-column',
+                            options=[{'label': i, 'value': i} for i in available_trickster],
+                            value=7855
+                        ),
+                        
+                    ]
+                    #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
+                    ),
+                    dcc.Graph(id='cheat-data'), #grafico
+
                     ]),
          
                 ]),
@@ -627,8 +758,11 @@ def update_output(day):
     
 def update_output2(value):
     return {
-        "data": [go.Pie(labels=edgesTrend["type"].unique().tolist(), values=edgesTrend[edgesTrend["day"] == value]["quantity"].tolist(),
-                        marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B']}, textinfo='label')],
+        "data": [go.Pie(
+            labels=edgesTrend["type"].unique().tolist(), 
+            values=edgesTrend[edgesTrend["day"] == value]["quantity"].tolist(),
+            marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B']}, 
+            textinfo='label')],
         "layout": go.Layout(title=f"Trend report daily", margin={"l": 200, "r": 200, },
                             legend={"x": 1, "y": 0.7})}
 
@@ -639,11 +773,11 @@ def update_output2(value):
 
 def update_graph(xaxis_column_name):
     dff = Trickster[Trickster['Suspect'] == xaxis_column_name]
-    print(dff.head())
+    #print(dff.head())
 
     return {
         'data': [go.Bar(
-            print(dff[dff['Type'] == d]['Present']),
+            #print(dff[dff['Type'] == d]['Present']),
             x=dff[dff['Type'] == d]['Day'],
             y=dff[dff['Type'] == d]['Present'],
             text=d,
@@ -665,6 +799,35 @@ def update_graph(xaxis_column_name):
             
         )
     }
+
+    #Callback trickster
+@app.callback( 
+     dash.dependencies.Output('cheat-data', 'figure'),
+     [dash.dependencies.Input('suspect-column', 'value')])
+
+def update_pie(xaxis_column_name):
+    dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
+    print(dff.head())
+   
+    x = [dff['TradeIn'], dff['TradeOut']]
+    print(x)
+
+    return {
+        'data': [go.Pie(
+            
+            labels=['TradeIn', 'TradeOut'], 
+            values=[dff['TradeIn'].item(), dff['TradeOut'].item()],
+            marker={'colors': ['#EF963B', '#C93277']}, 
+            textinfo='label')],
+       
+       
+
+        'layout': go.Layout(
+            title=f"Trend report daily", 
+            margin={"l": 200, "r": 200, },
+            legend={"x": 1, "y": 0.7})}
+    
+     
 
 '''app.layout = html.Div(children=[
 
