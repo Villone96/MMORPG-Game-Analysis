@@ -353,13 +353,8 @@ app.layout = html.Div([
                         
                     ]
                     #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
-                    ),
-
-                   
-                      
-
-                    
-         
+                    ),          
+  
                     ]),
          
                 ]),
