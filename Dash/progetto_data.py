@@ -187,7 +187,44 @@ app.layout = html.Div([
          <center><img src="https://i.imgur.com/Rx0VWCg.png" alt="slide 1" width="1400"> </center>
             '''),
 
-                 
+                      dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = communitiesNumberTrend.day,
+                                    y = communitiesNumberTrend.quantity,
+                                    mode = 'markers+lines',
+                                    name = 'Numero di Comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = communitiesDissolvedTrend.day,
+                                    y = communitiesDissolvedTrend.quantity,
+                                    mode = 'lines+markers',
+                                    name = 'Comunità dissolte'
+                                ),
+                                go.Scatter(
+                                    x = communitiesCreationTrend.day,
+                                    y = communitiesCreationTrend.quantity,
+                                    mode = 'lines+markers',
+                                    name = 'Comunità Create'
+                                ),
+
+                            ],
+                            layout=go.Layout(
+                                title='Communities Trends',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='commtrend'
+                    ),
                     dcc.Graph(
                     id='example-graph',
                     figure={
