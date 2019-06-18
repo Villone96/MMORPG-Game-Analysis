@@ -83,7 +83,7 @@ app.layout = html.Div([
             dcc.Tab(label='Giochi MMOG', children=[
                     
             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.imgur.com/z1tFvav.png" alt="slide 1" width="1200"> </center>
+         <center><img src="https://i.ibb.co/cJBWLch/image.png" alt="slide 1" width="1200"> </center>
             '''),
 
             ]),
@@ -127,7 +127,7 @@ app.layout = html.Div([
                 dcc.Tab(label='Trend Nodi e Archi', children=[
                 
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.imgur.com/lvZhS7E.png" alt="slide 1" width="1400"> </center>
+         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1400"> </center>
             '''),
                 dcc.Graph(
                 id='life-exp-vs-gdp',
@@ -184,7 +184,7 @@ app.layout = html.Div([
              dcc.Tab(label='Communities Trend', children=[
 
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.imgur.com/Rx0VWCg.png" alt="slide 1" width="1400"> </center>
+         <center><img src="https://i.ibb.co/C2LjcmY/image.png" alt="slide 1" width="1400"> </center>
             '''),
 
                       dcc.Graph(
@@ -246,7 +246,7 @@ app.layout = html.Div([
         ]),
             dcc.Tab(label='Average Degree', children=[
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.imgur.com/jZu6Pdc.png" alt="slide 1" width="1300"> </center>
+         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1300"> </center>
             '''),
                 
                 dcc.Graph(
