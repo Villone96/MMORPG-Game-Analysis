@@ -559,7 +559,7 @@ def update_output(day):
     
     return {
         'data': [
-            go.Histogram(
+            go.Bar(
                         #print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
                         x=inDegreeDistribution[inDegreeDistribution['Type'] == d]["Range"],
 
@@ -600,17 +600,11 @@ def update_graph(xaxis_column_name):
     print(dff.head())
 
     return {
-        'data': [go.Scatter(
+        'data': [go.Bar(
             print(dff[dff['Type'] == d]['Present']),
             x=dff[dff['Type'] == d]['Day'],
             y=dff[dff['Type'] == d]['Present'],
             text=d,
-            mode='markers+lines',
-            marker={
-                'size': 15,
-                'opacity': 0.5,
-                'line': {'width': 0.5, 'color': 'white'}
-            }
           
         ) for d in dff.Type.unique()],
 
