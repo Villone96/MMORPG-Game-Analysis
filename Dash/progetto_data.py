@@ -56,10 +56,10 @@ CCoeffM_NS = pd.read_csv('ClusteringCoefficient/CC_clusteringN_MCoefficientData.
 CCoeffT_NS = pd.read_csv('ClusteringCoefficient/CC_clusteringN_TCoefficientData.csv')
 
 #Numero di archi
-ADM_S = pd.read_csv('AllianceGraph/averageS_MDegree.csv')
-ADT_S = pd.read_csv('AllianceGraph/averageS_TDegree.csv')
-ADM_NS = pd.read_csv('AllianceGraph/averageN_MDegree.csv')
-ADT_NS = pd.read_csv('AllianceGraph/averageN_MDegree.csv')
+ADM_S = pd.read_csv('EdgesInAllianceGraph/SameMessage_NEdges.csv')
+ADT_S = pd.read_csv('EdgesInAllianceGraph/SameTrade_NEdges.csv')
+ADM_NS = pd.read_csv('EdgesInAllianceGraph/NoSameMessage_NEdges.csv')
+ADT_NS = pd.read_csv('EdgesInAllianceGraph/NoSameTrade_NEdges.csv')
 
 
 #diametro
@@ -96,7 +96,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div([
 
       dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-       <center><img src='https://i.ibb.co/2tVxf15/image.png' alt="slide 1" width="500"> </center>
+       <center><img src='https://i.ibb.co/2tVxf15/image.png' alt="slide 1" width="300"> </center>
         <center>See our <a href="https://github.com/Villone96/Data-Analytics-Project">GitHub Repo</a></center>
 
     '''),
@@ -111,7 +111,7 @@ app.layout = html.Div([
             dcc.Tab(label='Titolo', children=[
 
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-                <center><img src="https://i.ibb.co/SxVDtzH/image.png" alt="slide 1" width="1300"> </center>
+                <center><img src="https://i.ibb.co/SxVDtzH/image.png" alt="slide 1" width="1100"> </center>
                 '''),
            
          
@@ -120,7 +120,7 @@ app.layout = html.Div([
             dcc.Tab(label='Giochi MMOG', children=[
                     
             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/cJBWLch/image.png" alt="slide 1" width="1200"> </center>
+         <center><img src="https://i.ibb.co/cJBWLch/image.png" alt="slide 1" width="1100"> </center>
             '''),
 
             ]),
@@ -164,7 +164,7 @@ app.layout = html.Div([
                 dcc.Tab(label='Trend Nodi e Archi', children=[
                 
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1400"> </center>
+         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1000"> </center>
             '''),
                 dcc.Graph(
                 id='life-exp-vs-gdp',
@@ -283,7 +283,7 @@ app.layout = html.Div([
         ]),
             dcc.Tab(label='Average Degree', children=[
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1300"> </center>
+         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1150"> </center>
             '''),
 
                 dcc.Graph(
@@ -390,7 +390,7 @@ app.layout = html.Div([
                 ]),
              dcc.Tab(label='Average Shortest Path', children=[
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/2YLLRzL/image.png" alt="slide 1" width="1300"> </center>
+         <center><img src="https://i.ibb.co/2YLLRzL/image.png" alt="slide 1" width="1100"> </center>
             '''),
 
                 dcc.Graph(
@@ -562,7 +562,7 @@ app.layout = html.Div([
 
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
                     <center><img src="https://i.ibb.co/dLtsgg9/image.png
-                    " alt="slide 1" width="1300"> </center>
+                    " alt="slide 1" width="1100"> </center>
                     '''),
 
                     dcc.Graph(
@@ -615,7 +615,7 @@ app.layout = html.Div([
                         ),
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
                     <center><img src="https://i.ibb.co/T85KKNL/image.png
-                    " alt="slide 1" width="1300"> </center>
+                    " alt="slide 1" width="1100"> </center>
                     '''),
 
                      dcc.Graph(
@@ -670,7 +670,7 @@ app.layout = html.Div([
                     dcc.Tab(label='Densità', children=[
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
                     <center><img src="https://i.ibb.co/H2zSw5q/image.png
-                    " alt="slide 1" width="1300"> </center>
+                    " alt="slide 1" width="1100"> </center>
                     '''),
                     dcc.Graph(
                         figure=go.Figure(
@@ -849,7 +849,7 @@ app.layout = html.Div([
                             data=[
                                 go.Scatter(
                                     x = ADM_S.day,
-                                    y = ADM_S.averageDegree,
+                                    y = ADM_S.nEdges,
                                     mode = 'markers+lines',
                                     name = 'Messaggi intra comunità',
                                     
@@ -857,7 +857,7 @@ app.layout = html.Div([
                                 ),
                                 go.Scatter(
                                     x = ADM_NS.day,
-                                    y = ADM_NS.averageDegree,
+                                    y = ADM_NS.nEdges,
                                     mode = 'lines+markers',
                                     name = 'Messaggi extra comunità'
                                 ),
@@ -883,7 +883,7 @@ app.layout = html.Div([
                             data=[
                                 go.Scatter(
                                     x = ADT_S.day,
-                                    y = ADT_S.averageDegree,
+                                    y = ADT_S.nEdges,
                                     mode = 'markers+lines',
                                     name = 'Trade intra comunità',
                                     
@@ -891,7 +891,7 @@ app.layout = html.Div([
                                 ),
                                 go.Scatter(
                                     x = ADT_NS.day,
-                                    y = ADT_NS.averageDegree,
+                                    y = ADT_NS.nEdges,
                                     mode = 'lines+markers',
                                     name = 'Trade extra comunità'
                                 ),
