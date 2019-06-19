@@ -47,6 +47,41 @@ Diplomatics = pd.read_csv('SingleCommunityStudy/DiplomatsVsNoDiplomats/data.csv'
 Trickster = pd.read_csv('TricksterDetection/tricksterActivityDay.csv', sep=';')
 TricksterData = pd.read_csv('TricksterDetection/tricksterData.csv', sep=';')
 
+InTotalDegreeD_T =  pd.read_csv('InDegreeDistribution/TotalTradeData.csv')
+
+#Coefficiente di clustering
+CCoeffM_S = pd.read_csv('ClusteringCoefficient/CC_clusteringS_MCoefficientData.csv')
+CCoeffT_S = pd.read_csv('ClusteringCoefficient/CC_clusteringS_TCoefficientData.csv')
+CCoeffM_NS = pd.read_csv('ClusteringCoefficient/CC_clusteringN_MCoefficientData.csv')
+CCoeffT_NS = pd.read_csv('ClusteringCoefficient/CC_clusteringN_TCoefficientData.csv')
+
+#Numero di archi
+ADM_S = pd.read_csv('AllianceGraph/averageS_MDegree.csv')
+ADT_S = pd.read_csv('AllianceGraph/averageS_TDegree.csv')
+ADM_NS = pd.read_csv('AllianceGraph/averageN_MDegree.csv')
+ADT_NS = pd.read_csv('AllianceGraph/averageN_MDegree.csv')
+
+
+#diametro
+DM_S = pd.read_csv('AllianceGraph/D_diameterS_MData.csv')
+DT_S = pd.read_csv('AllianceGraph/D_diameterS_TData.csv')
+DM_NS = pd.read_csv('AllianceGraph/D_diameterN_MData.csv')
+DT_NS = pd.read_csv('AllianceGraph/D_diameterN_TData.csv')
+
+#Shortest Path
+SPM_S = pd.read_csv('AllianceGraph/AP_averageS_MPathLengthData.csv', sep=';')
+SPT_S = pd.read_csv('AllianceGraph/AP_averageS_TPathLengthData.csv', sep=';')
+SPM_NS = pd.read_csv('AllianceGraph/AP_averageN_MPathLengthData.csv', sep=';')
+SPT_NS = pd.read_csv('AllianceGraph/AP_averageN_TPathLengthData.csv', sep=';')
+
+#averageDegree
+ADegreeM_S = pd.read_csv('AllianceGraph/averageS_MDegree.csv')
+ADegreeT_S = pd.read_csv('AllianceGraph/averageS_TDegree.csv')
+ADegreeM_NS = pd.read_csv('AllianceGraph/averageN_MDegree.csv')
+ADegreeT_NS = pd.read_csv('AllianceGraph/averageN_TDegree.csv')
+
+
+
 
 available_indicators = Trickster['Suspect'].unique()
 available_trickster = TricksterData['Suspect'].unique()
@@ -306,6 +341,35 @@ app.layout = html.Div([
         ]),
               dcc.Tab(label='In/Out Degree Distribution', children=[
 
+
+                  dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = InTotalDegreeD_T.Range,
+                                    y = InTotalDegreeD_T.Value,
+                                    mode = 'markers',
+                                    name = 'In Degree medio Trade',
+                                    
+                          
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='In Degree medio Trade',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageInDegreeT'
+                    ),
+
                   
 
                 dcc.Graph(id="DegreeDistributionGraph"),
@@ -501,6 +565,41 @@ app.layout = html.Div([
                     " alt="slide 1" width="1300"> </center>
                     '''),
 
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ReciprocityM_S.day,
+                                    y = ReciprocityM_S.Reciprocity,
+                                    mode = 'markers+lines',
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = ReciprocityM_NS.day,
+                                    y = ReciprocityM_NS.Reciprocity,
+                                    mode = 'lines+markers',
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto Reciprocità Messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messagereciprocity'
+                    ),
+                
+
                         dcc.Graph(
                             id='ReciprocyNotSame',
                             figure={
@@ -518,6 +617,40 @@ app.layout = html.Div([
                     <center><img src="https://i.ibb.co/T85KKNL/image.png
                     " alt="slide 1" width="1300"> </center>
                     '''),
+
+                     dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ReciprocityT_S.day,
+                                    y = ReciprocityT_S.Reciprocity,
+                                    mode = 'markers+lines',
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = ReciprocityT_NS.day,
+                                    y = ReciprocityT_NS.Reciprocity,
+                                    mode = 'lines+markers',
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto Reciprocità Trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='Tradesreciprocity'
+                    ),
                         
                         dcc.Graph(
                             id='ReciprocySame',
@@ -539,6 +672,39 @@ app.layout = html.Div([
                     <center><img src="https://i.ibb.co/H2zSw5q/image.png
                     " alt="slide 1" width="1300"> </center>
                     '''),
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = DensityM_S.day,
+                                    y = DensityM_S.density,
+                                    mode = 'markers+lines',
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = DensityM_NS.day,
+                                    y = DensityM_NS.density,
+                                    mode = 'lines+markers',
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto Densità Messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messagedensity'
+                    ),
 
                         dcc.Graph(
                             id='DensitySame',
@@ -554,6 +720,39 @@ app.layout = html.Div([
                                 }
                             }
                         ),
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = DensityT_S.day,
+                                    y = DensityT_S.density,
+                                    mode = 'markers+lines',
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = DensityT_NS.day,
+                                    y = DensityT_NS.density,
+                                    mode = 'lines+markers',
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto Densità Trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tardesdensity'
+                    ),
                         dcc.Graph(
                             id='DensityNotSame',
                             figure={
@@ -573,17 +772,361 @@ app.layout = html.Div([
                     ]),
 
                     dcc.Tab(label='Clustering Coefficient', children=[
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = CCoeffM_S.day,
+                                    y = CCoeffM_S.clusteringCoefficient,
+                                    mode = 'markers+lines',
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = CCoeffM_NS.day,
+                                    y = CCoeffM_NS.clusteringCoefficient,
+                                    mode = 'lines+markers',
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto coefficiente di clustering Messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messaggeCoeff'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = CCoeffT_S.day,
+                                    y = CCoeffT_S.clusteringCoefficient,
+                                    mode = 'markers+lines',
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = CCoeffT_NS.day,
+                                    y = CCoeffT_NS.clusteringCoefficient,
+                                    mode = 'lines+markers',
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto coefficiente di clustering trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradeCoeff'
+                    ),
                     ]),
 
 
                     dcc.Tab(label='Numero di Archi', children=[
+                    
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ADM_S.day,
+                                    y = ADM_S.averageDegree,
+                                    mode = 'markers+lines',
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = ADM_NS.day,
+                                    y = ADM_NS.averageDegree,
+                                    mode = 'lines+markers',
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto numero di archi Messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messaggena'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ADT_S.day,
+                                    y = ADT_S.averageDegree,
+                                    mode = 'markers+lines',
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = ADT_NS.day,
+                                    y = ADT_NS.averageDegree,
+                                    mode = 'lines+markers',
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto numero di archi di trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradena'
+                    ),
          
                     ]),
                     dcc.Tab(label='Diametro e Average Shortest', children=[
+
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = DM_S.day,
+                                    y = DM_S.diameter,
+                                    mode = 'markers+lines',
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = DM_NS.day,
+                                    y = DM_NS.diameter,
+                                    mode = 'lines+markers',
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto diametro Messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messaggediam'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = DT_S.day,
+                                    y = DT_S.diameter,
+                                    mode = 'markers+lines',
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = DT_NS.day,
+                                    y = DT_NS.diameter,
+                                    mode = 'lines+markers',
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto diametro trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradediam'
+                    ),
+
+                    #SHORTEST PATH
+                     dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = SPM_S.day,
+                                    y = SPM_S.averagePathLength,
+                                    mode = 'markers+lines',
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = SPM_NS.day,
+                                    y = SPM_NS.averagePathLength,
+                                    mode = 'lines+markers',
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto shortest path medio Messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messaggesp'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = SPT_S.day,
+                                    y = SPT_S.averagePathLength,
+                                    mode = 'markers+lines',
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = SPT_NS.day,
+                                    y = SPT_NS.averagePathLength,
+                                    mode = 'lines+markers',
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto shortest path medio trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradesp'
+                    ),
          
                     ]),
 
+                    #AVERAGE DEGREE
                     dcc.Tab(label='Average Degree & In/Out Degree', children=[
+
+                
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ADegreeM_S.day,
+                                    y = ADegreeM_S.averageDegree,
+                                    mode = 'markers+lines',
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = ADegreeM_NS.day,
+                                    y = ADegreeM_NS.averageDegree,
+                                    mode = 'lines+markers',
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto grado medio Messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messaggeadegree'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ADegreeT_S.day,
+                                    y = ADegreeT_S.averageDegree,
+                                    mode = 'markers+lines',
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = ADegreeT_NS.day,
+                                    y = ADegreeT_NS.averageDegree,
+                                    mode = 'lines+markers',
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto grado medio trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradeadegree'
+                    ),
          
                     ]),
          
@@ -777,7 +1320,7 @@ def update_output2(value):
         "data": [go.Pie(
             labels=edgesTrend["type"].unique().tolist(), 
             values=edgesTrend[edgesTrend["day"] == value]["quantity"].tolist(),
-            marker={'colors': ['#EF963B', '#C93277', '#349600', '#EF533B']}, 
+            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
             textinfo='label')],
         "layout": go.Layout(title=f"Trend report daily", margin={"l": 200, "r": 200, },
                             legend={"x": 1, "y": 0.7})}
@@ -816,7 +1359,7 @@ def update_graph(xaxis_column_name):
         )
     }
 
-    #Callback trickster
+   #Callback trickster
 @app.callback( 
      dash.dependencies.Output('cheat-data', 'figure'),
      [dash.dependencies.Input('suspect-column', 'value')])
@@ -831,19 +1374,51 @@ def update_pie(xaxis_column_name):
     return {
         'data': [go.Pie(
             
-            labels=['TradeIn', 'TradeOut'], 
-            values=[dff['TradeIn'].item(), dff['TradeOut'].item()],
-            marker={'colors': ['#EF963B', '#C93277']}, 
+            labels=['AttackIn', 'MessageIn', 'TradeIn'], 
+            values=[dff['AttackIn'].item(), dff['MessageIn'].item(), dff['TradeIn'].item()],
+            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c']}, 
             textinfo='label')],
        
        
 
         'layout': go.Layout(
-            title=f"Trend report daily", 
+            title=f"IN", 
             margin={"l": 200, "r": 200, },
             legend={"x": 1, "y": 0.7})}
-    
-     
+
+''' 
+@app.callback( 
+     dash.dependencies.Output('cheat-data', 'figure'),
+     [dash.dependencies.Input('suspect-column', 'value')])
+
+def update_pie(xaxis_column_name):
+    dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
+    print(dff.head())
+   
+    x = [dff['TradeIn'], dff['TradeOut']]
+    print(x)
+
+
+    traceIN =  [go.Pie(
+            labels=['AttackIn', 'MessageIn', 'TradeIn'], 
+            values=[dff['AttackIn'].item(), dff['MessageIn'].item(), dff['TradeIn'].item()],
+            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c']}, 
+            textinfo='label')],
+
+    traceOUT =  [go.Pie(
+            labels=['AttackOut', 'MessageOut', 'TradeOut'], 
+            values=[dff['AttackOut'].item(), dff['MessageOut'].item(), dff['TradeOut'].item()],
+            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c']}, 
+            textinfo='label')],
+
+    trace = traceIN + traceOUT,
+    return {
+        'data': trace,
+       
+       
+
+        'layout': go.Layout(
+            title=f"IN")}'''
 
 '''app.layout = html.Div(children=[
 
