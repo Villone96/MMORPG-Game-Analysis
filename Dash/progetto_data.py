@@ -163,9 +163,6 @@ app.layout = html.Div([
             dcc.Tabs(id="retetab", children=[
                 dcc.Tab(label='Trend Nodi e Archi', children=[
                 
-                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1000"> </center>
-            '''),
                 dcc.Graph(
                 id='life-exp-vs-gdp',
                 figure={
