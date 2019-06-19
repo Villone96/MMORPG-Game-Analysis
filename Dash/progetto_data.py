@@ -9,7 +9,6 @@ import dash_dangerously_set_inner_html
 
 #pip install dash-dangerously-set-inner-html
 
-
 df = pd.read_csv('userAndEdge_trends_30days.csv')
 edgesTrend = pd.read_csv('edgesTrend.csv')
 communitiesNumberTrend = pd.read_csv('communitiesNumberTrend.csv')
