@@ -1439,4 +1439,3 @@ day,type,range,value
 30,S_T,81-90,0.0
 30,S_T,91-100,0.0
 30,S_T,>100,0.0
-day;type;range;value

@@ -79,8 +79,38 @@ ADegreeT_S = pd.read_csv('AllianceGraph/averageS_TDegree.csv')
 ADegreeM_NS = pd.read_csv('AllianceGraph/averageN_MDegree.csv')
 ADegreeT_NS = pd.read_csv('AllianceGraph/averageN_TDegree.csv')
 
+#IN/OUT degree distr alliance graph
+InDMD = pd.read_csv('AllianceGraph/InDegreeMean.csv')
+OutDMD = pd.read_csv('AllianceGraph/OutDegreeMean.csv')
 
+#User e Edges trend in single comm
+#IN/OUT degree distr alliance graph
+SCS_edge = pd.read_csv('SingleCommunityStudy/CSVFILE/nEdgeTrend.csv')
+SCS_user = pd.read_csv('SingleCommunityStudy/CSVFILE/nUserTrend.csv')
 
+#Reciprocità sigola comm
+RE_SCS_M = pd.read_csv('SingleCommunityStudy/StaticAnalysis/RE_reciprocityMData.csv')
+RE_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/RE_reciprocityTData.csv')
+
+#densità sigola comm
+DE_SCS_M = pd.read_csv('SingleCommunityStudy/StaticAnalysis/DE_densityMData.csv')
+DE_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/DE_densityTData.csv')
+
+#Coeff di clustering sigola comm
+CC_SCS_M = pd.read_csv('SingleCommunityStudy/StaticAnalysis/CC_clusteringMCoefficientData.csv')
+CC_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/CC_clusteringTCoefficientData.csv')
+
+#diametro sigola comm
+DI_SCS_M = pd.read_csv('SingleCommunityStudy/StaticAnalysis/D_diameterMData.csv')
+DI_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/D_diameterTData.csv')
+
+#Shortest path sigola comm
+SP_SCS_M = pd.read_csv('SingleCommunityStudy/StaticAnalysis/AP_averageMPathLengthData.csv', sep=';')
+SP_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/AP_averageTPathLengthData.csv', sep=';')
+
+#Grado medio Messaggi e trade
+AD_SCS_M = pd.read_csv('SingleCommunityStudy/StaticAnalysis/averageMessageDegree.csv')
+AD_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/averageTradeDegree.csv')
 
 available_indicators = Trickster['Suspect'].unique()
 available_trickster = TricksterData['Suspect'].unique()
@@ -1123,6 +1153,151 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='tradeadegree'
                     ),
+                    #TRADE IN DEGREE DISTR
+
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = InDMD.range.unique(),
+                                    y = InDMD[InDMD['type'] == 'S_T'].value,
+                                    
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = InDMD.range.unique(),
+                                    y = InDMD[InDMD['type'] == 'N_T'].value,
+                                   
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto in degree distribution dei trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradeInDegree'
+                    ),
+                    #MESSAGE IN DEGREE DISTR
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = InDMD.range.unique(),
+                                    y = InDMD[InDMD['type'] == 'S_M'].value,
+                                    
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = InDMD.range.unique(),
+                                    y = InDMD[InDMD['type'] == 'N_M'].value,
+                                   
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto in degree distribution dei messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messageInDegree'
+                    ),
+
+
+                    #TRADE OUT DEGREE DISTR
+
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = OutDMD.range.unique(),
+                                    y = OutDMD[OutDMD['type'] == 'S_T'].value,
+                                    
+                                    name = 'Trade intra comunità',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = OutDMD.range.unique(),
+                                    y = OutDMD[OutDMD['type'] == 'N_T'].value,
+                                   
+                                    name = 'Trade extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto out degree distribution dei trade dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradeOutDegree'
+                    ),
+                    #MESSAGE OUT DEGREE DISTR
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = OutDMD.range.unique(),
+                                    y = OutDMD[OutDMD['type'] == 'S_M'].value,
+                                    
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = OutDMD.range.unique(),
+                                    y = OutDMD[OutDMD['type'] == 'N_M'].value,
+                                   
+                                    name = 'Messaggi extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto out degree distribution dei messaggi dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messageOutDegree'
+                    ),
+         
          
                     ]),
          
@@ -1141,69 +1316,200 @@ app.layout = html.Div([
                     ]),
 
                     dcc.Tab(label='User and Edge Trend', children=[
+
+                        
+                        dcc.Graph(
+                            figure=go.Figure(
+                                data=[
+                                    go.Scatter(
+                                        x = SCS_user.day,
+                                        y = SCS_user.totalSign,
+                                        mode = 'lines+markers',
+                                        name = 'Utenti segnati',
+                                        
+                            
+                                    ),
+                                    go.Scatter(
+                                        x = SCS_user.day,
+                                        y = SCS_user.presentInNet,
+                                        mode = 'lines+markers',
+                                        name = 'Utenti attivi nella rete'
+                                    ),
+                                    go.Scatter(
+                                        x = SCS_user.day,
+                                        y = SCS_user.activeInCommunity,
+                                        mode = 'lines+markers',
+                                        name = 'Utenti attivi nella community'
+                                    ),
+                                    
+
+                                ],
+                                layout=go.Layout(
+                                    title='Confronto tra utenti teorici ed attivi per ogni giorno della community',
+                                    showlegend=True,
+                                    legend=go.layout.Legend(
+                                        x=0,
+                                        y=1.0
+                                    ),
+                                
+                                    margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                                )
+                            ),
+                            style={'height': 300},
+                            id='usertrendcomm'
+                        ),
+
+
+                        #numero MESSAGE e trade 
+                        dcc.Graph(
+                            figure=go.Figure(
+                                data=[
+                                    go.Scatter(
+                                        x = SCS_edge.day.unique(),
+                                        y = SCS_edge[SCS_edge['type'] == 'nMessage'].quantity,
+                                         mode = 'lines+markers',
+                                        name = 'Numero di messaggi',
+                                        
+                            
+                                    ),
+                                    go.Scatter(
+                                        x = SCS_edge.day.unique(),
+                                        y = SCS_edge[SCS_edge['type'] == 'nTrade'].quantity,
+                                        mode = 'lines+markers',
+                                        name = 'Numero di trade'
+                                    ),
+                                    
+
+                                ],
+                                layout=go.Layout(
+                                    title='Confronto tra numero di messaggi e numero di trade nella community',
+                                    showlegend=True,
+                                    legend=go.layout.Legend(
+                                        x=0,
+                                        y=1.0
+                                    ),
+                                
+                                    margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                                )
+                            ),
+                            style={'height': 300},
+                            id='messageandtradecomm'
+                        ),
+
          
                     ]),
 
                 dcc.Tab(label='Analisi Strutturale 1', children=[
-                    
-                        dcc.Graph(
-                            id='ReciprocyNotSameStr',
-                            figure={
-                                'data': [
-                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.Reciprocity,
-                                        'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
-                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.Reciprocity,
-                                        'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
-                                'layout': {
-                            'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
-                                }
-                            }
+              
+                    #reciprocità messaggi e trade
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = RE_SCS_M.day,
+                                    y = RE_SCS_M.Diameter,
+                                    mode = 'markers+lines',
+                                    name = 'reciprocità messaggi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = RE_SCS_T.day,
+                                    y = RE_SCS_T.Diameter,
+                                    mode = 'lines+markers',
+                                    name = 'Reciprocità trade'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto Reciprocità Messaggi e trade nella Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
                         ),
-                        dcc.Graph(
-                            id='ReciprocySameStr',
-                            figure={
-                                'data': [
-                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.Reciprocity,
-                                        'type': 'bar', 'name': 'Trade Comnunità Uguale'},
-                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.Reciprocity,
-                                        'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
-                                'layout': {
-                            'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
-                                }
-                            }
+                        style={'height': 300},
+                        id='messageandtradereciprocitycomm'
+                    ),
+
+
+                    #densità messaggi e trade
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = DE_SCS_M.day,
+                                    y = DE_SCS_M.density,
+                                    mode = 'markers+lines',
+                                    name = 'Densità messaggi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = DE_SCS_T.day,
+                                    y = DE_SCS_T.density,
+                                    mode = 'lines+markers',
+                                    name = 'Densità trade'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto densità media Messaggi e trade nella Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
                         ),
+                        style={'height': 300},
+                        id='messageandtradedensitycomm'
+                    ),
+
+                    #coeff di clustering messaggi e trade
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = CC_SCS_M.day,
+                                    y = CC_SCS_M.clusteringCoefficient,
+                                    mode = 'markers+lines',
+                                    name = 'Coeff. di clustering messaggi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = CC_SCS_T.day,
+                                    y = CC_SCS_T.clusteringCoefficient,
+                                    mode = 'lines+markers',
+                                    name = 'Coeff. di clustering trade'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto Coeff. di clustering medio Messaggi e trade nella Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messageandtradeCCcomm'
+                    ),
+                        
                         
 
                    
-                        dcc.Graph(
-                            id='DensitySameStr',
-                            figure={
-                                'data': [
-                                    {'x': DensityM_S.day, 'y': DensityM_S.density,
-                                        'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
-                                    {'x': DensityM_NS.day, 'y': DensityM_NS.density,
-                                        'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
-                                ],
-                                'layout': {
-                            'title': 'Confronto densità Messaggi dentro e fuori la comunità'
-                                }
-                            }
-                        ),
-                        dcc.Graph(
-                            id='DensityNotSameStr',
-                            figure={
-                                'data': [
-                                
-                                    {'x': DensityT_S.day, 'y': DensityT_S.density,
-                                        'type': 'bar', 'name': 'Trade Comunità Uguale'},
-                                    {'x': DensityT_NS.day, 'y': DensityT_NS.density,
-                                        'type': 'bar', 'name': 'Trade Comunità Diversa'},
-                                ],
-                                'layout': {
-                            'title': 'Confronto densità Trade dentro e fuori la comunità'
-                                }
-                            }
-                        ),
                 
                
            
@@ -1214,16 +1520,110 @@ app.layout = html.Div([
         ]),
 
         dcc.Tab(label='Analisi Strutturale 2', children=[
-                    dcc.Tab(label='Numero di Archi', children=[
-         
-                    ]),
-                    dcc.Tab(label='Diametro e Average Shortest', children=[
-         
-                    ]),
+                    #Diametro
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = DI_SCS_M.day,
+                                    y = DI_SCS_M.diameter,
+                                    mode = 'markers+lines',
+                                    name = 'Diametro messaggi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = DI_SCS_T.day,
+                                    y = DI_SCS_T.diameter,
+                                    mode = 'lines+markers',
+                                    name = 'Diametro trade'
+                                ),
+                                
 
-                    dcc.Tab(label='Average Degree & In/Out Degree', children=[
-         
-                    ]),
+                            ],
+                            layout=go.Layout(
+                                title='Confronto diametro medio Messaggi e trade nella Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messageandtradediametercomm'
+                    ),
+
+                    #Shortest path
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = SP_SCS_M.day,
+                                    y = SP_SCS_M.averagePathLength,
+                                    mode = 'markers+lines',
+                                    name = 'Shortest Path messaggi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = SP_SCS_T.day,
+                                    y = SP_SCS_T.averagePathLength,
+                                    mode = 'lines+markers',
+                                    name = 'Shortest Path trade'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Shortest Path medio di clustering Messaggi e trade nella Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messageandtradeSPcomm'
+                    ),
+
+                    #Grado medio
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = AD_SCS_M.day,
+                                    y = AD_SCS_M.averageDegree,
+                                    mode = 'markers+lines',
+                                    name = 'Grado medio Messaggi',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = AD_SCS_T.day,
+                                    y = AD_SCS_T.averageDegree,
+                                    mode = 'lines+markers',
+                                    name = 'Grado medio Trade'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Grado medio Messaggi e trade nella Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messageandtrademeandegreecomm'
+                    ),
         ]),
         
 
