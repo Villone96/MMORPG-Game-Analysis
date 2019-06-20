@@ -556,7 +556,7 @@ app.layout = html.Div([
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
                     html.Div([                      #menu per selezionare il cheater
                         dcc.Dropdown(
-                            id='xaxis-column',
+                            id='suspect-column',
                             options=[{'label': i, 'value': i} for i in available_indicators],
                             value=7855
                         ),
@@ -567,18 +567,38 @@ app.layout = html.Div([
                     dcc.Graph(id='cheat-graphic'), #grafico
 
                     #Secondo plot -----------------------------------------------------------------------------
-                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
-                    html.Div([                      #menu per selezionare il cheater
-                        dcc.Dropdown(
-                            id='suspect-column',
-                            options=[{'label': i, 'value': i} for i in available_trickster],
-                            value=7855
-                        ),
+                    
+                    #dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
+                    #html.Div([                      #menu per selezionare il cheater
+                        #dcc.Dropdown(
+                           # id='suspect-column',
+                            #options=[{'label': i, 'value': i} for i in available_trickster],
+                           # value=7855
+                      #  ),
                         
-                    ]
+                    #]
                     #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
-                    ),
-                    dcc.Graph(id='cheat-data'), #grafico
+                   # ),
+
+
+
+
+
+                    
+                    html.Div([
+                        html.Div([
+                            
+                            dcc.Graph(id='cheat-data-in'), #grafico
+                        ], className="six columns"),
+
+                        html.Div([
+                           
+                            dcc.Graph(id='cheat-data-out'), #grafico
+                        ], className="six columns"),
+                    ], className="row"),
+
+
+                    #dcc.Graph(id='cheat-data'), #grafico
 
                     ]),
          
@@ -1809,9 +1829,9 @@ def update_output2(value):
 #Callback trickster
 @app.callback( 
      dash.dependencies.Output('cheat-graphic', 'figure'),
-     [dash.dependencies.Input('xaxis-column', 'value')])
+     [dash.dependencies.Input('suspect-column', 'value')])
 
-def update_graph(xaxis_column_name):
+def update_pie(xaxis_column_name):
     dff = Trickster[Trickster['Suspect'] == xaxis_column_name]
     #print(dff.head())
 
@@ -1840,7 +1860,7 @@ def update_graph(xaxis_column_name):
         )
     }
 
-   #Callback trickster
+'''  #Callback trickster
 @app.callback( 
      dash.dependencies.Output('cheat-data', 'figure'),
      [dash.dependencies.Input('suspect-column', 'value')])
@@ -1866,6 +1886,93 @@ def update_pie(xaxis_column_name):
             title=f"IN", 
             margin={"l": 200, "r": 200, },
             legend={"x": 1, "y": 0.7})}
+'''
+
+@app.callback( 
+     dash.dependencies.Output('cheat-data-in', 'figure'),
+     [dash.dependencies.Input('suspect-column', 'value')])
+
+def update_pie(xaxis_column_name):
+    dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
+    print(dff.head())
+   
+    x = [dff['TradeIn'], dff['TradeOut']]
+    print(x)
+
+    return {
+        'data': [go.Pie(
+            
+            labels=['AttackIn', 'MessageIn', 'TradeIn'], 
+            values=[dff['AttackIn'].item(), dff['MessageIn'].item(), dff['TradeIn'].item()],
+            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c']}, 
+            textinfo='label')],
+       
+       
+
+        'layout': go.Layout(
+            title=f"IN", 
+            margin={"l": 200, "r": 200, },
+            legend={"x": 1, "y": 0.7})}
+
+
+
+
+@app.callback( 
+     dash.dependencies.Output('cheat-data-out', 'figure'),
+     [dash.dependencies.Input('suspect-column', 'value')])
+
+def update_pie(xaxis_column_name):
+    dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
+    print(dff.head())
+   
+    x = [dff['TradeIn'], dff['TradeOut']]
+    print(x)
+
+    return {
+        'data': [go.Pie(
+            
+            labels=['AttackOut', 'MessageOut', 'TradeOut'], 
+            values=[dff['AttackOut'].item(), dff['MessageOut'].item(), dff['TradeOut'].item()],
+            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c']}, 
+            textinfo='label')],
+       
+       
+
+        'layout': go.Layout(
+            title=f"OUT", 
+            margin={"l": 200, "r": 200, },
+            legend={"x": 1, "y": 0.7})}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ''' 
 @app.callback( 
