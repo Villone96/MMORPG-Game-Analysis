@@ -112,6 +112,10 @@ SP_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/AP_averageTPathLengt
 AD_SCS_M = pd.read_csv('SingleCommunityStudy/StaticAnalysis/averageMessageDegree.csv')
 AD_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/averageTradeDegree.csv')
 
+#IN/OUT degree distr community single
+InDMD_S = pd.read_csv('SingleCommunityStudy/StaticAnalysis/InDegreeMean.csv')
+OutDMD_S = pd.read_csv('SingleCommunityStudy/StaticAnalysis/OutDegreeMean.csv')
+
 available_indicators = Trickster['Suspect'].unique()
 available_trickster = TricksterData['Suspect'].unique()
 
@@ -1624,6 +1628,87 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='messageandtrademeandegreecomm'
                     ),
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = InDMD_S.range.unique(),
+                                    y = InDMD_S[InDMD_S['type'] == 'Message'].value,
+                                    
+                                    name = 'Messaggi',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = InDMD_S.range.unique(),
+                                    y = InDMD_S[InDMD_S['type'] == 'Trade'].value,
+                                   
+                                    name = 'Trade'
+                                ),
+                                go.Bar(
+                                    x = InDMD_S.range.unique(),
+                                    y = InDMD_S[InDMD_S['type'] == 'Total'].value,
+                                   
+                                    name = 'Total'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto IN Degree distribution di Messaggi, Trade ed entrambi dentro la comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='MeanINDegreeSingle'
+                    ),
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = OutDMD_S.range.unique(),
+                                    y = OutDMD_S[OutDMD_S['type'] == 'Message'].value,
+                                    
+                                    name = 'Messaggi',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = OutDMD_S.range.unique(),
+                                    y = OutDMD_S[OutDMD_S['type'] == 'Trade'].value,
+                                   
+                                    name = 'Trade'
+                                ),
+                                go.Bar(
+                                    x = OutDMD_S.range.unique(),
+                                    y = OutDMD_S[OutDMD_S['type'] == 'Total'].value,
+                                   
+                                    name = 'Total'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto Out Degree distribution di Messaggi, Trade ed entrambi dentro la comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='MeanOUTDegreeSingle'
+                    ),
+         
         ]),
         
 

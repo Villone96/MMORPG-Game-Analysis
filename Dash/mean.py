@@ -1,8 +1,8 @@
 import pandas as pd
 import csv
-df = pd.read_csv('AllianceGraph/outdegreeDistribution.csv')
+df = pd.read_csv('SingleCommunityStudy/StaticAnalysis/outdegreeDistribution.csv')
 
-with open('AllianceGraph/outDegreeMean.csv', 'w', newline='') as csvfile:
+with open('SingleCommunityStudy/StaticAnalysis/OutDegreeMean.csv', 'w', newline='') as csvfile:
     filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
     filewriter.writerow(['type','range', 'value'])
