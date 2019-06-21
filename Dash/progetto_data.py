@@ -116,6 +116,12 @@ AD_SCS_T = pd.read_csv('SingleCommunityStudy/StaticAnalysis/averageTradeDegree.c
 InDMD_S = pd.read_csv('SingleCommunityStudy/StaticAnalysis/InDegreeMean.csv')
 OutDMD_S = pd.read_csv('SingleCommunityStudy/StaticAnalysis/OutDegreeMean.csv')
 
+#Dissolved Number
+DN_Comm = pd.read_csv('DissolvedNumber/AboutAllPeriod.csv')
+
+#Dissolved Community on Black Day
+DN_Comm_Black = pd.read_csv('DissolvedNumber/BlackDayCommunityNumber.csv')
+
 available_indicators = Trickster['Suspect'].unique()
 available_trickster = TricksterData['Suspect'].unique()
 
@@ -292,24 +298,55 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='commtrend'
                     ),
-                    dcc.Graph(
-                    id='example-graph',
-                    figure={
-                        'data': [
-                            {'x': communitiesNumberTrend.day, 'y': communitiesNumberTrend.quantity, 'type': 'bar', 'name': 'communities Number'},
-                            {'x': communitiesDissolvedTrend.day, 'y': communitiesDissolvedTrend.quantity, 'type': 'bar', 'name': 'communities Dissolved'},
-                            {'x': communitiesCreationTrend.day, 'y': communitiesCreationTrend.quantity, 'type': 'bar', 'name': 'communities Creation'},
 
-                        ],
-                        'layout': go.Layout(
-                            xaxis={'title': 'Giorni'},
-                            yaxis={'title': 'Quantità'},
-                            #margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                            #legend={'x': 0, 'y': 1},
-                            #hovermode='closest'
-                        )
-                    }
-                ),
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Pie(labels=DN_Comm.PeopleIn, values=DN_Comm.NCommunity,
+                                        hoverinfo='label+percent', textinfo='label', 
+                                        marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
+                                        )
+                                        
+
+                            ],
+                            layout=go.Layout(
+                                title='Numero di utenti delle 127 community dissolte nei 30 giorni',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='commdissolvedtrend'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Pie(labels=DN_Comm_Black.PeopleIn, values=DN_Comm_Black.NCommunity,
+                                        hoverinfo='label+percent', textinfo='label', 
+                                        marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
+                                        )
+                                        
+
+                            ],
+                            layout=go.Layout(
+                                title='Numero di utenti delle 24 community dissolte nel Giorno peggiore',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='commdissolvedonblacktrend'
+                    ),
+                    
         ]),
             dcc.Tab(label='Average Degree', children=[
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
@@ -564,6 +601,8 @@ app.layout = html.Div([
                     ]
                     #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
                     ),
+                    html.Hr(),
+                    html.Div(id='index'),
                     dcc.Graph(id='cheat-graphic'), #grafico
 
                     #Secondo plot -----------------------------------------------------------------------------
@@ -596,6 +635,8 @@ app.layout = html.Div([
                             dcc.Graph(id='cheat-data-out'), #grafico
                         ], className="six columns"),
                     ], className="row"),
+                    html.Div(id='to'),
+                    html.Div(id='from'),
 
 
                     #dcc.Graph(id='cheat-data'), #grafico
@@ -1944,7 +1985,26 @@ def update_pie(xaxis_column_name):
             legend={"x": 1, "y": 0.7})}
 
 
+@app.callback(
+     dash.dependencies.Output('index', 'children'),
+    [dash.dependencies.Input('suspect-column', 'value')])
+def set_display_children(xaxis_column_name):
+    dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
+    return 'Guilty Index:  {}'.format(round(dff['GuiltyIndex'].item(),3),)
 
+@app.callback(
+     dash.dependencies.Output('to', 'children'),
+    [dash.dependencies.Input('suspect-column', 'value')])
+def set_display_children(xaxis_column_name):
+    dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
+    return 'Invia a :  {}'.format(dff['Beneficiary'].item(),)
+
+@app.callback(
+     dash.dependencies.Output('from', 'children'),
+    [dash.dependencies.Input('suspect-column', 'value')])
+def set_display_children(xaxis_column_name):
+    dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
+    return 'Riceve da :  {}'.format(dff['ReceivedFrom'].item(),)
 
 
 
