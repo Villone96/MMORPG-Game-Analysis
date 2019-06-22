@@ -1,8 +1,8 @@
 import pandas as pd
 import csv
-df = pd.read_csv('SingleCommunityStudy/StaticAnalysis/outdegreeDistribution.csv')
+df = pd.read_csv('AllianceGraph/outdegreeDistribution.csv')
 
-with open('SingleCommunityStudy/StaticAnalysis/OutDegreeMean.csv', 'w', newline='') as csvfile:
+with open('AllianceGraph/OutDegreeMean.csv', 'w', newline='') as csvfile:
     filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
     filewriter.writerow(['type','range', 'value'])
@@ -19,7 +19,7 @@ with open('SingleCommunityStudy/StaticAnalysis/OutDegreeMean.csv', 'w', newline=
         for t in types:
             dff = df[df['range'] == r]
             dfff =  dff[dff['type'] == t]
-            s = dfff['value'].sum()
+            s = (dfff['value'].sum())/30
             filewriter.writerow([t, r, str(s)])
             print('Type: ' + t)
             print('Range: ' + r)
