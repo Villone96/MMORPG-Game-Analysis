@@ -20,6 +20,7 @@ averageDegreeMessage=pd.read_csv('AverageDegree/MessageGraphData.csv')
 averageDegreeTrade=pd.read_csv('AverageDegree/TradeGraphData.csv')
 
 inDegreeDistribution=pd.read_csv('InDegreeDistribution/GraphData.csv')
+outDegreeDistribution=pd.read_csv('OutDegreeDistribution/GraphData.csv')
 
 AverageShortestPathAttack=pd.read_csv('AverageShortestPath/AttackGraphData.csv')
 AverageShortestPathMessage=pd.read_csv('AverageShortestPath/MessageGraphData.csv')
@@ -47,6 +48,13 @@ Trickster = pd.read_csv('TricksterDetection/tricksterActivityDay.csv', sep=';')
 TricksterData = pd.read_csv('TricksterDetection/tricksterData.csv', sep=';')
 
 InTotalDegreeD_T =  pd.read_csv('InDegreeDistribution/TotalTradeData.csv')
+InTotalDegreeD_M =  pd.read_csv('InDegreeDistribution/TotalMessageData.csv')
+InTotalDegreeD_A =  pd.read_csv('InDegreeDistribution/TotalAttackData.csv')
+
+
+OutTotalDegreeD_T =  pd.read_csv('OutDegreeDistribution/TotalTradeData.csv')
+OutTotalDegreeD_M =  pd.read_csv('OutDegreeDistribution/TotalMessageData.csv')
+OutTotalDegreeD_A =  pd.read_csv('OutDegreeDistribution/TotalAttackData.csv')
 
 #Coefficiente di clustering
 CCoeffM_S = pd.read_csv('ClusteringCoefficient/CC_clusteringS_MCoefficientData.csv')
@@ -464,37 +472,8 @@ app.layout = html.Div([
               dcc.Tab(label='In/Out Degree Distribution', children=[
 
 
-                  dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Scatter(
-                                    x = InTotalDegreeD_T.Range,
-                                    y = InTotalDegreeD_T.Value,
-                                    mode = 'markers',
-                                    name = 'In Degree medio Trade',
-                                    
-                          
-                                ),
-                                
-
-                            ],
-                            layout=go.Layout(
-                                title='In Degree medio Trade',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='averageInDegreeT'
-                    ),
-
                   
-
-                dcc.Graph(id="DegreeDistributionGraph"),
+                dcc.Graph(id="InDegreeDistributionGraph"),
                 dcc.Slider(
                     id='day-selected2',
                     min=1,
@@ -507,7 +486,107 @@ app.layout = html.Div([
                         22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28', 29: '29', 30: '30'
                 },
                 ),
+
+                dcc.Graph(id="OutDegreeDistributionGraph"),
+                dcc.Slider(
+                    id='day-selected3',
+                    min=1,
+                    max=30,
+                    step=1,
+                    value=15,
+                    marks={
+                        1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10',
+                        11: '11', 12: '12', 13: '13', 14: '14', 15: '15', 16: '16', 17: '17', 18: '18', 19: '19', 20: '20', 21: '21',
+                        22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28', 29: '29', 30: '30'
+                },
+                ),
                 html.Div(id='SelectionDegreeDistributionGraph'),
+                dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = InTotalDegreeD_T.Range,
+                                    y = InTotalDegreeD_T.Value,
+                                    name = 'In Degree medio Trade',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = InTotalDegreeD_M.Range,
+                                    y = InTotalDegreeD_M.Value,
+                                    name = 'In Degree medio Messaggi',
+                                    
+                          
+                                ),
+
+                                go.Bar(
+                                    x = InTotalDegreeD_A.Range,
+                                    y = InTotalDegreeD_A.Value,
+                                    name = 'In Degree medio Attacchi',
+                                    
+                          
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='In Degree medio Messaggi, Trade ed Attacchi',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageInDegreeAMT'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = OutTotalDegreeD_T.Range,
+                                    y = OutTotalDegreeD_T.Value,
+                                    name = 'Out Degree medio Trade',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = OutTotalDegreeD_M.Range,
+                                    y = OutTotalDegreeD_M.Value,
+                                    name = 'Out Degree medio Messaggi',
+                                    
+                          
+                                ),
+
+                                go.Bar(
+                                    x = OutTotalDegreeD_A.Range,
+                                    y = OutTotalDegreeD_A.Value,
+                                    name = 'Out Degree medio Attacchi',
+                                    
+                          
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Out Degree medio Messaggi, Trade ed Attacchi',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageOutDegreeAMT'
+                    ),
+
+                  
+
 
                 ]),
              dcc.Tab(label='Average Shortest Path', children=[
@@ -1879,7 +1958,7 @@ app.layout = html.Div([
 ])
 
 @app.callback(
-    dash.dependencies.Output("DegreeDistributionGraph", "figure"),
+    dash.dependencies.Output("InDegreeDistributionGraph", "figure"),
     [dash.dependencies.Input("day-selected2", "value")])
     
 def update_output(day):
@@ -1904,6 +1983,36 @@ def update_output(day):
             'layout': go.Layout(
                 xaxis={'title': 'Range'},
                 yaxis={'title': 'Valori'},
+                title='In Degree Distribution',
+            )}
+
+@app.callback(
+    dash.dependencies.Output("OutDegreeDistributionGraph", "figure"),
+    [dash.dependencies.Input("day-selected3", "value")])
+    
+def update_output(day):
+
+    print(inDegreeDistribution[outDegreeDistribution['Type']=='Attack'][outDegreeDistribution['Day'] == 1]['Value'])
+    
+    return {
+        'data': [
+            go.Bar(
+                        #print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
+                        x=outDegreeDistribution[outDegreeDistribution['Type'] == d]["Range"],
+
+                        y=outDegreeDistribution[outDegreeDistribution['Type'] == d][outDegreeDistribution['Day'] == day]['Value'],
+                        text=outDegreeDistribution[outDegreeDistribution['Type'] == d]['Type'],
+                        
+                        name=d,
+                        
+                )for d in outDegreeDistribution.Type.unique()],
+            
+                
+
+            'layout': go.Layout(
+                xaxis={'title': 'Range'},
+                yaxis={'title': 'Valori'},
+                title='Out Degree Distribution',
             )}
 
                             
