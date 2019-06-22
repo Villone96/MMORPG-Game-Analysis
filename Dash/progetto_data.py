@@ -88,8 +88,8 @@ ADegreeM_NS = pd.read_csv('AllianceGraph/averageN_MDegree.csv')
 ADegreeT_NS = pd.read_csv('AllianceGraph/averageN_TDegree.csv')
 
 #IN/OUT degree distr alliance graph
-InDMD = pd.read_csv('AllianceGraph/InDegreeMean.csv')
-OutDMD = pd.read_csv('AllianceGraph/OutDegreeMean.csv')
+InDMD = pd.read_csv('AllianceGraph/inDegreeMean.csv')
+OutDMD = pd.read_csv('AllianceGraph/outDegreeMean.csv')
 
 #User e Edges trend in single comm
 #IN/OUT degree distr alliance graph
@@ -230,7 +230,10 @@ app.layout = html.Div([
                                 'size': 15,
                                 'line': {'width': 0.5, 'color': 'white'}
                             },
-                            name=i
+                            name=i,
+                            line = dict(
+                            color = ('rgb(22, 96, 167)'),
+                            width = 4,),
                         ) for i in df.type.unique()
                     ],
                     'layout': go.Layout(
