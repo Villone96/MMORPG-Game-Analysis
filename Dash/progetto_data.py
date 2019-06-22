@@ -231,9 +231,6 @@ app.layout = html.Div([
                                 'line': {'width': 0.5, 'color': 'white'}
                             },
                             name=i,
-                            line = dict(
-                            color = ('rgb(22, 96, 167)'),
-                            width = 4,),
                         ) for i in df.type.unique()
                     ],
                     'layout': go.Layout(
@@ -284,9 +281,7 @@ app.layout = html.Div([
                                     x = communitiesNumberTrend.day,
                                     y = communitiesNumberTrend.quantity,
                                     mode = 'markers+lines',
-                                    name = 'Numero di Comunità',
-                                    
-                          
+                                    name = 'Numero di Comunità',                            
                                 ),
                                 go.Scatter(
                                     x = communitiesDissolvedTrend.day,
@@ -427,6 +422,9 @@ app.layout = html.Div([
                                     y = averageDegreeAttack.AverageDegree,
                                     mode = 'markers+lines',
                                     name = 'Grado medio Attacchi',
+                                    line = dict(
+                                    color = ('rgb(255, 0, 0)'),
+                                    ),
                                     
                           
                                 ),
@@ -434,13 +432,19 @@ app.layout = html.Div([
                                     x = averageDegreeMessage.Day,
                                     y = averageDegreeMessage.AverageDegree,
                                     mode = 'lines+markers',
-                                    name = 'Grado medio Messaggi'
+                                    name = 'Grado medio Messaggi',
+                                    line = dict(
+                                    color = ('rgb(76, 153, 0)'),
+                                    ),
                                 ),
                                 go.Scatter(
                                     x = averageDegreeTrade.Day,
                                     y = averageDegreeTrade.AverageDegree,
                                     mode = 'lines+markers',
-                                    name = 'Grado medio Commercio'
+                                    name = 'Grado medio Commercio',
+                                    line = dict(
+                                    color = ('rgb(255, 170, 102)'),
+                                    ),
                                 ),
 
                             ],
@@ -457,20 +461,10 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='averageDedree'
                     ),
+
+                    
                 
-                dcc.Graph(
-                    id='example-graph-2',
-                    figure={
-                        'data': [
-                            {'x': averageDegreeAttack.Day, 'y': averageDegreeAttack.AverageDegree,
-                                'type': 'bar', 'name': 'Attack'},
-                             {'x': averageDegreeMessage.Day, 'y': averageDegreeMessage.AverageDegree,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': averageDegreeTrade.Day, 'y': averageDegreeTrade.AverageDegree,
-                                'type': 'bar', 'name': 'Commercio'},
-                        ]
-                    }
-                )
+                
         ]),
               dcc.Tab(label='In/Out Degree Distribution', children=[
 
@@ -605,6 +599,9 @@ app.layout = html.Div([
                                     y = AverageShortestPathAttack.AverageShortestPath,
                                     mode = 'markers+lines',
                                     name = 'SP medio Attacchi',
+                                    line = dict(
+                                    color = ('rgb(255, 0, 0)'),
+                                    ),
                                     
                           
                                 ),
@@ -612,13 +609,19 @@ app.layout = html.Div([
                                     x = AverageShortestPathMessage.Day,
                                     y = AverageShortestPathMessage.AverageShortestPath,
                                     mode = 'lines+markers',
-                                    name = 'SP medio Messaggi'
+                                    name = 'SP medio Messaggi',
+                                    line = dict(
+                                    color = ('rgb(76, 153, 0)'),
+                                    ),
                                 ),
                                 go.Scatter(
                                     x = AverageShortestPathTrade.Day,
                                     y = AverageShortestPathTrade.AverageShortestPath,
                                     mode = 'lines+markers',
-                                    name = 'SP medio Commercio'
+                                    name = 'SP medio Commercio',
+                                    line = dict(
+                                    color = ('rgb(255, 170, 102)'),
+                                    ),
                                 ),
 
                             ],
@@ -661,20 +664,28 @@ app.layout = html.Div([
                                     y = DiameterValueA.Diameter,
                                     mode = 'markers+lines',
                                     name = 'Diametro medio Attacchi',
-                                    
+                                    line = dict(
+                                    color = ('rgb(255, 0, 0)'),
+                                    ),
                           
                                 ),
                                 go.Scatter(
                                     x = DiameterValueM.Day,
                                     y = DiameterValueM.Diameter,
                                     mode = 'lines+markers',
-                                    name = 'Diametro medio Messaggi'
+                                    name = 'Diametro medio Messaggi',
+                                    line = dict(
+                                    color = ('rgb(76, 153, 0)'),
+                                    ),
                                 ),
                                 go.Scatter(
                                     x = DiameterValueT.Day,
                                     y = DiameterValueT.Diameter,
                                     mode = 'lines+markers',
-                                    name = 'Diametro medio Commercio'
+                                    name = 'Diametro medio Commercio',
+                                    line = dict(
+                                    color = ('rgb(255, 170, 102)'),
+                                    ),
                                 ),
 
                             ],
@@ -1715,9 +1726,12 @@ app.layout = html.Div([
                 
                
            
-           dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-           <center><iframe src="https://albumizr.com/a/tBAv" scrolling="no" frameborder="0" allowfullscreen width="800" height="600"></iframe></iframe></center>
-    '''),
+           html.Section(id="slideshow", children=[
+        html.Div(id="slideshow-container", children=[
+            html.Div(id="image"),
+            dcc.Interval(id='interval', interval=3000)
+        ])
+    ])
          
         ]),
 
@@ -1966,7 +1980,7 @@ app.layout = html.Div([
     
 def update_output(day):
 
-    print(inDegreeDistribution[inDegreeDistribution['Type']=='Attack'][inDegreeDistribution['Day'] == 1]['Value'])
+    #print(inDegreeDistribution[inDegreeDistribution['Type']=='Attack'][inDegreeDistribution['Day'] == 1]['Value'])
     
     return {
         'data': [
@@ -1995,7 +2009,7 @@ def update_output(day):
     
 def update_output(day):
 
-    print(inDegreeDistribution[outDegreeDistribution['Type']=='Attack'][outDegreeDistribution['Day'] == 1]['Value'])
+    #print(inDegreeDistribution[outDegreeDistribution['Type']=='Attack'][outDegreeDistribution['Day'] == 1]['Value'])
     
     return {
         'data': [
@@ -2096,16 +2110,17 @@ def update_pie(xaxis_column_name):
             legend={"x": 1, "y": 0.7})}
 '''
 
+
 @app.callback( 
      dash.dependencies.Output('cheat-data-in', 'figure'),
      [dash.dependencies.Input('suspect-column', 'value')])
 
 def update_pie(xaxis_column_name):
     dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
-    print(dff.head())
+    #print(dff.head())
    
     x = [dff['TradeIn'], dff['TradeOut']]
-    print(x)
+    #print(x)
 
     return {
         'data': [go.Pie(
@@ -2131,10 +2146,10 @@ def update_pie(xaxis_column_name):
 
 def update_pie(xaxis_column_name):
     dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
-    print(dff.head())
+    #print(dff.head())
    
     x = [dff['TradeIn'], dff['TradeOut']]
-    print(x)
+    #print(x)
 
     return {
         'data': [go.Pie(
