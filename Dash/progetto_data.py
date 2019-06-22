@@ -1726,12 +1726,9 @@ app.layout = html.Div([
                 
                
            
-           html.Section(id="slideshow", children=[
-        html.Div(id="slideshow-container", children=[
-            html.Div(id="image"),
-            dcc.Interval(id='interval', interval=3000)
-        ])
-    ])
+           dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+           <center><iframe width="600" height="430" src="//www.cincopa.com/media-platform/iframe.aspx?fid=AQCA4j-SyJr1" frameborder="0" allowfullscreen scrolling="no"></iframe></center>
+    '''),
          
         ]),
 
@@ -2109,7 +2106,6 @@ def update_pie(xaxis_column_name):
             margin={"l": 200, "r": 200, },
             legend={"x": 1, "y": 0.7})}
 '''
-
 
 @app.callback( 
      dash.dependencies.Output('cheat-data-in', 'figure'),
