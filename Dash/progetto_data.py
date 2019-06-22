@@ -122,6 +122,12 @@ DN_Comm = pd.read_csv('DissolvedNumber/AboutAllPeriod.csv')
 #Dissolved Community on Black Day
 DN_Comm_Black = pd.read_csv('DissolvedNumber/BlackDayCommunityNumber.csv')
 
+#Dissolved Community single user
+DN_Comm_Single = pd.read_csv('DissolvedNumber/AboutSinglePlayerCommunityAllPeriod.csv')
+
+#Dissolved Community on Black Day single user
+DN_Comm_Black_Single = pd.read_csv('DissolvedNumber/BlackDaySingleInCommunity.csv')
+
 available_indicators = Trickster['Suspect'].unique()
 available_trickster = TricksterData['Suspect'].unique()
 
@@ -326,6 +332,31 @@ app.layout = html.Div([
                     dcc.Graph(
                         figure=go.Figure(
                             data=[
+                                go.Pie( 
+                                        labels=DN_Comm_Single.Type, values=DN_Comm_Single.Number,
+                                        hoverinfo='label+percent', textinfo='label', 
+                                        marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
+                                        )
+                                        
+
+                            ],
+                            layout=go.Layout(
+                                title='Anzianità utenti delle community dissolte nei 30 giorni',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='singleAllPeriod'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
                                 go.Pie(labels=DN_Comm_Black.PeopleIn, values=DN_Comm_Black.NCommunity,
                                         hoverinfo='label+percent', textinfo='label', 
                                         marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
@@ -345,6 +376,30 @@ app.layout = html.Div([
                         ),
                         style={'height': 300},
                         id='commdissolvedonblacktrend'
+                    ),
+                    
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Pie(labels=DN_Comm_Black_Single.Type, values=DN_Comm_Black_Single.Number,
+                                        hoverinfo='label+percent', textinfo='label', 
+                                        marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
+                                        )
+                                        
+
+                            ],
+                            layout=go.Layout(
+                                title='Anzianità degli utenti delle 24 community dissolte nel Giorno peggiore',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='singleblacktrend'
                     ),
                     
         ]),
