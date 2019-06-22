@@ -437,7 +437,7 @@ app.layout = html.Div([
                                     x = averageDegreeTrade.Day,
                                     y = averageDegreeTrade.AverageDegree,
                                     mode = 'lines+markers',
-                                    name = 'Grado medio Trade'
+                                    name = 'Grado medio Commercio'
                                 ),
 
                             ],
@@ -464,7 +464,7 @@ app.layout = html.Div([
                              {'x': averageDegreeMessage.Day, 'y': averageDegreeMessage.AverageDegree,
                                 'type': 'bar', 'name': 'Message'},
                                  {'x': averageDegreeTrade.Day, 'y': averageDegreeTrade.AverageDegree,
-                                'type': 'bar', 'name': 'Trade'},
+                                'type': 'bar', 'name': 'Commercio'},
                         ]
                     }
                 )
@@ -507,7 +507,7 @@ app.layout = html.Div([
                                 go.Bar(
                                     x = InTotalDegreeD_T.Range,
                                     y = InTotalDegreeD_T.Value,
-                                    name = 'In Degree medio Trade',
+                                    name = 'In Degree medio Commercio',
                                     
                           
                                 ),
@@ -530,7 +530,7 @@ app.layout = html.Div([
 
                             ],
                             layout=go.Layout(
-                                title='In Degree medio Messaggi, Trade ed Attacchi',
+                                title='In Degree medio Messaggi, Commercio ed Attacchi',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -549,7 +549,7 @@ app.layout = html.Div([
                                 go.Bar(
                                     x = OutTotalDegreeD_T.Range,
                                     y = OutTotalDegreeD_T.Value,
-                                    name = 'Out Degree medio Trade',
+                                    name = 'Out Degree medio Commercio',
                                     
                           
                                 ),
@@ -572,7 +572,7 @@ app.layout = html.Div([
 
                             ],
                             layout=go.Layout(
-                                title='Out Degree medio Messaggi, Trade ed Attacchi',
+                                title='Out Degree medio Messaggi, Commercio ed Attacchi',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -615,7 +615,7 @@ app.layout = html.Div([
                                     x = AverageShortestPathTrade.Day,
                                     y = AverageShortestPathTrade.AverageShortestPath,
                                     mode = 'lines+markers',
-                                    name = 'SP medio Trade'
+                                    name = 'SP medio Commercio'
                                 ),
 
                             ],
@@ -642,7 +642,7 @@ app.layout = html.Div([
                              {'x': AverageShortestPathMessage.Day, 'y': AverageShortestPathMessage.AverageShortestPath,
                                 'type': 'bar', 'name': 'Message'},
                                  {'x': AverageShortestPathTrade.Day, 'y': AverageShortestPathTrade.AverageShortestPath,
-                                'type': 'bar', 'name': 'Trade'},
+                                'type': 'bar', 'name': 'Commercio'},
                                 
                         ],
                     }
@@ -671,7 +671,7 @@ app.layout = html.Div([
                                     x = DiameterValueT.Day,
                                     y = DiameterValueT.Diameter,
                                     mode = 'lines+markers',
-                                    name = 'Diametro medio Trade'
+                                    name = 'Diametro medio Commercio'
                                 ),
 
                             ],
@@ -697,7 +697,7 @@ app.layout = html.Div([
                              {'x': DiameterValueM.Day, 'y': DiameterValueM.Diameter,
                                 'type': 'bar', 'name': 'Message'},
                                  {'x': DiameterValueT.Day, 'y': DiameterValueT.Diameter,
-                                'type': 'bar', 'name': 'Trade'},
+                                'type': 'bar', 'name': 'Commercio'},
                         ]
                     }
                 )
@@ -850,7 +850,7 @@ app.layout = html.Div([
                                     x = ReciprocityT_S.day,
                                     y = ReciprocityT_S.Reciprocity,
                                     mode = 'markers+lines',
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -858,13 +858,13 @@ app.layout = html.Div([
                                     x = ReciprocityT_NS.day,
                                     y = ReciprocityT_NS.Reciprocity,
                                     mode = 'lines+markers',
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto Reciprocità Trade dentro e fuori la Comunità',
+                                title='Confronto Reciprocità Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -882,11 +882,11 @@ app.layout = html.Div([
                             figure={
                                 'data': [
                                     {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.Reciprocity,
-                                        'type': 'bar', 'name': 'Trade Comnunità Uguale'},
+                                        'type': 'bar', 'name': 'Commercio Comnunità Uguale'},
                                     {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.Reciprocity,
-                                        'type': 'bar', 'name': 'Trade Comnuità Diverse'},],
+                                        'type': 'bar', 'name': 'Commercio Comnuità Diverse'},],
                                 'layout': {
-                            'title': 'Confronto Reciprocità Trade dentro e fuori la Comunità'
+                            'title': 'Confronto Reciprocità Commercio dentro e fuori la Comunità'
                                 }
                             }
                         ),
@@ -952,7 +952,7 @@ app.layout = html.Div([
                                     x = DensityT_S.day,
                                     y = DensityT_S.density,
                                     mode = 'markers+lines',
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -960,13 +960,13 @@ app.layout = html.Div([
                                     x = DensityT_NS.day,
                                     y = DensityT_NS.density,
                                     mode = 'lines+markers',
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto Densità Trade dentro e fuori la Comunità',
+                                title='Confronto Densità Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -984,12 +984,12 @@ app.layout = html.Div([
                                 'data': [
                                 
                                     {'x': DensityT_S.day, 'y': DensityT_S.density,
-                                        'type': 'bar', 'name': 'Trade Comunità Uguale'},
+                                        'type': 'bar', 'name': 'Commercio Comunità Uguale'},
                                     {'x': DensityT_NS.day, 'y': DensityT_NS.density,
-                                        'type': 'bar', 'name': 'Trade Comunità Diversa'},
+                                        'type': 'bar', 'name': 'Commercio Comunità Diversa'},
                                 ],
                                 'layout': {
-                            'title': 'Confronto densità Trade dentro e fuori la comunità'
+                            'title': 'Confronto densità Commercio dentro e fuori la comunità'
                                 }
                             }
                         )
@@ -1038,7 +1038,7 @@ app.layout = html.Div([
                                     x = CCoeffT_S.day,
                                     y = CCoeffT_S.clusteringCoefficient,
                                     mode = 'markers+lines',
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -1046,13 +1046,13 @@ app.layout = html.Div([
                                     x = CCoeffT_NS.day,
                                     y = CCoeffT_NS.clusteringCoefficient,
                                     mode = 'lines+markers',
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto coefficiente di clustering trade dentro e fuori la Comunità',
+                                title='Confronto coefficiente di clustering Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1110,7 +1110,7 @@ app.layout = html.Div([
                                     x = ADT_S.day,
                                     y = ADT_S.nEdges,
                                     mode = 'markers+lines',
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -1118,13 +1118,13 @@ app.layout = html.Div([
                                     x = ADT_NS.day,
                                     y = ADT_NS.nEdges,
                                     mode = 'lines+markers',
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto numero di archi di trade dentro e fuori la Comunità',
+                                title='Confronto numero di archi di Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1181,7 +1181,7 @@ app.layout = html.Div([
                                     x = DT_S.day,
                                     y = DT_S.diameter,
                                     mode = 'markers+lines',
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -1189,13 +1189,13 @@ app.layout = html.Div([
                                     x = DT_NS.day,
                                     y = DT_NS.diameter,
                                     mode = 'lines+markers',
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto diametro trade dentro e fuori la Comunità',
+                                title='Confronto diametro Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1250,7 +1250,7 @@ app.layout = html.Div([
                                     x = SPT_S.day,
                                     y = SPT_S.averagePathLength,
                                     mode = 'markers+lines',
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -1258,13 +1258,13 @@ app.layout = html.Div([
                                     x = SPT_NS.day,
                                     y = SPT_NS.averagePathLength,
                                     mode = 'lines+markers',
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto shortest path medio trade dentro e fuori la Comunità',
+                                title='Confronto shortest path medio Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1325,7 +1325,7 @@ app.layout = html.Div([
                                     x = ADegreeT_S.day,
                                     y = ADegreeT_S.averageDegree,
                                     mode = 'markers+lines',
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -1333,13 +1333,13 @@ app.layout = html.Div([
                                     x = ADegreeT_NS.day,
                                     y = ADegreeT_NS.averageDegree,
                                     mode = 'lines+markers',
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto grado medio trade dentro e fuori la Comunità',
+                                title='Confronto grado medio Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1361,7 +1361,7 @@ app.layout = html.Div([
                                     x = InDMD.range.unique(),
                                     y = InDMD[InDMD['type'] == 'S_T'].value,
                                     
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -1369,13 +1369,13 @@ app.layout = html.Div([
                                     x = InDMD.range.unique(),
                                     y = InDMD[InDMD['type'] == 'N_T'].value,
                                    
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto in degree distribution dei trade dentro e fuori la Comunità',
+                                title='Confronto in degree distribution dei Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1434,7 +1434,7 @@ app.layout = html.Div([
                                     x = OutDMD.range.unique(),
                                     y = OutDMD[OutDMD['type'] == 'S_T'].value,
                                     
-                                    name = 'Trade intra comunità',
+                                    name = 'Commercio intra comunità',
                                     
                           
                                 ),
@@ -1442,13 +1442,13 @@ app.layout = html.Div([
                                     x = OutDMD.range.unique(),
                                     y = OutDMD[OutDMD['type'] == 'N_T'].value,
                                    
-                                    name = 'Trade extra comunità'
+                                    name = 'Commercio extra comunità'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto out degree distribution dei trade dentro e fuori la Comunità',
+                                title='Confronto out degree distribution dei Commercio dentro e fuori la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1575,13 +1575,13 @@ app.layout = html.Div([
                                         x = SCS_edge.day.unique(),
                                         y = SCS_edge[SCS_edge['type'] == 'nTrade'].quantity,
                                         mode = 'lines+markers',
-                                        name = 'Numero di trade'
+                                        name = 'Numero di Commercio'
                                     ),
                                     
 
                                 ],
                                 layout=go.Layout(
-                                    title='Confronto tra numero di messaggi e numero di trade nella community',
+                                    title='Confronto tra numero di messaggi e numero di Commercio nella community',
                                     showlegend=True,
                                     legend=go.layout.Legend(
                                         x=0,
@@ -1616,13 +1616,13 @@ app.layout = html.Div([
                                     x = RE_SCS_T.day,
                                     y = RE_SCS_T.Diameter,
                                     mode = 'lines+markers',
-                                    name = 'Reciprocità trade'
+                                    name = 'Reciprocità Commercio'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto Reciprocità Messaggi e trade nella Comunità',
+                                title='Confronto Reciprocità Messaggi e Commercio nella Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1652,13 +1652,13 @@ app.layout = html.Div([
                                     x = DE_SCS_T.day,
                                     y = DE_SCS_T.density,
                                     mode = 'lines+markers',
-                                    name = 'Densità trade'
+                                    name = 'Densità Commercio'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto densità media Messaggi e trade nella Comunità',
+                                title='Confronto densità media Messaggi e Commercio nella Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1687,13 +1687,13 @@ app.layout = html.Div([
                                     x = CC_SCS_T.day,
                                     y = CC_SCS_T.clusteringCoefficient,
                                     mode = 'lines+markers',
-                                    name = 'Coeff. di clustering trade'
+                                    name = 'Coeff. di clustering Commercio'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto Coeff. di clustering medio Messaggi e trade nella Comunità',
+                                title='Confronto Coeff. di clustering medio Messaggi e Commercio nella Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1735,13 +1735,13 @@ app.layout = html.Div([
                                     x = DI_SCS_T.day,
                                     y = DI_SCS_T.diameter,
                                     mode = 'lines+markers',
-                                    name = 'Diametro trade'
+                                    name = 'Diametro Commercio'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto diametro medio Messaggi e trade nella Comunità',
+                                title='Confronto diametro medio Messaggi e Commercio nella Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1770,13 +1770,13 @@ app.layout = html.Div([
                                     x = SP_SCS_T.day,
                                     y = SP_SCS_T.averagePathLength,
                                     mode = 'lines+markers',
-                                    name = 'Shortest Path trade'
+                                    name = 'Shortest Path Commercio'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Shortest Path medio di clustering Messaggi e trade nella Comunità',
+                                title='Shortest Path medio di clustering Messaggi e Commercio nella Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1805,13 +1805,13 @@ app.layout = html.Div([
                                     x = AD_SCS_T.day,
                                     y = AD_SCS_T.averageDegree,
                                     mode = 'lines+markers',
-                                    name = 'Grado medio Trade'
+                                    name = 'Grado medio Commercio'
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Grado medio Messaggi e trade nella Comunità',
+                                title='Grado medio Messaggi e Commercio nella Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1838,7 +1838,7 @@ app.layout = html.Div([
                                     x = InDMD_S.range.unique(),
                                     y = InDMD_S[InDMD_S['type'] == 'Trade'].value,
                                    
-                                    name = 'Trade'
+                                    name = 'Commercio'
                                 ),
                                 go.Bar(
                                     x = InDMD_S.range.unique(),
@@ -1850,7 +1850,7 @@ app.layout = html.Div([
 
                             ],
                             layout=go.Layout(
-                                title='Confronto IN Degree distribution di Messaggi, Trade ed entrambi dentro la comunità',
+                                title='Confronto IN Degree distribution di Messaggi, Commercio ed entrambi dentro la comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1878,7 +1878,7 @@ app.layout = html.Div([
                                     x = OutDMD_S.range.unique(),
                                     y = OutDMD_S[OutDMD_S['type'] == 'Trade'].value,
                                    
-                                    name = 'Trade'
+                                    name = 'Commercio'
                                 ),
                                 go.Bar(
                                     x = OutDMD_S.range.unique(),
@@ -1890,7 +1890,7 @@ app.layout = html.Div([
 
                             ],
                             layout=go.Layout(
-                                title='Confronto Out Degree distribution di Messaggi, Trade ed entrambi dentro la comunità',
+                                title='Confronto Out Degree distribution di Messaggi, Commercio ed entrambi dentro la comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
