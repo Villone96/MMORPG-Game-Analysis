@@ -142,6 +142,9 @@ ActivityMessage = pd.read_csv('ActivityHour/Message.csv')
 ActivityTrade = pd.read_csv('ActivityHour/Trade.csv')
 ActivityTotal = pd.read_csv('ActivityHour/Total.csv')
 
+#Barbarian
+Barbarian = pd.read_csv('Barbarian.csv')
+
 
 
 
@@ -230,18 +233,80 @@ app.layout = html.Div([
                 figure={
                     'data': [
                         go.Scatter(
-                            x=df[df['type'] == i]['day'],
-                            y=df[df['type'] == i]['quantity'],
-                            text=df[df['type'] == i]['type'],
+                            x = df.day.unique(),
+                            y = df[df['type'] == 'nMessage'].quantity,
+                            name = 'Numero di messaggi',
                             mode='markers+lines',
                             opacity=0.7,
+                            line = dict(
+                                color = ('rgb(76, 153, 0)'),
+                            ),
                             marker={
                                 'size': 12,
                                 'line': {'width': 0.5, 'color': 'white'}
                             },
-                            name=i,
-                        ) for i in df.type.unique()
+                            
+                        ),
+                        go.Scatter(
+                            x = df.day.unique(),
+                            y = df[df['type'] == 'nTrade'].quantity,
+                            name = 'Numero di commerci',
+                            mode='markers+lines',
+                            opacity=0.7,
+                            line = dict(
+                                color = ('rgb(255, 170, 102)'),
+                            ),
+                            marker={
+                                'size': 12,
+                                'line': {'width': 0.5, 'color': 'white'}
+                            },
+                        ),
+                        go.Scatter(
+                            x = df.day.unique(),
+                            y = df[df['type'] == 'nAttack'].quantity,
+                            name = 'Numero di attacchi',
+                            mode='markers+lines',
+                            opacity=0.7,
+                            line = dict(
+                                color = ('rgb(255, 0, 0)'),
+                            ),
+                            marker={
+                                'size': 12,
+                                'line': {'width': 0.5, 'color': 'white'}
+                            },
+                        ),
+                        go.Scatter(
+                            x = df.day.unique(),
+                            y = df[df['type'] == 'nUsers'].quantity,
+                            name = 'Numero di Utenti',
+                            mode='markers+lines',
+                            opacity=0.7,
+                            line = dict(
+                                color=('rgb(31, 119, 180)'),
+                            ),
+                            marker={
+                                'size': 12,
+                                'line': {'width': 0.5, 'color': 'white'}
+                            },
+                        ),
+
+                        go.Scatter(
+                            x = Barbarian.day.unique(),
+                            y = Barbarian.nBarbaria,
+                            name = 'Numero di Barbari',
+                            mode='markers+lines',
+                            opacity=0.7,
+                            line = dict(
+                                color=('rgb(228, 81, 255)'),
+                            ),
+                            marker={
+                                'size': 12,
+                                'line': {'width': 0.5, 'color': 'white'}
+                            },
+                        ),
+
                     ],
+
                     'layout': go.Layout(
                         xaxis={'title': 'Giorni'},
                         yaxis={'title': 'Quantità', 'type':'log'},
@@ -282,6 +347,7 @@ app.layout = html.Div([
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/C2LjcmY/image.png" alt="slide 1" width="1400"> </center>
             '''),
+                html.Div([
 
                       dcc.Graph(
                         figure=go.Figure(
@@ -318,9 +384,13 @@ app.layout = html.Div([
                         ),
                         style={'height': 300},
                         id='commtrend'
-                    ),
+                    ),]),
 
-                    dcc.Graph(
+
+                    html.Div([
+                        html.Div([
+                            
+                            dcc.Graph(
                         figure=go.Figure(
                             data=[
                                 go.Pie(labels=DN_Comm.PeopleIn, values=DN_Comm.NCommunity,
@@ -341,10 +411,13 @@ app.layout = html.Div([
                             )
                         ),
                         style={'height': 300},
-                        id='commdissolvedtrend'
+                        id='commdissolvedtrend1'
                     ),
+                        ], className="six columns"),
 
-                    dcc.Graph(
+                        html.Div([
+                           
+                            dcc.Graph(
                         figure=go.Figure(
                             data=[
                                 go.Pie( 
@@ -366,56 +439,69 @@ app.layout = html.Div([
                             )
                         ),
                         style={'height': 300},
-                        id='singleAllPeriod'
+                        id='singleAllPeriod1'
                     ),
+                        ], className="six columns"),
+                    ], className="row"),
 
-                    dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Pie(labels=DN_Comm_Black.PeopleIn, values=DN_Comm_Black.NCommunity,
-                                        hoverinfo='label+percent', textinfo='label', 
-                                        marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
-                                        )
-                                        
+                    html.Div([
+                        html.Div([
+                            
+                            dcc.Graph(
+                                figure=go.Figure(
+                                data=[
+                                    go.Pie(labels=DN_Comm_Black.PeopleIn, values=DN_Comm_Black.NCommunity,
+                                            hoverinfo='label+percent', textinfo='label', 
+                                            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
+                                            )
+                                            
 
-                            ],
-                            layout=go.Layout(
-                                title='Numero di utenti delle 24 community dissolte nel Giorno peggiore',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
+                                ],
+                                layout=go.Layout(
+                                    title='Numero di utenti delle 24 community dissolte nel Giorno peggiore',
+                                    showlegend=True,
+                                    legend=go.layout.Legend(
+                                        x=0,
+                                        y=1.0
+                                    ),
+                                    margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                                )
+                            ),
+                            style={'height': 300},
+                            id='commdissolvedonblacktrend'
                         ),
-                        style={'height': 300},
-                        id='commdissolvedonblacktrend'
-                    ),
+                        ], className="six columns"),
+
+                        html.Div([
+                           
+                            dcc.Graph(
+                                figure=go.Figure(
+                                data=[
+                                    go.Pie(labels=DN_Comm_Black_Single.Type, values=DN_Comm_Black_Single.Number,
+                                            hoverinfo='label+percent', textinfo='label', 
+                                            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
+                                            )
+                                            
+
+                                ],
+                                layout=go.Layout(
+                                    title='Anzianità degli utenti delle 24 community dissolte nel Giorno peggiore',
+                                    showlegend=True,
+                                    legend=go.layout.Legend(
+                                        x=0,
+                                        y=1.0
+                                    ),
+                                    margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                                )
+                            ),
+                            style={'height': 300},
+                            id='singleblacktrend'
+                        ),
+                        ], className="six columns"),
+                    ], className="row"),
+                          
                     
-                    dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Pie(labels=DN_Comm_Black_Single.Type, values=DN_Comm_Black_Single.Number,
-                                        hoverinfo='label+percent', textinfo='label', 
-                                        marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']}, 
-                                        )
-                                        
-
-                            ],
-                            layout=go.Layout(
-                                title='Anzianità degli utenti delle 24 community dissolte nel Giorno peggiore',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='singleblacktrend'
-                    ),
+                    
                     
         ]),
             dcc.Tab(label='Average Degree', children=[
@@ -471,6 +557,109 @@ app.layout = html.Div([
                         id='averageDedree'
                     ),
 
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = InTotalDegreeD_T.Range,
+                                    y = InTotalDegreeD_T.Value,
+                                    name = 'In Degree medio Commercio',
+                                    marker=dict(
+                                        color = ('rgb(255, 170, 102) '),
+                                    ),
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = InTotalDegreeD_M.Range,
+                                    y = InTotalDegreeD_M.Value,
+                                    name = 'In Degree medio Messaggi',
+                                    marker=dict(
+                                        color = (' rgb(76, 153, 0) '),
+                                    ),
+                                   
+                                    
+                          
+                                ),
+
+                                go.Bar(
+                                    x = InTotalDegreeD_A.Range,
+                                    y = InTotalDegreeD_A.Value,
+                                    name = 'In Degree medio Attacchi',
+                                    marker=dict(
+                                        color = ('rgb(255, 0, 0) '),
+                                    ),
+                                    
+                          
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='In Degree medio Messaggi, Commercio ed Attacchi',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageInDegreeAMT'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = OutTotalDegreeD_T.Range,
+                                    y = OutTotalDegreeD_T.Value,
+                                    name = 'Out Degree medio Commercio',
+                                    marker=dict(
+                                        color = ('rgb(255, 170, 102) '),
+                                    ),
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = OutTotalDegreeD_M.Range,
+                                    y = OutTotalDegreeD_M.Value,
+                                    name = 'Out Degree medio Messaggi',
+                                    marker=dict(
+                                        color = (' rgb(76, 153, 0) '),
+                                    ),
+                                    
+                          
+                                ),
+
+                                go.Bar(
+                                    x = OutTotalDegreeD_A.Range,
+                                    y = OutTotalDegreeD_A.Value,
+                                    name = 'Out Degree medio Attacchi',
+                                    marker=dict(
+                                        color = ('rgb(255, 0, 0) '),
+                                    ),
+                                    
+                          
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Out Degree medio Messaggi, Commercio ed Attacchi',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='averageOutDegreeAMT'
+                    ),
+
                     
                 
                 
@@ -507,89 +696,7 @@ app.layout = html.Div([
                 },
                 ),
                 html.Div(id='SelectionDegreeDistributionGraph'),
-                dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Bar(
-                                    x = InTotalDegreeD_T.Range,
-                                    y = InTotalDegreeD_T.Value,
-                                    name = 'In Degree medio Commercio',
-                                    
-                          
-                                ),
-                                go.Bar(
-                                    x = InTotalDegreeD_M.Range,
-                                    y = InTotalDegreeD_M.Value,
-                                    name = 'In Degree medio Messaggi',
-                                    
-                          
-                                ),
-
-                                go.Bar(
-                                    x = InTotalDegreeD_A.Range,
-                                    y = InTotalDegreeD_A.Value,
-                                    name = 'In Degree medio Attacchi',
-                                    
-                          
-                                ),
-                                
-
-                            ],
-                            layout=go.Layout(
-                                title='In Degree medio Messaggi, Commercio ed Attacchi',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='averageInDegreeAMT'
-                    ),
-
-                    dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Bar(
-                                    x = OutTotalDegreeD_T.Range,
-                                    y = OutTotalDegreeD_T.Value,
-                                    name = 'Out Degree medio Commercio',
-                                    
-                          
-                                ),
-                                go.Bar(
-                                    x = OutTotalDegreeD_M.Range,
-                                    y = OutTotalDegreeD_M.Value,
-                                    name = 'Out Degree medio Messaggi',
-                                    
-                          
-                                ),
-
-                                go.Bar(
-                                    x = OutTotalDegreeD_A.Range,
-                                    y = OutTotalDegreeD_A.Value,
-                                    name = 'Out Degree medio Attacchi',
-                                    
-                          
-                                ),
-                                
-
-                            ],
-                            layout=go.Layout(
-                                title='Out Degree medio Messaggi, Commercio ed Attacchi',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='averageOutDegreeAMT'
-                    ),
+                
 
                   
 
@@ -648,20 +755,7 @@ app.layout = html.Div([
                         id='averageSHP'
                     ),
                  
-                dcc.Graph(
-                    id='AverageShortestPath',
-                    figure={
-                        'data': [
-                            {'x': AverageShortestPathAttack.Day, 'y': AverageShortestPathAttack.AverageShortestPath,
-                                'type': 'bar', 'name': 'Attack'},
-                             {'x': AverageShortestPathMessage.Day, 'y': AverageShortestPathMessage.AverageShortestPath,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': AverageShortestPathTrade.Day, 'y': AverageShortestPathTrade.AverageShortestPath,
-                                'type': 'bar', 'name': 'Commercio'},
-                                
-                        ],
-                    }
-                )
+               
         ]),
 
         dcc.Tab(label='Diameter Value', children=[
@@ -711,19 +805,7 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='averageDiameter'
                     ),
-                dcc.Graph(
-                    id='DenDiameterValues',
-                    figure={
-                        'data': [
-                            {'x': DiameterValueA.Day, 'y': DiameterValueA.Diameter,
-                                'type': 'bar', 'name': 'Attack'},
-                             {'x': DiameterValueM.Day, 'y': DiameterValueM.Diameter,
-                                'type': 'bar', 'name': 'Message'},
-                                 {'x': DiameterValueT.Day, 'y': DiameterValueT.Diameter,
-                                'type': 'bar', 'name': 'Commercio'},
-                        ]
-                    }
-                )
+                
             ]),
             dcc.Tab(label='Tempo di Attività', children=[
 
@@ -837,7 +919,7 @@ app.layout = html.Div([
                     #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
                     ),
                     html.Hr(),
-                    html.Div(id='index'),
+                    html.H4(id='index'),
                     dcc.Graph(id='cheat-graphic'), #grafico
 
                     #Secondo plot -----------------------------------------------------------------------------
@@ -870,8 +952,8 @@ app.layout = html.Div([
                             dcc.Graph(id='cheat-data-out'), #grafico
                         ], className="six columns"),
                     ], className="row"),
-                    html.Div(id='to'),
-                    html.Div(id='from'),
+                    html.H6(id='to'),
+                    html.H6(id='from'),
 
 
                     #dcc.Graph(id='cheat-data'), #grafico
@@ -1667,8 +1749,12 @@ app.layout = html.Div([
                                     go.Scatter(
                                         x = SCS_edge.day.unique(),
                                         y = SCS_edge[SCS_edge['type'] == 'nMessage'].quantity,
-                                         mode = 'lines+markers',
+                                        mode = 'lines+markers',
                                         name = 'Numero di messaggi',
+                                        line = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
+
                                         
                             
                                     ),
@@ -1676,7 +1762,10 @@ app.layout = html.Div([
                                         x = SCS_edge.day.unique(),
                                         y = SCS_edge[SCS_edge['type'] == 'nTrade'].quantity,
                                         mode = 'lines+markers',
-                                        name = 'Numero di Commercio'
+                                        name = 'Numero di Commercio',
+                                        line = dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                     ),
                                     
 
@@ -1710,6 +1799,9 @@ app.layout = html.Div([
                                     y = RE_SCS_M.Diameter,
                                     mode = 'markers+lines',
                                     name = 'reciprocità messaggi',
+                                    line = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
                                     
                           
                                 ),
@@ -1717,7 +1809,10 @@ app.layout = html.Div([
                                     x = RE_SCS_T.day,
                                     y = RE_SCS_T.Diameter,
                                     mode = 'lines+markers',
-                                    name = 'Reciprocità Commercio'
+                                    name = 'Reciprocità Commercio',
+                                    line = dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                 ),
                                 
 
@@ -1746,6 +1841,9 @@ app.layout = html.Div([
                                     y = DE_SCS_M.density,
                                     mode = 'markers+lines',
                                     name = 'Densità messaggi',
+                                    line = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
                                     
                           
                                 ),
@@ -1753,7 +1851,10 @@ app.layout = html.Div([
                                     x = DE_SCS_T.day,
                                     y = DE_SCS_T.density,
                                     mode = 'lines+markers',
-                                    name = 'Densità Commercio'
+                                    name = 'Densità Commercio',
+                                     line = dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                 ),
                                 
 
@@ -1781,6 +1882,10 @@ app.layout = html.Div([
                                     y = CC_SCS_M.clusteringCoefficient,
                                     mode = 'markers+lines',
                                     name = 'Coeff. di clustering messaggi',
+                                    line = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
+                                    
                                     
                           
                                 ),
@@ -1788,7 +1893,10 @@ app.layout = html.Div([
                                     x = CC_SCS_T.day,
                                     y = CC_SCS_T.clusteringCoefficient,
                                     mode = 'lines+markers',
-                                    name = 'Coeff. di clustering Commercio'
+                                    name = 'Coeff. di clustering Commercio',
+                                    line = dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                 ),
                                 
 
@@ -1829,6 +1937,9 @@ app.layout = html.Div([
                                     y = DI_SCS_M.diameter,
                                     mode = 'markers+lines',
                                     name = 'Diametro messaggi',
+                                    line = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
                                     
                           
                                 ),
@@ -1836,7 +1947,10 @@ app.layout = html.Div([
                                     x = DI_SCS_T.day,
                                     y = DI_SCS_T.diameter,
                                     mode = 'lines+markers',
-                                    name = 'Diametro Commercio'
+                                    name = 'Diametro Commercio',
+                                    line = dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                 ),
                                 
 
@@ -1864,6 +1978,9 @@ app.layout = html.Div([
                                     y = SP_SCS_M.averagePathLength,
                                     mode = 'markers+lines',
                                     name = 'Shortest Path messaggi',
+                                    line = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
                                     
                           
                                 ),
@@ -1871,7 +1988,10 @@ app.layout = html.Div([
                                     x = SP_SCS_T.day,
                                     y = SP_SCS_T.averagePathLength,
                                     mode = 'lines+markers',
-                                    name = 'Shortest Path Commercio'
+                                    name = 'Shortest Path Commercio',
+                                    line = dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                 ),
                                 
 
@@ -1899,6 +2019,9 @@ app.layout = html.Div([
                                     y = AD_SCS_M.averageDegree,
                                     mode = 'markers+lines',
                                     name = 'Grado medio Messaggi',
+                                    line = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
                                     
                           
                                 ),
@@ -1906,7 +2029,10 @@ app.layout = html.Div([
                                     x = AD_SCS_T.day,
                                     y = AD_SCS_T.averageDegree,
                                     mode = 'lines+markers',
-                                    name = 'Grado medio Commercio'
+                                    name = 'Grado medio Commercio',
+                                    line = dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                 ),
                                 
 
@@ -1930,6 +2056,9 @@ app.layout = html.Div([
                                 go.Bar(
                                     x = InDMD_S.range.unique(),
                                     y = InDMD_S[InDMD_S['type'] == 'Message'].value,
+                                    marker = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
                                     
                                     name = 'Messaggi',
                                     
@@ -1938,12 +2067,18 @@ app.layout = html.Div([
                                 go.Bar(
                                     x = InDMD_S.range.unique(),
                                     y = InDMD_S[InDMD_S['type'] == 'Trade'].value,
+                                    marker= dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                    
                                     name = 'Commercio'
                                 ),
                                 go.Bar(
                                     x = InDMD_S.range.unique(),
                                     y = InDMD_S[InDMD_S['type'] == 'Total'].value,
+                                    marker = dict(
+                                            color = ('rgb(31, 119, 180)'),
+                                        ),
                                    
                                     name = 'Total'
                                 ),
@@ -1970,6 +2105,9 @@ app.layout = html.Div([
                                 go.Bar(
                                     x = OutDMD_S.range.unique(),
                                     y = OutDMD_S[OutDMD_S['type'] == 'Message'].value,
+                                    marker = dict(
+                                            color = ('rgb(76, 153, 0)'),
+                                        ),
                                     
                                     name = 'Messaggi',
                                     
@@ -1978,12 +2116,18 @@ app.layout = html.Div([
                                 go.Bar(
                                     x = OutDMD_S.range.unique(),
                                     y = OutDMD_S[OutDMD_S['type'] == 'Trade'].value,
+                                    marker= dict(
+                                             color = ('rgb(255, 170, 102)'),
+                                        ),
                                    
                                     name = 'Commercio'
                                 ),
                                 go.Bar(
                                     x = OutDMD_S.range.unique(),
                                     y = OutDMD_S[OutDMD_S['type'] == 'Total'].value,
+                                    marker = dict(
+                                            color = ('rgb(31, 119, 180)'),
+                                        ),
                                    
                                     name = 'Total'
                                 ),
@@ -2068,16 +2212,39 @@ def update_output(day):
     
     return {
         'data': [
-            go.Bar(
-                        #print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
-                        x=inDegreeDistribution[inDegreeDistribution['Type'] == d]["Range"],
 
-                        y=inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value'],
-                        text=inDegreeDistribution[inDegreeDistribution['Type'] == d]['Type'],
+            go.Bar(
+                    x = inDegreeDistribution.Day.unique(),
+                    y = inDegreeDistribution[inDegreeDistribution['Type'] == 'Attack'][inDegreeDistribution['Day'] == day]['Value'],
+                    name = 'Attacchi',
+                    marker=dict(
+                                color = ('rgb(255, 0, 0) '),
+                            ),
+                                    
+                          
+                    ),
+             go.Bar(
+                    x = inDegreeDistribution.Day.unique(),
+                    y = inDegreeDistribution[inDegreeDistribution['Type'] == 'Message'][inDegreeDistribution['Day'] == day]['Value'],
+                    name = 'Messaggi',
+                    marker=dict(
+                        color = ('rgb(76, 153, 0)'),
                         
-                        name=d,
+                    ), 
+                                   
+                          
+                    ),
+             go.Bar(
+                    x = inDegreeDistribution.Day.unique(),
+                    y = inDegreeDistribution[inDegreeDistribution['Type'] == 'Trade'][inDegreeDistribution['Day'] == day]['Value'],
+                    name = 'Commercio',
+                    marker=dict(
+                        color = ('rgb(255, 170, 102)'),
                         
-                )for d in inDegreeDistribution.Type.unique()],
+                    ),           
+                          
+                    ),
+        ],
             
                 
 
@@ -2098,15 +2265,37 @@ def update_output(day):
     return {
         'data': [
             go.Bar(
-                        #print(inDegreeDistribution[inDegreeDistribution['Type'] == d][inDegreeDistribution['Day'] == day]['Value']),
-                        x=outDegreeDistribution[outDegreeDistribution['Type'] == d]["Range"],
-
-                        y=outDegreeDistribution[outDegreeDistribution['Type'] == d][outDegreeDistribution['Day'] == day]['Value'],
-                        text=outDegreeDistribution[outDegreeDistribution['Type'] == d]['Type'],
+                    x = outDegreeDistribution.Day.unique(),
+                    y = outDegreeDistribution[outDegreeDistribution['Type'] == 'Attack'][outDegreeDistribution['Day'] == day]['Value'],
+                    name = 'Attacchi',
+                    marker=dict(
+                                color = ('rgb(255, 0, 0) '),
+                    ),
+                                    
+                          
+                    ),
+             go.Bar(
+                    x = outDegreeDistribution.Day.unique(),
+                    y = outDegreeDistribution[outDegreeDistribution['Type'] == 'Message'][outDegreeDistribution['Day'] == day]['Value'],
+                    name = 'Messaggi',
+                    marker=dict(
+                        color = ('rgb(76, 153, 0)'),
                         
-                        name=d,
+                    ), 
+                                   
+                          
+                    ),
+             go.Bar(
+                    x = outDegreeDistribution.Day.unique(),
+                    y = outDegreeDistribution[outDegreeDistribution['Type'] == 'Trade'][outDegreeDistribution['Day'] == day]['Value'],
+                    name = 'Commercio',
+                    marker=dict(
+                        color = ('rgb(255, 170, 102)'),
                         
-                )for d in outDegreeDistribution.Type.unique()],
+                    ),           
+                          
+                    ),
+        ],
             
                 
 
