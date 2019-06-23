@@ -136,6 +136,15 @@ DN_Comm_Single = pd.read_csv('DissolvedNumber/AboutSinglePlayerCommunityAllPerio
 #Dissolved Community on Black Day single user
 DN_Comm_Black_Single = pd.read_csv('DissolvedNumber/BlackDaySingleInCommunity.csv')
 
+#Activity Time
+ActivityAttack = pd.read_csv('ActivityHour/Attack.csv')
+ActivityMessage = pd.read_csv('ActivityHour/Message.csv')
+ActivityTrade = pd.read_csv('ActivityHour/Trade.csv')
+ActivityTotal = pd.read_csv('ActivityHour/Total.csv')
+
+
+
+
 available_indicators = Trickster['Suspect'].unique()
 available_trickster = TricksterData['Suspect'].unique()
 
@@ -227,7 +236,7 @@ app.layout = html.Div([
                             mode='markers+lines',
                             opacity=0.7,
                             marker={
-                                'size': 15,
+                                'size': 12,
                                 'line': {'width': 0.5, 'color': 'white'}
                             },
                             name=i,
@@ -716,6 +725,84 @@ app.layout = html.Div([
                     }
                 )
             ]),
+            dcc.Tab(label='Tempo di Attività', children=[
+
+                dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ActivityAttack.Hour,
+                                    y = ActivityAttack.NumberOfEdges,
+                                    mode = 'markers+lines',
+                                    name = 'Attività di Attacco',
+                                    line = dict(
+                                    color = ('rgb(255, 0, 0)'),
+                                    ),
+                                ),
+                                go.Scatter(
+                                    x = ActivityMessage.Hour,
+                                    y = ActivityMessage.NumberOfEdges,
+                                    mode = 'lines+markers',
+                                    name = 'Attività di Messaggi',
+                                    line = dict(
+                                    color = ('rgb(76, 153, 0)'),
+                                    ),
+                                ),
+                                go.Scatter(
+                                    x = ActivityTrade.Hour,
+                                    y = ActivityTrade.NumberOfEdges,
+                                    mode = 'lines+markers',
+                                    name = 'Attività di Commercio',
+                                    line = dict(
+                                    color = ('rgb(255, 170, 102)'),
+                                    ),
+                                ),
+
+                            ],
+                            layout=go.Layout(
+                                title='Attività per tipo di arco',
+                                xaxis={'title': 'Orario'},
+                                yaxis={'title': 'N. Attività', 'type':'log'},
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='activityHour'
+                    ),
+
+                    dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ActivityTotal.Hour,
+                                    y = ActivityTotal.NumberOfEdges,
+                                    mode = 'markers+lines',
+                                    name = 'Attività totali',      
+                                ),
+
+                            ],
+                            layout=go.Layout(
+                                title='Attività totale',
+                                xaxis={'title': 'Orario'},
+                                yaxis={'title': 'N. Attività', 'type':'log'},
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='activityTotal'
+                    ),
+                
+                ]),
             ]),
             ]),
             
