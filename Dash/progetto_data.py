@@ -1257,7 +1257,7 @@ app.layout = html.Div([
                             data=[
                                 go.Scatter(
                                     x = ADM_S.day,
-                                    y = ADM_S.nEdges,
+                                    y = ADM_S.TotalWeight,
                                     mode = 'markers+lines',
                                     name = 'Messaggi intra comunità',
                                     
@@ -1265,7 +1265,7 @@ app.layout = html.Div([
                                 ),
                                 go.Scatter(
                                     x = ADM_NS.day,
-                                    y = ADM_NS.nEdges,
+                                    y = ADM_NS.TotalWeight,
                                     mode = 'lines+markers',
                                     name = 'Messaggi extra comunità'
                                 ),
