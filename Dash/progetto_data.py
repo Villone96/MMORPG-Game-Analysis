@@ -702,7 +702,7 @@ app.layout = html.Div([
 
 
                 ]),
-             dcc.Tab(label='Average Shortest Path', children=[
+             dcc.Tab(label='Average Shortest Path e Diametro', children=[
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/2YLLRzL/image.png" alt="slide 1" width="1100"> </center>
             '''),
@@ -754,19 +754,15 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='averageSHP'
                     ),
-                 
-               
-        ]),
 
-        dcc.Tab(label='Diameter Value', children=[
-                 dcc.Graph(
+                    dcc.Graph(
                         figure=go.Figure(
                             data=[
                                 go.Scatter(
                                     x = DiameterValueA.Day,
                                     y = DiameterValueA.Diameter,
                                     mode = 'markers+lines',
-                                    name = 'Diametro medio Attacchi',
+                                    name = 'Diametro Attacchi',
                                     line = dict(
                                     color = ('rgb(255, 0, 0)'),
                                     ),
@@ -776,7 +772,7 @@ app.layout = html.Div([
                                     x = DiameterValueM.Day,
                                     y = DiameterValueM.Diameter,
                                     mode = 'lines+markers',
-                                    name = 'Diametro medio Messaggi',
+                                    name = 'Diametro Messaggi',
                                     line = dict(
                                     color = ('rgb(76, 153, 0)'),
                                     ),
@@ -785,7 +781,7 @@ app.layout = html.Div([
                                     x = DiameterValueT.Day,
                                     y = DiameterValueT.Diameter,
                                     mode = 'lines+markers',
-                                    name = 'Diametro medio Commercio',
+                                    name = 'Diametro Commercio',
                                     line = dict(
                                     color = ('rgb(255, 170, 102)'),
                                     ),
@@ -793,7 +789,7 @@ app.layout = html.Div([
 
                             ],
                             layout=go.Layout(
-                                title='Diametro medio per tipo di arco',
+                                title='Diametro per tipo di arco',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -805,8 +801,11 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='averageDiameter'
                     ),
-                
-            ]),
+                 
+               
+        ]),
+
+    
             dcc.Tab(label='Tempo di Attività', children=[
 
                 dcc.Graph(
