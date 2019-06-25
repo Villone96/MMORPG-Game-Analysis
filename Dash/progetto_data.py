@@ -176,7 +176,7 @@ app.layout = html.Div([
             dcc.Tab(label='Titolo', children=[
 
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-                <center><img src="https://i.ibb.co/SxVDtzH/image.png" alt="slide 1" width="1100"> </center>
+                <center><img src="https://i.ibb.co/MMYYPLY/Schermata-2019-06-25-alle-10-18-53.png" alt="slide 1" width="1100"> </center>
                 '''),
            
          
@@ -187,46 +187,63 @@ app.layout = html.Div([
             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/cJBWLch/image.png" alt="slide 1" width="1100"> </center>
             '''),
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/6m1PdLx/Schermata-2019-06-25-alle-10-20-22.png" alt="slide 1" width="1100"> </center>
+            '''),
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/zQCPWdG/Schermata-2019-06-25-alle-10-28-11.png" alt="slide 1" width="1100"> </center>
+            '''),
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/xmHPk8X/Schermata-2019-06-25-alle-10-30-10.png
+        " alt="slide 1" width="1000"> </center>
+            '''),
 
             ]),
-
             dcc.Tab(label='Il dataset', children=[
+
+                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/M2LJfHb/Schermata-2019-06-25-alle-10-32-55.png
+        " alt="slide 1" width="1000"> </center>
+            '''),
+                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/5WS96K5/Schermata-2019-06-25-alle-10-36-30.png
+        " alt="slide 1" width="1000"> </center>
+            '''),
                     
             ]),
             dcc.Tab(label='Pre-Processing', children=[
+
+                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/nBWvGbP/Schermata-2019-06-25-alle-10-37-13.png
+        " alt="slide 1" width="1000"> </center>
+            '''),
+                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/xgwKmcW/Schermata-2019-06-25-alle-10-38-09.png
+        " alt="slide 1" width="1000"> </center>
+            '''),
                     
             ]),
 
             dcc.Tab(label='Obiettivi di Analisi', children=[
 
-                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-            <h4>Le nostre analisi preventivate di analisi</h4>
-            <ul>
-            <li>Analisi numerosità  e numero medio di player.</li>
-            <li>Analisi numerosità  e numero medio per ogni tipologia di arco. </li>
-            <li>Cercare i nodi con outdegree (di qualsiasi tipo) uguale a 0 e indegree > 0 per gli attacchi (valutare anche altri possibili indegree); questo per identificare i villaggi abbandonati.</li>
-            <li>Cercare i nodi con indegree (di qualsiasi tipo) uguale a 0 e outdegree > 0 per i trades (valutare che siano un unico outdegree); in questo modo si identificano quei villaggi che vengono utilizzati dallo stesso player (con nomi diversi) per rifornire il villaggio principale (valutare quindi che tutti gli archi siano in direzione di un solo player).</li>
-            <li>Analisi delle community più grosse (top 3) nell'arco dei 30 giorni e determinare le cause.</li>
-            <li>Ricerca della community che cresce (e decresce) di più (e di meno) nei 30 giorni. (Forse meglio valutare numerosità  nell'arco dei 30 giorni date tutte le community > 1)</li>
-            <li>Valutare la edge betweenness date le community per ogni tipologia (attacco, commercio, messaggi); per i messaggi andiamo a identificare i capi diplomatici per ogni community.</li>
-            <li>Valutare date le community più grosse la presenza di guerre (grande commercio e grande scambio di messaggi).</li>
-            <li>Valutare l'evoluzione delle community in assenza di elementi centrali.</li>
-            <li>Ricerca di nodi pozzo/sorgente per ogni tipo di relazioni e fare ipotesi sul perchè e per come.</li>
-            <li>Fare confronto tra le diverse metodologie di community detection e valutare quale da risultati piÃÂ¹ simili a quelle fornite.</li>
-            <li>Modifiche delle community in seguito agli attacchi.</li>
-            <li></li>
-            </ul>
-        '''),
+                   dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/b53ygTS/Schermata-2019-06-25-alle-10-39-27.png
+        " alt="slide 1" width="1000"> </center>
+            '''),
                     
             ]),
 
             ]),
             ]),
-
          dcc.Tab(label='La rete', children=[
 
             dcc.Tabs(id="retetab", children=[
                 dcc.Tab(label='Trend Nodi e Archi', children=[
+                
+                       dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/47cwJMM/Schermata-2019-06-25-alle-10-43-10.png
+            " alt="slide 1" width="900"> </center>
+            '''),
                 
                 dcc.Graph(
                 id='life-exp-vs-gdp',
@@ -335,17 +352,82 @@ app.layout = html.Div([
             ),
             html.Div(id='slider-output-container'),
 
-            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <br><br><br><br><br><br>
-            '''),
+         
 
          
+            ]),
+
+            dcc.Tab(label='Tempo di Attività', children=[
+
+                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/NjWB7Qh/Schermata-2019-06-25-alle-10-47-55.png
+            " alt="slide 1" width="900"> </center>
+            '''),
+
+                dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = ActivityTotal.Hour,
+                                    y = ActivityTotal.NumberOfEdges,
+                                    mode = 'markers+lines',
+                                    name = 'Attività totali',      
+                                ),
+                                go.Scatter(
+                                    x = ActivityAttack.Hour,
+                                    y = ActivityAttack.NumberOfEdges,
+                                    mode = 'markers+lines',
+                                    name = 'Attività di Attacco',
+                                    line = dict(
+                                    color = ('rgb(255, 0, 0)'),
+                                    ),
+                                ),
+                                go.Scatter(
+                                    x = ActivityMessage.Hour,
+                                    y = ActivityMessage.NumberOfEdges,
+                                    mode = 'lines+markers',
+                                    name = 'Attività di Messaggi',
+                                    line = dict(
+                                    color = ('rgb(76, 153, 0)'),
+                                    ),
+                                ),
+                                go.Scatter(
+                                    x = ActivityTrade.Hour,
+                                    y = ActivityTrade.NumberOfEdges,
+                                    mode = 'lines+markers',
+                                    name = 'Attività di Commercio',
+                                    line = dict(
+                                    color = ('rgb(255, 170, 102)'),
+                                    ),
+                                ),
+
+                            ],
+                            layout=go.Layout(
+                                title='Attività per tipo di arco',
+                                xaxis={'title': 'Orario'},
+                                yaxis={'title': 'N. Attività', 'type':'log'},
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='activityHours'
+                    ),
+
+                    
             ]),
 
              dcc.Tab(label='Communities Trend', children=[
 
                  dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/C2LjcmY/image.png" alt="slide 1" width="1400"> </center>
+         <center><img src="https://i.ibb.co/4tG8396/Schermata-2019-06-25-alle-10-48-31.png" alt="slide 1" width="1100"> </center>
+            '''),
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/CvVZ72R/Schermata-2019-06-25-alle-10-53-40.png" alt="slide 1" width="1100"> </center>
             '''),
                 html.Div([
 
@@ -1264,7 +1346,7 @@ app.layout = html.Div([
                             data=[
                                 go.Scatter(
                                     x = ADT_S.day,
-                                    y = ADT_S.nEdges,
+                                    y = ADT_S.TotalWeight,
                                     mode = 'markers+lines',
                                     name = 'Commercio intra comunità',
                                     
@@ -1272,7 +1354,7 @@ app.layout = html.Div([
                                 ),
                                 go.Scatter(
                                     x = ADT_NS.day,
-                                    y = ADT_NS.nEdges,
+                                    y = ADT_NS.TotalWeight,
                                     mode = 'lines+markers',
                                     name = 'Commercio extra comunità'
                                 ),
@@ -1660,7 +1742,7 @@ app.layout = html.Div([
             ]),
 
             
-             dcc.Tab(label='Studio Singola Community Detection', children=[
+             dcc.Tab(label='Studio Singola Community', children=[
                dcc.Tabs(id="communitystudytabs", children=[
                     dcc.Tab(label='Introduzione', children=[
          
