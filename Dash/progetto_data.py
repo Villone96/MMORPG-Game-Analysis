@@ -1191,16 +1191,16 @@ app.layout = html.Div([
                           
                                 ),
                                 go.Scatter(
-                                    x = CCoeffM_NS.day,
-                                    y = CCoeffM_NS.clusteringCoefficient,
-                                    mode = 'lines+markers',
-                                    name = 'Messaggi extra comunità'
+                                    x = CCoeffT_S.day,
+                                    y = CCoeffT_S.clusteringCoefficient,
+                                    mode = 'markers+lines',
+                                    name = 'Commercio intra comunità',
                                 ),
                                 
 
                             ],
                             layout=go.Layout(
-                                title='Confronto coefficiente di clustering Messaggi dentro e fuori la Comunità',
+                                title='Confronto coefficiente di clustering Messaggi e Commercio dentro la Comunità',
                                 showlegend=True,
                                 legend=go.layout.Legend(
                                     x=0,
@@ -1213,39 +1213,7 @@ app.layout = html.Div([
                         id='messaggeCoeff'
                     ),
 
-                    dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Scatter(
-                                    x = CCoeffT_S.day,
-                                    y = CCoeffT_S.clusteringCoefficient,
-                                    mode = 'markers+lines',
-                                    name = 'Commercio intra comunità',
-                                    
-                          
-                                ),
-                                go.Scatter(
-                                    x = CCoeffT_NS.day,
-                                    y = CCoeffT_NS.clusteringCoefficient,
-                                    mode = 'lines+markers',
-                                    name = 'Commercio extra comunità'
-                                ),
-                                
-
-                            ],
-                            layout=go.Layout(
-                                title='Confronto coefficiente di clustering Commercio dentro e fuori la Comunità',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='tradeCoeff'
-                    ),
+                    
                     ]),
 
 
