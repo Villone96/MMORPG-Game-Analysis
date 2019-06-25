@@ -1186,6 +1186,9 @@ app.layout = html.Div([
                                     x = CCoeffM_S.day,
                                     y = CCoeffM_S.clusteringCoefficient,
                                     mode = 'markers+lines',
+                                    line = dict(
+                                    color = ('rgb(76, 153, 0)'),
+                                    ),
                                     name = 'Messaggi intra comunità',
                                     
                           
@@ -1194,6 +1197,9 @@ app.layout = html.Div([
                                     x = CCoeffT_S.day,
                                     y = CCoeffT_S.clusteringCoefficient,
                                     mode = 'markers+lines',
+                                    line = dict(
+                                    color = ('rgb(255, 170, 102)'),
+                                    ),
                                     name = 'Commercio intra comunità',
                                 ),
                                 
