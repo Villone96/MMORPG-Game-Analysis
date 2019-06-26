@@ -404,7 +404,8 @@ app.layout = html.Div([
                             ],
                             layout=go.Layout(
                                 title='Attività per tipo di arco',
-                                xaxis={'title': 'Orario'},
+                                xaxis={'title': 'Orario',
+                                'tickmode':'linear'},
                                 yaxis={'title': 'N. Attività', 'type':'log'},
                                 showlegend=True,
                                 legend=go.layout.Legend(
@@ -763,6 +764,7 @@ app.layout = html.Div([
                         22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28', 29: '29', 30: '30'
                 },
                 ),
+                html.Hr(),
 
                 dcc.Graph(id="OutDegreeDistributionGraph"),
                 dcc.Slider(
@@ -887,85 +889,7 @@ app.layout = html.Div([
                
         ]),
 
-    
-            dcc.Tab(label='Tempo di Attività', children=[
 
-                dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Scatter(
-                                    x = ActivityAttack.Hour,
-                                    y = ActivityAttack.NumberOfEdges,
-                                    mode = 'markers+lines',
-                                    name = 'Attività di Attacco',
-                                    line = dict(
-                                    color = ('rgb(255, 0, 0)'),
-                                    ),
-                                ),
-                                go.Scatter(
-                                    x = ActivityMessage.Hour,
-                                    y = ActivityMessage.NumberOfEdges,
-                                    mode = 'lines+markers',
-                                    name = 'Attività di Messaggi',
-                                    line = dict(
-                                    color = ('rgb(76, 153, 0)'),
-                                    ),
-                                ),
-                                go.Scatter(
-                                    x = ActivityTrade.Hour,
-                                    y = ActivityTrade.NumberOfEdges,
-                                    mode = 'lines+markers',
-                                    name = 'Attività di Commercio',
-                                    line = dict(
-                                    color = ('rgb(255, 170, 102)'),
-                                    ),
-                                ),
-
-                            ],
-                            layout=go.Layout(
-                                title='Attività per tipo di arco',
-                                xaxis={'title': 'Orario'},
-                                yaxis={'title': 'N. Attività', 'type':'log'},
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='activityHour'
-                    ),
-
-                    dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Scatter(
-                                    x = ActivityTotal.Hour,
-                                    y = ActivityTotal.NumberOfEdges,
-                                    mode = 'markers+lines',
-                                    name = 'Attività totali',      
-                                ),
-
-                            ],
-                            layout=go.Layout(
-                                title='Attività totale',
-                                xaxis={'title': 'Orario'},
-                                yaxis={'title': 'N. Attività', 'type':'log'},
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='activityTotal'
-                    ),
-                
-                ]),
             ]),
             ]),
             
@@ -1748,10 +1672,7 @@ app.layout = html.Div([
          
                     ]),
 
-                    dcc.Tab(label='Perchè?', children=[
-         
-                    ]),
-
+                   
                     dcc.Tab(label='User and Edge Trend', children=[
 
                         
@@ -1976,9 +1897,7 @@ app.layout = html.Div([
                 
                
            
-           dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-           <center><iframe width="600" height="430" src="//www.cincopa.com/media-platform/iframe.aspx?fid=AQCA4j-SyJr1" frameborder="0" allowfullscreen scrolling="no"></iframe></center>
-    '''),
+          
          
         ]),
 
@@ -2211,13 +2130,14 @@ app.layout = html.Div([
          dcc.Tab(label='Leader', children=[
             
                     dcc.Tab(label='Come e perchè?', children=[
+                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+           <center><iframe width="900" height="830" src="//www.cincopa.com/media-platform/iframe.aspx?fid=AQCA4j-SyJr1" frameborder="0" allowfullscreen scrolling="no"></iframe></center>
+    '''),
          
                     ]),
 
                    
-                    dcc.Tab(label='Relazioni con i diplomatici', children=[
-         
-                    ]),
+                    
            
                
         ]), 
@@ -2239,6 +2159,10 @@ app.layout = html.Div([
            
                
         ]),
+         dcc.Tab(label='Eliminazione del leader', children=[
+         
+                    ]),
+
           
 
 
@@ -2269,7 +2193,7 @@ def update_output(day):
         'data': [
 
             go.Bar(
-                    x = inDegreeDistribution.Day.unique(),
+                    x = inDegreeDistribution.Range.unique(),
                     y = inDegreeDistribution[inDegreeDistribution['Type'] == 'Attack'][inDegreeDistribution['Day'] == day]['Value'],
                     name = 'Attacchi',
                     marker=dict(
@@ -2279,7 +2203,7 @@ def update_output(day):
                           
                     ),
              go.Bar(
-                    x = inDegreeDistribution.Day.unique(),
+                    x = inDegreeDistribution.Range.unique(),
                     y = inDegreeDistribution[inDegreeDistribution['Type'] == 'Message'][inDegreeDistribution['Day'] == day]['Value'],
                     name = 'Messaggi',
                     marker=dict(
@@ -2290,7 +2214,7 @@ def update_output(day):
                           
                     ),
              go.Bar(
-                    x = inDegreeDistribution.Day.unique(),
+                    x = inDegreeDistribution.Range.unique(),
                     y = inDegreeDistribution[inDegreeDistribution['Type'] == 'Trade'][inDegreeDistribution['Day'] == day]['Value'],
                     name = 'Commercio',
                     marker=dict(
@@ -2320,7 +2244,7 @@ def update_output(day):
     return {
         'data': [
             go.Bar(
-                    x = outDegreeDistribution.Day.unique(),
+                    x = outDegreeDistribution.Range.unique(),
                     y = outDegreeDistribution[outDegreeDistribution['Type'] == 'Attack'][outDegreeDistribution['Day'] == day]['Value'],
                     name = 'Attacchi',
                     marker=dict(
@@ -2330,7 +2254,7 @@ def update_output(day):
                           
                     ),
              go.Bar(
-                    x = outDegreeDistribution.Day.unique(),
+                    x = outDegreeDistribution.Range.unique(),
                     y = outDegreeDistribution[outDegreeDistribution['Type'] == 'Message'][outDegreeDistribution['Day'] == day]['Value'],
                     name = 'Messaggi',
                     marker=dict(
@@ -2341,7 +2265,7 @@ def update_output(day):
                           
                     ),
              go.Bar(
-                    x = outDegreeDistribution.Day.unique(),
+                    x = outDegreeDistribution.Range.unique(),
                     y = outDegreeDistribution[outDegreeDistribution['Type'] == 'Trade'][outDegreeDistribution['Day'] == day]['Value'],
                     name = 'Commercio',
                     marker=dict(
