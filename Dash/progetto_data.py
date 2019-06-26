@@ -900,7 +900,7 @@ app.layout = html.Div([
 
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
             <center><img src="https://i.ibb.co/q0x9ZwB/Schermata-2019-06-25-alle-11-03-43.png
-            " alt="slide 1" width="100"> </center>
+            " alt="slide 1" width="1150"> </center>
             '''),
          
                     ]),
@@ -909,7 +909,7 @@ app.layout = html.Div([
 
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
             <center><img src="https://i.ibb.co/30f2p9j/Schermata-2019-06-25-alle-11-07-39.png
-            " alt="slide 1" width="100"> </center>'''),
+            " alt="slide 1" width="1000"> </center>'''),
          
                     ]),
 
@@ -917,7 +917,7 @@ app.layout = html.Div([
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
             <center><img src="https://i.ibb.co/nCQjHY5/Schermata-2019-06-25-alle-11-11-22.png
-            " alt="slide 1" width="100"> </center>'''),
+            " alt="slide 1" width="1000"> </center>'''),
                     
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
@@ -1093,7 +1093,7 @@ app.layout = html.Div([
 
                     dcc.Tab(label='Densità', children=[
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-                    <center><img src="https://i.ibb.co/H2zSw5q/image.png
+                    <center><img src="https://i.ibb.co/9yCGvvC/Schermata-2019-06-26-alle-12-29-24.png
                     " alt="slide 1" width="1100"> </center>
                     '''),
                     dcc.Graph(
@@ -1195,57 +1195,13 @@ app.layout = html.Div([
                             'title': 'Confronto densità Commercio dentro e fuori la comunità'
                                 }
                             }
-                        )
-                
-                    ]),
-
-                    dcc.Tab(label='Clustering Coefficient', children=[
-                        dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Scatter(
-                                    x = CCoeffM_S.day,
-                                    y = CCoeffM_S.clusteringCoefficient,
-                                    mode = 'markers+lines',
-                                    line = dict(
-                                    color = ('rgb(76, 153, 0)'),
-                                    ),
-                                    name = 'Messaggi intra comunità',
-                                    
-                          
-                                ),
-                                go.Scatter(
-                                    x = CCoeffT_S.day,
-                                    y = CCoeffT_S.clusteringCoefficient,
-                                    mode = 'markers+lines',
-                                    line = dict(
-                                    color = ('rgb(255, 170, 102)'),
-                                    ),
-                                    name = 'Commercio intra comunità',
-                                ),
-                                
-
-                            ],
-                            layout=go.Layout(
-                                title='Confronto coefficiente di clustering Messaggi e Commercio dentro la Comunità',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
                         ),
-                        style={'height': 300},
-                        id='messaggeCoeff'
-                    ),
 
-                    
-                    ]),
+                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/G3tvbgk/Schermata-2019-06-26-alle-12-31-09.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
 
-
-                    dcc.Tab(label='Numero di Archi', children=[
-                    
                         dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -1313,10 +1269,64 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='tradena'
                     ),
-         
+                
+                    ]),
+
+                    dcc.Tab(label='Clustering Coefficient', children=[
+
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/M9yZJ1n/Schermata-2019-06-26-alle-12-29-46.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
+
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Scatter(
+                                    x = CCoeffM_S.day,
+                                    y = CCoeffM_S.clusteringCoefficient,
+                                    mode = 'markers+lines',
+                                    line = dict(
+                                    color = ('rgb(76, 153, 0)'),
+                                    ),
+                                    name = 'Messaggi intra comunità',
+                                    
+                          
+                                ),
+                                go.Scatter(
+                                    x = CCoeffT_S.day,
+                                    y = CCoeffT_S.clusteringCoefficient,
+                                    mode = 'markers+lines',
+                                    line = dict(
+                                    color = ('rgb(255, 170, 102)'),
+                                    ),
+                                    name = 'Commercio intra comunità',
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto coefficiente di clustering Messaggi e Commercio dentro la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='messaggeCoeff'
+                    ),
+
+                    
                     ]),
                     dcc.Tab(label='Diametro e Average Shortest', children=[
 
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/82j0Bsz/Schermata-2019-06-26-alle-12-31-45.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
                         dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -1386,6 +1396,10 @@ app.layout = html.Div([
                     ),
 
                     #SHORTEST PATH
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/7SSLCDh/Schermata-2019-06-26-alle-12-32-35.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
                      dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -1684,6 +1698,11 @@ app.layout = html.Div([
              dcc.Tab(label='Studio Singola Community', children=[
                dcc.Tabs(id="communitystudytabs", children=[
                     dcc.Tab(label='Introduzione', children=[
+
+                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/bmQ4QF6/Schermata-2019-06-26-alle-12-33-03.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
          
                     ]),
 
