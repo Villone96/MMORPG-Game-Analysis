@@ -897,19 +897,27 @@ app.layout = html.Div([
                 
                 dcc.Tabs(id="Trickster tabs", children=[
                     dcc.Tab(label='Introduzione', children=[
+
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/q0x9ZwB/Schermata-2019-06-25-alle-11-03-43.png
+            " alt="slide 1" width="100"> </center>
+            '''),
          
                     ]),
 
                     dcc.Tab(label='Logica di funzionamento', children=[
+
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/30f2p9j/Schermata-2019-06-25-alle-11-07-39.png
+            " alt="slide 1" width="100"> </center>'''),
          
                     ]),
 
                     dcc.Tab(label='Risultati', children=[
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-                    <center><img src="https://i.ibb.co/LhS6nrJ/image.png
-                    " alt="slide 1" width="1100"> </center>
-                    '''),
+            <center><img src="https://i.ibb.co/nCQjHY5/Schermata-2019-06-25-alle-11-11-22.png
+            " alt="slide 1" width="100"> </center>'''),
                     
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''<br><h4>Seleziona il cheater:</h4>'''), 
@@ -939,12 +947,7 @@ app.layout = html.Div([
                         
                     #]
                     #style={'width': '15%', 'float': 'right', 'display': 'inline-block'}
-                   # ),
-
-
-
-
-
+                   # )
                     
                     html.Div([
                         html.Div([
@@ -971,10 +974,18 @@ app.layout = html.Div([
             dcc.Tab(label='Commercio e Messaggi', children=[
                 dcc.Tabs(id="commerciotradetabs", children=[
 
+                     dcc.Tab(label='Introduzione', children=[
+
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/3smtRMG/Schermata-2019-06-25-alle-11-12-48.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
+                     ]),
+
                     dcc.Tab(label='Reciprocità', children=[
 
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-                    <center><img src="https://i.ibb.co/dLtsgg9/image.png
+                    <center><img src="https://i.ibb.co/khhSBqD/Schermata-2019-06-25-alle-11-17-16.png
                     " alt="slide 1" width="1100"> </center>
                     '''),
 
@@ -1027,7 +1038,7 @@ app.layout = html.Div([
                             }
                         ),
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-                    <center><img src="https://i.ibb.co/T85KKNL/image.png
+                    <center><img src="https://i.ibb.co/cw7nnFT/Schermata-2019-06-25-alle-11-17-48.png
                     " alt="slide 1" width="1100"> </center>
                     '''),
 
@@ -1133,6 +1144,11 @@ app.layout = html.Div([
                                 }
                             }
                         ),
+
+                                            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/N267wXQ/Schermata-2019-06-25-alle-11-26-29.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
                         dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -1150,8 +1166,6 @@ app.layout = html.Div([
                                     mode = 'lines+markers',
                                     name = 'Commercio extra comunità'
                                 ),
-                                
-
                             ],
                             layout=go.Layout(
                                 title='Confronto Densità Commercio dentro e fuori la Comunità',
@@ -1166,6 +1180,7 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='tardesdensity'
                     ),
+
                         dcc.Graph(
                             id='DensityNotSame',
                             figure={
