@@ -960,8 +960,12 @@ app.layout = html.Div([
                             dcc.Graph(id='cheat-data-out'), #grafico
                         ], className="six columns"),
                     ], className="row"),
-                    html.H6(id='to'),
-                    html.H6(id='from'),
+                    html.H5(id='to', style={
+                        'textAlign': 'center',
+                    }),
+                    html.H5(id='from', style={
+                        'textAlign': 'center',
+                    }),
 
 
                     #dcc.Graph(id='cheat-data'), #grafico
@@ -1709,7 +1713,11 @@ app.layout = html.Div([
                    
                     dcc.Tab(label='User and Edge Trend', children=[
 
-                        
+                               dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/pxnRwWm/Schermata-2019-06-27-alle-19-02-19.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
+
                         dcc.Graph(
                             figure=go.Figure(
                                 data=[
@@ -1751,7 +1759,10 @@ app.layout = html.Div([
                             id='usertrendcomm'
                         ),
 
-
+                              dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/8z66q74/Schermata-2019-06-27-alle-19-02-59.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
                         #numero MESSAGE e trade 
                         dcc.Graph(
                             figure=go.Figure(
@@ -1799,6 +1810,11 @@ app.layout = html.Div([
                     ]),
 
                 dcc.Tab(label='Analisi Strutturale 1', children=[
+
+                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/Ptpy6hd/Schermata-2019-06-27-alle-19-03-24.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
               
                     #reciprocità messaggi e trade
                     dcc.Graph(
@@ -1841,7 +1857,10 @@ app.layout = html.Div([
                         id='messageandtradereciprocitycomm'
                     ),
 
-
+   dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/DKq9ckn/Schermata-2019-06-27-alle-19-04-14.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
                     #densità messaggi e trade
                     dcc.Graph(
                         figure=go.Figure(
@@ -1882,6 +1901,8 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='messageandtradedensitycomm'
                     ),
+
+                    
 
                     #coeff di clustering messaggi e trade
                     dcc.Graph(
@@ -1924,18 +1945,15 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='messageandtradeCCcomm'
                     ),
-                        
-                        
-
-                   
-                
-               
-           
-          
          
         ]),
 
         dcc.Tab(label='Analisi Strutturale 2', children=[
+
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/7XjHBSJ/Schermata-2019-06-27-alle-19-04-36.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
                     #Diametro
                     dcc.Graph(
                         figure=go.Figure(
@@ -2058,6 +2076,11 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='messageandtrademeandegreecomm'
                     ),
+
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/syRc5HX/Schermata-2019-06-27-alle-19-04-59.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
                     dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -2081,16 +2104,6 @@ app.layout = html.Div([
                                    
                                     name = 'Commercio'
                                 ),
-                                go.Bar(
-                                    x = InDMD_S.range.unique(),
-                                    y = InDMD_S[InDMD_S['type'] == 'Total'].value,
-                                    marker = dict(
-                                            color = ('rgb(31, 119, 180)'),
-                                        ),
-                                   
-                                    name = 'Total'
-                                ),
-                                
 
                             ],
                             layout=go.Layout(
@@ -2130,15 +2143,6 @@ app.layout = html.Div([
                                    
                                     name = 'Commercio'
                                 ),
-                                go.Bar(
-                                    x = OutDMD_S.range.unique(),
-                                    y = OutDMD_S[OutDMD_S['type'] == 'Total'].value,
-                                    marker = dict(
-                                            color = ('rgb(31, 119, 180)'),
-                                        ),
-                                   
-                                    name = 'Total'
-                                ),
                                 
 
                             ],
@@ -2162,13 +2166,22 @@ app.layout = html.Div([
 
         
          dcc.Tab(label='Leader', children=[
+
+             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/n0mTCns/Schermata-2019-06-27-alle-19-05-25.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/P6qVw5D/image.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
             
-                    dcc.Tab(label='Come e perchè?', children=[
+                  
                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
            <center><iframe width="900" height="830" src="//www.cincopa.com/media-platform/iframe.aspx?fid=AQCA4j-SyJr1" frameborder="0" allowfullscreen scrolling="no"></iframe></center>
     '''),
          
-                    ]),
+                    
 
                    
                     
@@ -2176,6 +2189,11 @@ app.layout = html.Div([
                
         ]), 
         dcc.Tab(label='Relazioni con i diplomatici', children=[
+
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/0s44Cmc/Schermata-2019-06-27-alle-19-11-09.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
             
                 dcc.Graph(
                     id='DiplomaticiNotDiplomatici',
@@ -2194,19 +2212,47 @@ app.layout = html.Div([
                
         ]),
          dcc.Tab(label='Eliminazione del leader', children=[
+
+             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/HDKy2kq/Schermata-2019-06-27-alle-19-11-37.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
          
                     ]),
-
-          
 
 
                 ]),
 
-
-
             ]),
 
         dcc.Tab(label='Conclusioni', children=[
+
+            dcc.Tabs(id="conclusionitabs", children=[
+                    dcc.Tab(label='Conclusioni', children=[
+
+                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/VTCKtcD/Schermata-2019-06-27-alle-19-12-12.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
+         
+                    ]),
+                    dcc.Tab(label='Sviluppi futuri', children=[
+
+                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/F4FVjKs/Schermata-2019-06-27-alle-19-12-38.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
+         
+                    ]),
+                    dcc.Tab(label='Footer', children=[
+
+                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <br><br><br><br><center><img src="https://i.ibb.co/HgtghLD/Schermata-2019-06-27-alle-19-13-05.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
+         
+                    ]),
+            ]),
          
         ]),
             
@@ -2464,14 +2510,14 @@ def set_display_children(xaxis_column_name):
     [dash.dependencies.Input('suspect-column', 'value')])
 def set_display_children(xaxis_column_name):
     dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
-    return 'Invia a :  {}'.format(dff['Beneficiary'].item(),)
+    return '-> Invia a:  {}'.format(dff['Beneficiary'].item(),)
 
 @app.callback(
      dash.dependencies.Output('from', 'children'),
     [dash.dependencies.Input('suspect-column', 'value')])
 def set_display_children(xaxis_column_name):
     dff = TricksterData[TricksterData['Suspect'] == xaxis_column_name]
-    return 'Riceve da :  {}'.format(dff['ReceivedFrom'].item(),)
+    return '<- Riceve da:  {}'.format(dff['ReceivedFrom'].item(),)
 
 
 
