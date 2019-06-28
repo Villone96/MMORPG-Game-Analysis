@@ -174,6 +174,7 @@ app.layout = html.Div([
 
             dcc.Tabs(id="introtabs", children=[
             dcc.Tab(label='Titolo', children=[
+                html.Div([], style={'height':50}),
 
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
                 <center><img src="https://i.ibb.co/MMYYPLY/Schermata-2019-06-25-alle-10-18-53.png" alt="slide 1" width="1100"> </center>
@@ -589,7 +590,7 @@ app.layout = html.Div([
         ]),
             dcc.Tab(label='Average Degree', children=[
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/hRyyDsL/image.png" alt="slide 1" width="1150"> </center>
+         <center><img src="https://i.ibb.co/ts0HSjb/capture-20190628143801106.png" alt="slide 1" width="1150"> </center>
             '''),
 
                 dcc.Graph(
@@ -639,6 +640,7 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='averageDedree'
                     ),
+                    html.Hr(),
 
                     dcc.Graph(
                         figure=go.Figure(
@@ -742,6 +744,8 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='averageOutDegreeAMT'
                     ),
+                
+                    html.Div([], style={'height': 150},),
 
                     
                 
@@ -749,7 +753,9 @@ app.layout = html.Div([
         ]),
               dcc.Tab(label='In/Out Degree Distribution', children=[
 
-
+                dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/mhZ65Dn/capture-20190628143849434.png" alt="slide 1" width="1150"> </center>
+            '''),
                   
                 dcc.Graph(id="InDegreeDistributionGraph"),
                 dcc.Slider(
@@ -1028,19 +1034,7 @@ app.layout = html.Div([
                     ),
                 
 
-                        dcc.Graph(
-                            id='ReciprocyNotSame',
-                            figure={
-                                'data': [
-                                    {'x': ReciprocityM_S.day, 'y': ReciprocityM_S.Reciprocity,
-                                        'type': 'bar', 'name': 'Messaggi Comnunità Uguale'},
-                                    {'x': ReciprocityM_NS.day, 'y': ReciprocityM_NS.Reciprocity,
-                                        'type': 'bar', 'name': 'Messaggi Comnuità Diverse'},],
-                                'layout': {
-                            'title': 'Confronto Reciprocità Messaggi dentro e fuori la Comunità'
-                                }
-                            }
-                        ),
+                        
                         dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
                     <center><img src="https://i.ibb.co/cw7nnFT/Schermata-2019-06-25-alle-11-17-48.png
                     " alt="slide 1" width="1100"> </center>
@@ -1079,20 +1073,7 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='Tradesreciprocity'
                     ),
-                        
-                        dcc.Graph(
-                            id='ReciprocySame',
-                            figure={
-                                'data': [
-                                    {'x': ReciprocityT_S.day, 'y': ReciprocityT_S.Reciprocity,
-                                        'type': 'bar', 'name': 'Commercio Comnunità Uguale'},
-                                    {'x': ReciprocityT_NS.day, 'y': ReciprocityT_NS.Reciprocity,
-                                        'type': 'bar', 'name': 'Commercio Comnuità Diverse'},],
-                                'layout': {
-                            'title': 'Confronto Reciprocità Commercio dentro e fuori la Comunità'
-                                }
-                            }
-                        ),
+                     
                         ]),
 
                     dcc.Tab(label='Densità', children=[
@@ -1134,20 +1115,7 @@ app.layout = html.Div([
                         id='messagedensity'
                     ),
 
-                        dcc.Graph(
-                            id='DensitySame',
-                            figure={
-                                'data': [
-                                    {'x': DensityM_S.day, 'y': DensityM_S.density,
-                                        'type': 'bar', 'name': 'Messaggio Comunità Uguale'},
-                                    {'x': DensityM_NS.day, 'y': DensityM_NS.density,
-                                        'type': 'bar', 'name': 'Messaggio Comunità Diversa'},
-                                ],
-                                'layout': {
-                            'title': 'Confronto densità Messaggi dentro e fuori la comunità'
-                                }
-                            }
-                        ),
+                     
 
                                             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
                     <center><img src="https://i.ibb.co/N267wXQ/Schermata-2019-06-25-alle-11-26-29.png
@@ -1185,22 +1153,7 @@ app.layout = html.Div([
                         id='tardesdensity'
                     ),
 
-                        dcc.Graph(
-                            id='DensityNotSame',
-                            figure={
-                                'data': [
-                                
-                                    {'x': DensityT_S.day, 'y': DensityT_S.density,
-                                        'type': 'bar', 'name': 'Commercio Comunità Uguale'},
-                                    {'x': DensityT_NS.day, 'y': DensityT_NS.density,
-                                        'type': 'bar', 'name': 'Commercio Comunità Diversa'},
-                                ],
-                                'layout': {
-                            'title': 'Confronto densità Commercio dentro e fuori la comunità'
-                                }
-                            }
-                        ),
-
+                       
                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
                     <center><img src="https://i.ibb.co/G3tvbgk/Schermata-2019-06-26-alle-12-31-09.png
                     " alt="slide 1" width="1100"> </center>
@@ -1477,6 +1430,11 @@ app.layout = html.Div([
 
                     #AVERAGE DEGREE
                     dcc.Tab(label='Average Degree & In/Out Degree', children=[
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/tpNLWD5/capture-20190628142526309.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
+
 
                 
                         dcc.Graph(
@@ -1549,6 +1507,12 @@ app.layout = html.Div([
                     ),
                     #TRADE IN DEGREE DISTR
 
+                        
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/X549z8y/capture-20190628142706778.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
+
                         dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -1583,7 +1547,52 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='tradeInDegree'
                     ),
+
+                     #TRADE OUT DEGREE DISTR
+
+                        dcc.Graph(
+                        figure=go.Figure(
+                            data=[
+                                go.Bar(
+                                    x = OutDMD.range.unique(),
+                                    y = OutDMD[OutDMD['type'] == 'S_T'].value,
+                                    
+                                    name = 'Commercio intra comunità',
+                                    
+                          
+                                ),
+                                go.Bar(
+                                    x = OutDMD.range.unique(),
+                                    y = OutDMD[OutDMD['type'] == 'N_T'].value,
+                                   
+                                    name = 'Commercio extra comunità'
+                                ),
+                                
+
+                            ],
+                            layout=go.Layout(
+                                title='Confronto out degree distribution dei Commercio dentro e fuori la Comunità',
+                                showlegend=True,
+                                legend=go.layout.Legend(
+                                    x=0,
+                                    y=1.0
+                                ),
+                             
+                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='tradeOutDegree'
+                    ),
+                    html.Hr(),
+
                     #MESSAGE IN DEGREE DISTR
+
+               
+                        dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+                    <center><img src="https://i.ibb.co/bX0FcR1/capture-20190628142824687.png
+                    " alt="slide 1" width="1100"> </center>
+                    '''),
                     dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -1620,42 +1629,7 @@ app.layout = html.Div([
                     ),
 
 
-                    #TRADE OUT DEGREE DISTR
-
-                        dcc.Graph(
-                        figure=go.Figure(
-                            data=[
-                                go.Bar(
-                                    x = OutDMD.range.unique(),
-                                    y = OutDMD[OutDMD['type'] == 'S_T'].value,
-                                    
-                                    name = 'Commercio intra comunità',
-                                    
-                          
-                                ),
-                                go.Bar(
-                                    x = OutDMD.range.unique(),
-                                    y = OutDMD[OutDMD['type'] == 'N_T'].value,
-                                   
-                                    name = 'Commercio extra comunità'
-                                ),
-                                
-
-                            ],
-                            layout=go.Layout(
-                                title='Confronto out degree distribution dei Commercio dentro e fuori la Comunità',
-                                showlegend=True,
-                                legend=go.layout.Legend(
-                                    x=0,
-                                    y=1.0
-                                ),
-                             
-                                margin=go.layout.Margin(l=40, r=0, t=40, b=30)
-                            )
-                        ),
-                        style={'height': 300},
-                        id='tradeOutDegree'
-                    ),
+                   
                     #MESSAGE OUT DEGREE DISTR
                     dcc.Graph(
                         figure=go.Figure(
@@ -1902,7 +1876,10 @@ app.layout = html.Div([
                         id='messageandtradedensitycomm'
                     ),
 
-                    
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/yyQHnB1/capture-20190628143525258.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
 
                     #coeff di clustering messaggi e trade
                     dcc.Graph(
@@ -2035,6 +2012,11 @@ app.layout = html.Div([
                         style={'height': 300},
                         id='messageandtradeSPcomm'
                     ),
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+            <center><img src="https://i.ibb.co/TtSkzRH/capture-20190628145334914.png
+            " alt="slide 1" width="1150"> </center>
+            '''),
+                    
 
                     #Grado medio
                     dcc.Graph(
@@ -2191,7 +2173,7 @@ app.layout = html.Div([
         dcc.Tab(label='Relazioni con i diplomatici', children=[
 
             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-            <center><img src="https://i.ibb.co/0s44Cmc/Schermata-2019-06-27-alle-19-11-09.png
+            <center><img src="https://i.ibb.co/n8q1KNC/capture-20190628141656963.png
             " alt="slide 1" width="1150"> </center>
             '''),
             
@@ -2231,7 +2213,7 @@ app.layout = html.Div([
                     dcc.Tab(label='Conclusioni', children=[
 
                           dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-            <center><img src="https://i.ibb.co/VTCKtcD/Schermata-2019-06-27-alle-19-12-12.png
+            <center><img src="https://i.ibb.co/GQK2VPJ/capture-20190628141844159.png
             " alt="slide 1" width="1150"> </center>
             '''),
          
