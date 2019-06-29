@@ -588,7 +588,7 @@ app.layout = html.Div([
                     
                     
         ]),
-            dcc.Tab(label='Average Degree', children=[
+            dcc.Tab(label='Average Degree and Degree Distribution', children=[
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/ts0HSjb/capture-20190628143801106.png" alt="slide 1" width="1150"> </center>
             '''),
@@ -641,7 +641,10 @@ app.layout = html.Div([
                         id='averageDedree'
                     ),
                     html.Hr(),
-
+                    dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
+         <center><img src="https://i.ibb.co/mhZ65Dn/capture-20190628143849434.png" alt="slide 1" width="1150"> </center>
+            '''),
+                    
                     dcc.Graph(
                         figure=go.Figure(
                             data=[
@@ -751,7 +754,7 @@ app.layout = html.Div([
                 
                 
         ]),
-              dcc.Tab(label='In/Out Degree Distribution', children=[
+              dcc.Tab(label='In/Out Degree Distribution sul periodo', children=[
 
                 dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/mhZ65Dn/capture-20190628143849434.png" alt="slide 1" width="1150"> </center>
