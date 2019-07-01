@@ -2220,7 +2220,7 @@ app.layout = html.Div([
                      dcc.Tab(label='Leader', children=[
 
                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-            <center><img src="https://i.ibb.co/nsDt6Wc/image.png
+            <center><img src="https://i.ibb.co/jhyNfmk/Ricerca-Leader.png
             " alt="slide 1" width="1150"> </center>
             '''),
                          dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
