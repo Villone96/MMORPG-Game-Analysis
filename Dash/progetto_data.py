@@ -205,7 +205,7 @@ app.layout = html.Div([
                 dcc.Tab(label='Giochi MMOG', children=[
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/cJBWLch/image.png" alt="slide 1" width="1100"> </center>
+         <center><img src="https://i.ibb.co/LN2t4pc/capture-20190702155113895.png" alt="slide 1" width="1100"> </center>
             '''),
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
          <center><img src="https://i.ibb.co/6m1PdLx/Schermata-2019-06-25-alle-10-20-22.png" alt="slide 1" width="1100"> </center>
@@ -234,7 +234,7 @@ app.layout = html.Div([
                 dcc.Tab(label='Pre-Processing', children=[
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/nBWvGbP/Schermata-2019-06-25-alle-10-37-13.png
+         <center><img src="https://i.ibb.co/M8DWpjS/capture-20190702155317347.png
         " alt="slide 1" width="1000"> </center>
             '''),
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
@@ -785,7 +785,7 @@ app.layout = html.Div([
                 dcc.Tab(label='In/Out Degree Distribution sul periodo', children=[
 
                     dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-         <center><img src="https://i.ibb.co/mhZ65Dn/capture-20190628143849434.png" alt="slide 1" width="1150"> </center>
+         <center><img src="https://i.ibb.co/K5yvSrt/capture-20190702155531467.png" alt="slide 1" width="1150"> </center>
             '''),
 
                     dcc.Graph(id="InDegreeDistributionGraph"),
