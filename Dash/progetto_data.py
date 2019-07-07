@@ -2435,7 +2435,7 @@ def update_output2(value):
         "data": [go.Pie(
             labels=edgesTrend["type"].unique().tolist(),
             values=edgesTrend[edgesTrend["day"] == value]["quantity"].tolist(),
-            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']},
+            marker={'colors': ['rgb(255, 0, 0)', 'rgb(76, 153, 0)', 'rgb(255, 170, 102)']},
             textinfo='label')],
         "layout": go.Layout(title=f"Trend report daily", margin={"l": 200, "r": 200, },
                             legend={"x": 1, "y": 0.7})}
@@ -2451,13 +2451,29 @@ def update_pie(xaxis_column_name):
     # print(dff.head())
 
     return {
-        'data': [go.Bar(
-            #print(dff[dff['Type'] == d]['Present']),
-            x=dff[dff['Type'] == d]['Day'],
-            y=dff[dff['Type'] == d]['Present'],
-            text=d,
-            name=d,
-        ) for d in dff.Type.unique()],
+        'data': [
+            go.Bar(
+                x=dff.Day.unique(),
+                y=dff[dff['Type'] =='Attack']['Present'],
+                name='Attacco',
+                marker=dict(
+                    color=('rgb(255, 0, 0) '),
+                ),
+            ),
+
+            go.Bar(
+                x=dff.Day.unique(),
+                y=dff[dff['Type'] =='Trade']['Present'],
+                name='Commercio',
+                marker=dict(
+                    color=('rgb(255, 170, 102)'),
+                ),
+
+
+            ),
+           
+      
+        ],
 
         'layout': go.Layout(
             xaxis={
@@ -2521,7 +2537,7 @@ def update_pie(xaxis_column_name):
             labels=['AttackIn', 'MessageIn', 'TradeIn'],
             values=[dff['AttackIn'].item(), dff['MessageIn'].item(),
                     dff['TradeIn'].item()],
-            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c']},
+            marker={'colors': ['rgb(255, 0, 0)', 'rgb(76, 153, 0)', 'rgb(255, 170, 102)']},
             textinfo='label')],
 
 
@@ -2548,7 +2564,7 @@ def update_pie(xaxis_column_name):
             labels=['AttackOut', 'MessageOut', 'TradeOut'],
             values=[dff['AttackOut'].item(), dff['MessageOut'].item(),
                     dff['TradeOut'].item()],
-            marker={'colors': ['#1f77b4', '#ff7f0e', '#2ca02c']},
+            marker={'colors': ['rgb(255, 0, 0)', 'rgb(76, 153, 0)', 'rgb(255, 170, 102)']},
             textinfo='label')],
 
 
