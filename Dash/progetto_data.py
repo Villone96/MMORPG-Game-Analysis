@@ -2435,7 +2435,7 @@ def update_output2(value):
         "data": [go.Pie(
             labels=edgesTrend["type"].unique().tolist(),
             values=edgesTrend[edgesTrend["day"] == value]["quantity"].tolist(),
-            marker={'colors': ['rgb(255, 0, 0)', 'rgb(76, 153, 0)', 'rgb(255, 170, 102)']},
+            marker={'colors': ['rgb(255, 0, 0)', 'rgb(255, 170, 102)', 'rgb(76, 153, 0)']},
             textinfo='label')],
         "layout": go.Layout(title=f"Trend report daily", margin={"l": 200, "r": 200, },
                             legend={"x": 1, "y": 0.7})}
